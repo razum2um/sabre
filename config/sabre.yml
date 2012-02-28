@@ -1,0 +1,33 @@
+development: 
+  #cert_wsdl_url: http://webservices.sabre.com/wsdl/sabreXML1.0.00/usg/SessionCreateRQ.wsdl
+  cert_wsdl_url: http://wsdl-crt.cert.sabre.com/sabreXML1.0.00/usg/SessionCreateRQ.wsdl
+  cert_url: https://cert.webservices.sabre.com/cert
+  wsdl_url: http://wsdl-crt.cert.sabre.com/sabreXML1.0.00/tpf/
+  #wsdl_url: http://webservices.sabre.com/wsdl/sabreXML1.0.00/tpf/
+  endpoint_url: https://cert.webservices.sabre.com/tsts
+  host: 
+  ipcc: P40G
+  username: '7971'
+  password:  WS020212
+
+test: 
+  #cert_wsdl_url: http://webservices.sabre.com/wsdl/sabreXML1.0.00/usg/SessionCreateRQ.wsdl
+  cert_wsdl_url: http://wsdl-crt.cert.sabre.com/sabreXML1.0.00/usg/SessionCreateRQ.wsdl
+  cert_url: https://cert.webservices.sabre.com/cert
+  wsdl_url: http://wsdl-crt.cert.sabre.com/sabreXML1.0.00/tpf/
+  #wsdl_url: http://webservices.sabre.com/wsdl/sabreXML1.0.00/tpf/
+  endpoint_url: https://cert.webservices.sabre.com/tsts
+  host: 
+  ipcc: P40G
+  username: '7971'
+  password:  WS020212
+
+production: 
+  cert_wsdl_url: http://webservices.sabre.com/wsdl/sabreXML1.0.00/usg/SessionCreateRQ.wsdl
+  cert_url: https://webservices.sabre.com/websvc
+  wsdl_url: http://webservices.sabre.com/wsdl/sabreXML1.0.00/tpf/
+  endpoint_url: https://webservices.sabre.com/websvc
+  host: 
+  ipcc: P40G
+  username: '7971'
+  password:  WS020212
