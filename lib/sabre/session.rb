@@ -5,15 +5,15 @@ module Sabre
   class Session
 	  attr_accessor :username, :password, :ipcc, :binary_security_token, :ref_message_id
     def initialize
-      @username = Sabre.config['development']['username']
-      @password = Sabre.config['development']['password']
-      @ipcc = Sabre.config['development']['ipcc']
+      @username = Sabre.username
+      @password = Sabre.password
+      @ipcc = Sabre.ipcc
 
       #@client = Savon::Client.new(config[Rails.env]['wsdl_url'])
     end
 
     def open
-      client = Savon::Client.new(Sabre.config['development']['cert_wsdl_url'])
+      client = Savon::Client.new(Sabre.cert_wsdl_url)
       response = client.request(:session_create_rq) do
         soap.namespaces["xmlns:SOAP-ENV"] = "http://schemas.xmlsoap.org/soap/envelope/"
         soap.namespaces["xmlns:eb"] = "http://www.ebxml.org/namespaces/messageHeader"
@@ -28,7 +28,7 @@ module Sabre
 
 
 		def close
-      client = Savon::Client.new(Sabre.config['development']['cert_wsdl_url'])
+      client = Savon::Client.new(Sabre.cert_wsdl_url)
       client.request(:session_close_rq) do
         soap.namespaces["xmlns:SOAP-ENV"] = "http://schemas.xmlsoap.org/soap/envelope/"
         soap.namespaces["xmlns:eb"] = "http://www.ebxml.org/namespaces/messageHeader"

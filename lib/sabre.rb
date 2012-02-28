@@ -7,11 +7,18 @@ require 'sabre/hotel'
 require 'sabre/reservation'
 
 module Sabre
-  def self.config
-    YAML.load(File.read(File.expand_path('../../config/sabre.yml', __FILE__)))
-	end
+  mattr_accessor :cert_wsdl_url, :wsdl_url, :endpoint_url, :username, :password, :ipcc, :binary_security_token, :ref_message_id
+
+  #def self.config
+  #  YAML.load(File.read(File.expand_path('../../config/sabre.yml', __FILE__)))
+	#end
 
 	def self.client(service)
-    Savon::Client.new(config['development']['wsdl_url']+service)
+    Savon::Client.new(self.wsdl_url+service)
 	end
+
+  def self.setup
+    yield self
+  end
+	
 end
