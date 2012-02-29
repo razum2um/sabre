@@ -34,11 +34,12 @@ With **Sabre** you can configure how your components will be rendered using the 
 The syntax looks like this:
 
 ```ruby
+class User
   include Sabre
 
-  def user_profile
+  def travel_profile
     session = Session.open
-    traveler = Traveler.profile(session, first_name, last_name, phone)
+    traveler = Traveler.profile(session, self.first_name, self.last_name, self.phone)
     Session.close
   end
 end
