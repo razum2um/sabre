@@ -9,10 +9,6 @@ require 'sabre/reservation'
 module Sabre
   mattr_accessor :cert_wsdl_url, :wsdl_url, :endpoint_url, :username, :password, :ipcc, :binary_security_token, :ref_message_id
 
-  #def self.config
-  #  YAML.load(File.read(File.expand_path('../../config/sabre.yml', __FILE__)))
-	#end
-
 	def self.client(service)
     Savon::Client.new(self.wsdl_url+service)
 	end
