@@ -27,7 +27,7 @@ module Sabre
     end
 
 
-		def close
+    def close
       client = Savon::Client.new(Sabre.cert_wsdl_url)
       client.request(:session_close_rq) do
         soap.namespaces["xmlns:SOAP-ENV"] = "http://schemas.xmlsoap.org/soap/envelope/"
@@ -36,9 +36,9 @@ module Sabre
         soap.header = header('Session','sabreXML','SessionCloseRQ')      
         soap.body = { 'POS' => { 'Source' => "", :attributes! => { 'Source' => { 'PseudoCityCode' => self.ipcc } } } }
       end
-		end
+    end
 
-	  def header(service, type, action)
+    def header(service, type, action)
       msg_header = { 'eb:ConversationId' => 'elia@mytravelershaven.com',
                   'eb:From' => { 'eb:PartyId' => "hotelengine.com", :attributes! => { 'eb:PartyId' => { 'type' => 'urn:x12.org:IO5:01' } } },
                   'eb:To' => { 'eb:PartyId' => "webservices.sabre.com", :attributes! => { 'eb:PartyId' => { 'type' => 'urn:x12.org:IO5:01' } } },
@@ -55,7 +55,7 @@ module Sabre
       }
     end
 
-		def security
+    def security
       if self.binary_security_token
         { 'wsse:BinarySecurityToken' => self.binary_security_token, :attributes! => { 'wsse:BinarySecurityToken' => { 'xmlns:wsu' => "http://schemas.xmlsoap.org/ws/2002/12/utility", 'wsu:Id' => 'SabreSecurityToken', 'valueType' => 'String', 'EncodingType' => "wsse:Base64Binary" } } }
       else 
@@ -63,9 +63,9 @@ module Sabre
       end
     end
 
-  	private
-  	def error_message(msg)
+    private
+    def error_message(msg)
      "#{msg[:errors][:error][:@error_code]}: #{msg[:errors][:error][:@error_message]}: #{msg[:errors][:error][:error_info][:message]}" 
   	end
-	end
+    end
 end

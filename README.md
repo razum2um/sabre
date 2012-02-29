@@ -1,7 +1,7 @@
 # Sabre - Ruby API for Sabre Web Services 
 
-**Sabre** is a ruby wrapper for Sabre Web Services SOAP/XML.  It aims to provide a ruby-like
-way of searching and booking hotels in Sabre's Travel network. 
+**Sabre** is a ruby implementation of Sabre Travel Network's SOAP Web Services.  It provides a mechanism
+for ruby applications to search and book hotels in Sabre's Travel network. 
 
 ## Installation
 
@@ -17,16 +17,14 @@ Run the generator:
 
 `rails generate sabre:install`
 
-## Configuration
-
-**Sabre** has several configuration options. You can read and change them in the initializer
-created by **Sabre**, so if you haven't executed the command below yet, please do:
-
-`rails generate sabre:install`
+This will then create a configuration file named config/initializers/sabre.rb to be modified with
+the credentials Sabre provides for subscriber access to each partner.
 
 ### The API
 
-With **Sabre** you can configure how your components will be rendered using the wrappers API.
+With **Sabre** you can access wrapper classes to construct workflows depending on your travel application's needs. 
+
+
 The syntax looks like this:
 
 ```ruby
@@ -37,6 +35,7 @@ class User
     session = Session.open
     traveler = Traveler.profile(session, self.first_name, self.last_name, self.phone)
     Session.close
+    return traveler # This returns the SOAP response as XML.
   end
 end
 ```
