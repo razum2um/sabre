@@ -1,11 +1,7 @@
 # Sabre - Ruby API for Sabre Web Services 
 
-**Sabre** is a ruby wrapper for Sabre Web Services SOAP/XML.  
-
-aims to be as flexible as possible while helping you with powerful components to create
-your forms. The basic goal of SimpleForm is to not touch your way of defining the layout, letting
-you find the better design for your eyes. Most of the DSL was inherited from Formtastic,
-which we are thankful for and should make you feel right at home.
+**Sabre** is a ruby wrapper for Sabre Web Services SOAP/XML.  It aims to provide a ruby-like
+way of searching and booking hotels in Sabre's Travel network. 
 
 ## Installation
 
