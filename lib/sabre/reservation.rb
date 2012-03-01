@@ -20,28 +20,28 @@ module Sabre
 			}, 
 		'BasicPropertyInfo' => { 'Line' => '', :attributes! => { 'Line' => { 'Number' => line_number } } }
 		}
-										}, 
-										'Profiles' => {
-												'Customer' => { 
-														 'PaymentForm' => { 
-																	'PaymentCard' => { 
-																			 'Guarantee' => {
-																						'PersonName' => {
-																								 'Surname' => name
-																						}
-																			 }, :attributes! => { 'Guarantee' => { 'Code' => 'G' } } 
-																	}, :attributes! => { 'PaymentCard' => { 'CardCode' => card_code, 'CardNumber' => card_number, 'ExpireDate' => expire_date.strftime('%Y-%m') } } 
+	      }, 
+	      'Profiles' => {
+		'Customer' => { 
+		 'PaymentForm' => { 
+	            'PaymentCard' => { 
+		      'Guarantee' => {
+			'PersonName' => {
+			 'Surname' => name
+			}
+		 }, :attributes! => { 'Guarantee' => { 'Code' => 'G' } } 
+		}, :attributes! => { 'PaymentCard' => { 'CardCode' => card_code, 'CardNumber' => card_number, 'ExpireDate' => expire_date.strftime('%Y-%m') } } 
                            } 
                       }   
                   }
               }
           }
       }
-			end
-			result = response.to_hash[:ota_hotel_res_rs]
-			raise SabreException::ConnectionError, error_message(result) if result[:errors]
-			return response
-		end
+      end
+      result = response.to_hash[:ota_hotel_res_rs]
+      raise SabreException::ConnectionError, error_message(result) if result[:errors]
+      return response
+    end
 
     def self.confirm(session)
       client = Sabre.client('EndTransactionLLS1.4.1RQ.wsdl')

@@ -1,6 +1,6 @@
 module Sabre
   module Traveler
-		def self.profile(session,first_name,last_name,phone)
+    def self.profile(session,first_name,last_name,phone)
 			client = Sabre.client('TravelItineraryAddInfoLLS1.10.1RQ.wsdl')
 			client.http.headers["Content-Type"] = "text/xml;charset=UTF-8"
 			response = client.request(:travel_itinerary_add_info_rq, { 'xmlns' => 'http://webservices.sabre.com/sabreXML/2003/07', 'xmlns:xs' => 'http://www.w3.org/2001/XMLSchema', 'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance', 'TimeStamp' => Time.now.strftime('%Y-%m-%dT%H:%M:%S'), 'Version' => '1.10.1'}) do
@@ -30,5 +30,5 @@ module Sabre
 				}
 			end
 	  end
-	end
+    end
 end
