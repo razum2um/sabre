@@ -43,7 +43,7 @@ module Sabre
       return response
     end
 
-    def self.confirm(session)
+    def self.confirm(session, full_name)
       client = Sabre.client('EndTransactionLLS1.4.1RQ.wsdl')
       client.http.headers["Content-Type"] = "text/xml;charset=UTF-8"
       response = client.request(:ota_hotel_res_rq, { 'xmlns' => 'http://webservices.sabre.com/sabreXML/2003/07', 'xmlns:xs' => 'http://www.w3.org/2001/XMLSchema', 'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance', 'TimeStamp' => Time.now.strftime('%Y-%m-%dT%H:%M:%S'), 'Version' => '1.4.1', 'Target' => 'Test'}) do
