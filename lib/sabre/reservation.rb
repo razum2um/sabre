@@ -51,7 +51,7 @@ module Sabre
         soap.namespaces["xmlns:eb"] = "http://www.ebxml.org/namespaces/messageHeader"
         soap.namespaces["xmlns:xlinx"] = "http://www.w3.org/1999/xlink"
         soap.version = 1
-        soap.header = session.header('Hotel Booking','sabreXML','OTA_HotelResLLSRQ')
+        soap.header = session.header('Hotel Booking','sabreXML','EndTransactionLLSRQ')
         soap.body = {
           'POS' => { 'Source' => "", :attributes! => { 'Source' => { 'PseudoCityCode' => session.ipcc } } },
           'UpdatedBy' => { 'TPA_Extensions' => { 'Access' => { 'AccessPerson' => { 'GivenName' => full_name } } } },
