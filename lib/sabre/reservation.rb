@@ -51,7 +51,7 @@ module Sabre
         soap.namespaces["xmlns:eb"] = "http://www.ebxml.org/namespaces/messageHeader"
         soap.namespaces["xmlns:xlinx"] = "http://www.w3.org/1999/xlink"
         soap.version = 1
-        soap.header = session.header('Hotel Booking','sabreXML','EndTransactionLLSRQ')
+        soap.header = session.header('Hotel Booking Confirmation','sabreXML','EndTransactionLLSRQ')
         soap.body = {
           'POS' => { 'Source' => "", :attributes! => { 'Source' => { 'PseudoCityCode' => session.ipcc } } },
           'UpdatedBy' => { 'TPA_Extensions' => { 'Access' => { 'AccessPerson' => { 'GivenName' => full_name } } } },
@@ -67,7 +67,7 @@ module Sabre
 	soap.namespaces["xmlns:SOAP-ENV"] = "http://schemas.xmlsoap.org/soap/envelope/"
 	soap.namespaces["xmlns:eb"] = "http://www.ebxml.org/namespaces/messageHeader"
 	soap.namespaces["xmlns:xlinx"] = "http://www.w3.org/1999/xlink"
-	soap.version = 2
+	soap.version = 1
 	soap.header = session.header('Cancel Reservation','sabreXML','OTA_CancelLLSRQ')
 	soap.body = {
 		'POS' => { 'Source' => "", :attributes! => { 'Source' => { 'PseudoCityCode' => session.ipcc } } },
