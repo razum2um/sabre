@@ -18,17 +18,17 @@ module Sabre
                     'RoomStayCandidate' => { 'GuestCounts' => { 'GuestCount' => '', :attributes! => { 'GuestCount' => { 'Count' => guest_count } } } } 
                     }, 'HotelSearchCriteria' => {
 			'Criterion' => { 
-                           amenities.each do |amenity|
-                             'HotelAmenity' => amenity
-                           end
+                            'HotelAmenity' => amenities,
                             'HotelRef' => '', 'RefPoint' => 'G', :attributes! => {
+                                'HotelAmenity' => { 'PropertyType' => 'LUXRY' },
                                 'HotelRef' => { 'Latitude' => latitude, 'Longitude' => longitude }, 
-														'RefPoint' => { 'GEOCodeOnly' => 'true', 'LocationCode' => 'R' }
-													} }
-										 }, :attributes! => { 
-												'StayDateRange' => { 'Start' => start_time.strftime('%m-%d'), 'End' => end_time.strftime('%m-%d') }, 
-												'HotelSearchCriteria' => { 'NumProperties' => 20 } 
-		       }
+				'RefPoint' => { 'GEOCodeOnly' => 'true', 'LocationCode' => 'R' }
+			    } 
+                        }
+		    }, :attributes! => { 
+			'StayDateRange' => { 'Start' => start_time.strftime('%m-%d'), 'End' => end_time.strftime('%m-%d') }, 
+			'HotelSearchCriteria' => { 'NumProperties' => 20 } 
+		    }
 		 }
 	     }
 	}
