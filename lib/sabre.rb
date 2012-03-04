@@ -1,3 +1,4 @@
+require 'active_support/all'
 require 'sabre/version'
 require 'yaml'
 require 'savon'
