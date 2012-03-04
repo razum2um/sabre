@@ -1,6 +1,6 @@
 module Sabre
   class Hotel
-    def self.find_by_geo(session, start_time, end_time, latitude, longitude, guest_count, amenities = {})
+    def self.find_by_geo(session, start_time, end_time, latitude, longitude, guest_count, amenities = [])
       client = Sabre.client('OTA_HotelAvailLLS1.11.1RQ.wsdl')
       client.http.headers["Content-Type"] = "text/xml;charset=UTF-8"
       response = client.request(:ota_hotel_avail_rq, { 'xmlns' => 'http://webservices.sabre.com/sabreXML/2003/07', 'xmlns:xs' => 'http://www.w3.org/2001/XMLSchema', 'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance', 'TimeStamp' => Time.now.strftime('%Y-%m-%dT%H:%M:%S'), 'Version' => '2003A.TsabreXML1.11.1'}) do
@@ -18,6 +18,9 @@ module Sabre
                     'RoomStayCandidate' => { 'GuestCounts' => { 'GuestCount' => '', :attributes! => { 'GuestCount' => { 'Count' => guest_count } } } } 
                     }, 'HotelSearchCriteria' => {
 			'Criterion' => { 
+                           amenities.each do |amenity|
+                             'HotelAmenity' => amenity
+                           end
                             'HotelRef' => '', 'RefPoint' => 'G', :attributes! => {
                                 'HotelRef' => { 'Latitude' => latitude, 'Longitude' => longitude }, 
 														'RefPoint' => { 'GEOCodeOnly' => 'true', 'LocationCode' => 'R' }
@@ -32,7 +35,7 @@ module Sabre
     end
   end
 
-		def self.find_by_iata(session, start_time, end_time, iata_city_code, guest_count, amenities = {})
+		def self.find_by_iata(session, start_time, end_time, iata_city_code, guest_count, amenities = [])
 			client = Sabre.client('OTA_HotelAvailLLS1.11.1RQ.wsdl')
 			client.http.headers["Content-Type"] = "text/xml;charset=UTF-8"
 			response = client.request(:ota_hotel_avail_rq, { 'xmlns' => 'http://webservices.sabre.com/sabreXML/2003/07', 'xmlns:xs' => 'http://www.w3.org/2001/XMLSchema', 'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance', 'TimeStamp' => Time.now.strftime('%Y-%m-%dT%H:%M:%S'), 'Version' => '2003A.TsabreXML1.11.1'}) do
