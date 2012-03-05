@@ -18,11 +18,9 @@ module Sabre
                     'RoomStayCandidate' => { 'GuestCounts' => { 'GuestCount' => '', :attributes! => { 'GuestCount' => { 'Count' => guest_count } } } } 
                     }, 'HotelSearchCriteria' => {
 			'Criterion' => { 
-                            'HotelAmenity' => amenities,
-                            'HotelRef' => '', 'RefPoint' => 'G', :attributes! => {
-                                'HotelAmenity' => { 'PropertyType' => 'LUXRY' },
+                            'HotelAmenity' => amenities, 'HotelRef' => '', 'RefPoint' => 'G', :attributes! => {
                                 'HotelRef' => { 'Latitude' => latitude, 'Longitude' => longitude }, 
-				'RefPoint' => { 'GEOCodeOnly' => 'true', 'LocationCode' => 'R' }
+				'RefPoint' => { 'GEOCodeOnly' => 'true', 'LocationCode' => 'R' },
 			    } 
                         }
 		    }, :attributes! => { 
@@ -54,9 +52,7 @@ module Sabre
                     'RoomStayCandidate' => { 'GuestCounts' => { 'GuestCount' => '', :attributes! => { 'GuestCount' => { 'Count' => guest_count } } } } 
                   }, 'HotelSearchCriteria' => {
                     'Criterion' => { 
-                      'HotelAmenity' => amenities,
-                      'HotelRef' => '', :attributes! => {
-                        'HotelAmenity' => { 'PropertyType' => 'LUXURY' },
+                      'HotelAmenity' => amenities, 'HotelRef' => '', :attributes! => {
 			'HotelRef' => { 'HotelCityCode' => iata_city_code } 
 		} }
 		 }, :attributes! => { 
