@@ -8,6 +8,7 @@ describe Sabre do
     Sabre.username = ''
     Sabre.password = ''
     @session = Sabre::Session.new
+    Sabre::Session.expects(:open).returns(true)
     @session.open
   end
 

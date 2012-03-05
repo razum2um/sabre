@@ -75,5 +75,22 @@ module Sabre
 	}
       end
     end
+    
+    # Retrieve travel itinerary by Sabre's UniqueID
+    def self.itinerary(session, reservation_id)
+      client = Sabre.client('TravelItineraryReadLLS1.1.1RQ.wsdl')
+      client.http.headers["Content-Type"] = "text/xml;charset=UTF-8"
+      response = client.request(:travel_itinerary_read_rq, { 'xmlns' => 'http://webservices.sabre.com/sabreXML/2003/07', 'xmlns:xs' => 'http://www.w3.org/2001/XMLSchema', 'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance', 'TimeStamp' => Time.now.strftime('%Y-%m-%dT%H:%M:%S'), 'Version' => '2003A.TsabreXML1.11.1'}) do
+	soap.namespaces["xmlns:SOAP-ENV"] = "http://schemas.xmlsoap.org/soap/envelope/"
+	soap.namespaces["xmlns:eb"] = "http://www.ebxml.org/namespaces/messageHeader"
+	soap.namespaces["xmlns:xlinx"] = "http://www.w3.org/1999/xlink"
+	soap.version = 1
+	soap.header = session.header('Read Travel Itinerarys','sabreXML','TravelItineraryReadLLSRQ')
+	soap.body = {
+		'POS' => { 'Source' => "", :attributes! => { 'Source' => { 'PseudoCityCode' => session.ipcc } } },
+		'UniqueID' => '', :attributes! => { 'UniqueID' => { 'ID' => reservation_id } }  
+	}
+      end 
+    end
   end
 end

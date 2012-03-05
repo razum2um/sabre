@@ -5,6 +5,7 @@
 #require 'yaml'
 #require 'ruby-debug'
 require 'ffaker'
+require 'mocha'
 require 'sabre'
 
 #RSpec.configure do |config|
