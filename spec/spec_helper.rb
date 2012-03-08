@@ -4,10 +4,19 @@
 #require 'rspec'
 #require 'yaml'
 #require 'ruby-debug'
-require 'ffaker'
 require 'mocha'
+require 'ffaker'
+require 'savon'
+require 'savon_spec'
 require 'sabre'
 
-#RSpec.configure do |config|
+RSpec.configure do |config|
+  config.mock_with :mocha
+  config.include Savon::Spec::Macros
 
-#end
+  config.before :each do 
+    # Make sure we don't ever send requests
+    HTTPI.expects(:get).never
+    HTTPI.expects(:post).never
+  end
+end

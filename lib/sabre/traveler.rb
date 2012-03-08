@@ -43,7 +43,8 @@ module Sabre
 	soap.header = session.header('Travel Itinerary Info','sabreXML','TravelItineraryReadLLSRQ')
 	soap.body = {
 	  'POS' => { 'Source' => "", :attributes! => { 'Source' => { 'PseudoCityCode' => session.ipcc } } },
-          'MessagingDetails' => { 'Transaction' => '', :attributes! => { 'Transaction' => { 'Code' => transaction_code } } }
+          'MessagingDetails' => { 'Transaction' => '', :attributes! => { 'Transaction' => { 'Code' => transaction_code } } },
+          'UniqueID' => '', :attributes! => { 'UniqueID' => { 'ID' => reservation_id } } 
         } 
       end
     end

@@ -18,12 +18,14 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-	s.add_development_dependency 'rspec'
-#	s.add_development_dependency 'ruby-debug19'
-	s.add_development_dependency 'ffaker'
-        s.add_development_dependency 'mocha'
-	s.add_runtime_dependency('savon','>= 0.9.7')
-	s.add_runtime_dependency('activesupport')
+  s.add_development_dependency 'rspec'
+#s.add_development_dependency 'ruby-debug19'
+  s.add_development_dependency 'ffaker'
+  s.add_development_dependency 'savon_spec'
+  s.add_development_dependency 'mocha'
+  
+  s.add_runtime_dependency('savon','>= 0.9.7')
+  s.add_runtime_dependency('activesupport')
 
   # specify any dependencies here; for example:
   # s.add_development_dependency "rspec"
