@@ -3,24 +3,22 @@ require 'savon'
 
 module Sabre
   class Session
-    attr_accessor :username, :password, :ipcc, :binary_security_token, :ref_message_id, :account_email, :domain
+    attr_accessor :username, :password, :ipcc, :binary_security_token, :ref_message_id
     def initialize
       @username = Sabre.username
       @password = Sabre.password
       @ipcc = Sabre.ipcc
-      @account_email = Sabre.account_email
-      @domain = Sabre.domain
 
       #@client = Savon::Client.new(config[Rails.env]['wsdl_url'])
     end
 
-    def open
+    def open(account_email)
       client = Savon::Client.new(Sabre.cert_wsdl_url)
       response = client.request(:session_create_rq) do
         soap.namespaces["xmlns:SOAP-ENV"] = "http://schemas.xmlsoap.org/soap/envelope/"
         soap.namespaces["xmlns:eb"] = "http://www.ebxml.org/namespaces/messageHeader"
         soap.namespaces["xmlns:xlinx"] = "http://www.w3.org/1999/xlink"
-        soap.header = header('Session','sabreXML','SessionCreateRQ')      
+        soap.header = header('Session','sabreXML','SessionCreateRQ',account_email)      
         soap.body = { 'POS' => { 'Source' => "", :attributes! => { 'Source' => { 'PseudoCityCode' => self.ipcc } } } }
       end
       #doc = response.body
@@ -29,26 +27,26 @@ module Sabre
     end
 
 
-    def close
+    def close(account_email)
       client = Savon::Client.new(Sabre.cert_wsdl_url)
       client.request(:session_close_rq) do
         soap.namespaces["xmlns:SOAP-ENV"] = "http://schemas.xmlsoap.org/soap/envelope/"
         soap.namespaces["xmlns:eb"] = "http://www.ebxml.org/namespaces/messageHeader"
         soap.namespaces["xmlns:xlinx"] = "http://www.w3.org/1999/xlink"
-        soap.header = header('Session','sabreXML','SessionCloseRQ')      
+        soap.header = header('Session','sabreXML','SessionCloseRQ',account_email)      
         soap.body = { 'POS' => { 'Source' => "", :attributes! => { 'Source' => { 'PseudoCityCode' => self.ipcc } } } }
       end
     end
 
-    def header(service, type, action)
-      msg_header = { 'eb:ConversationId' => self.account_email,
-                  'eb:From' => { 'eb:PartyId' => self.domain, :attributes! => { 'eb:PartyId' => { 'type' => 'urn:x12.org:IO5:01' } } },
+    def header(service, type, action, account_email)
+      msg_header = { 'eb:ConversationId' => account_email,
+                  'eb:From' => { 'eb:PartyId' => "hotelengine.com", :attributes! => { 'eb:PartyId' => { 'type' => 'urn:x12.org:IO5:01' } } },
                   'eb:To' => { 'eb:PartyId' => "webservices.sabre.com", :attributes! => { 'eb:PartyId' => { 'type' => 'urn:x12.org:IO5:01' } } },
                   'eb:CPAId' => self.ipcc,
                   'eb:Service' => service, :attributes! => { 'eb:Service' => { 'eb:type' => type } },
                   'eb:Action' => action,
                   'eb:MessageData' => {
-                     'eb:MessageId' => "mid:#{Time.now.strftime('%Y%m%d-%H%M%S')}@#{self.domain}",
+                     'eb:MessageId' => "mid:#{Time.now.strftime('%Y%m%d-%H%M%S')}@hotelengine.com",
                      'eb:RefToMessageId' => self.ref_message_id,
                      'eb:Timestamp' => Time.now.strftime('%Y-%m-%dT%H:%M:%SZ')
                   } }

@@ -66,34 +66,34 @@ module Sabre
     end
 
     def self.profile(session,hotel_id, start_time, end_time, guest_count)
-			client = Sabre.client('HotelPropertyDescriptionLLS1.12.1RQ.wsdl')
-			client.http.headers["Content-Type"] = "text/xml;charset=UTF-8"
-			response = client.request(:hotel_property_description_rq, { 'xmlns' => 'http://webservices.sabre.com/sabreXML/2003/07', 'xmlns:xs' => 'http://www.w3.org/2001/XMLSchema', 'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance', 'TimeStamp' => Time.now.strftime('%Y-%m-%dT%H:%M:%S'), 'Version' => '2003A.TsabreXML1.11.1'}) do
-				soap.namespaces["xmlns:SOAP-ENV"] = "http://schemas.xmlsoap.org/soap/envelope/"
-				soap.namespaces["xmlns:eb"] = "http://www.ebxml.org/namespaces/messageHeader"
-				soap.namespaces["xmlns:xlinx"] = "http://www.w3.org/1999/xlink"
-				soap.version = 1
-				soap.header = session.header('Hotel Description','sabreXML','HotelPropertyDescriptionLLSRQ')
-				soap.body = {
-					'POS' => { 'Source' => "", :attributes! => { 'Source' => { 'PseudoCityCode' => session.ipcc } } },
-						'AvailRequestSegments' => {
-								'AvailRequestSegment' => {
-										'StayDateRange' => '', :attributes! => { 'StayDateRange' => {
-												'Start' => start_time.strftime('%Y-%m-%d'), 'End' => end_time.strftime('%Y-%m-%d')
-										} }, 'RoomStayCandidates' => {
-										 'RoomStayCandidate' => { 'GuestCounts' => { 'GuestCount' => '', :attributes! => { 'GuestCount' => { 'Count' => guest_count } } } } 
+	client = Sabre.client('HotelPropertyDescriptionLLS1.12.1RQ.wsdl')
+	client.http.headers["Content-Type"] = "text/xml;charset=UTF-8"
+	response = client.request(:hotel_property_description_rq, { 'xmlns' => 'http://webservices.sabre.com/sabreXML/2003/07', 'xmlns:xs' => 'http://www.w3.org/2001/XMLSchema', 'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance', 'TimeStamp' => Time.now.strftime('%Y-%m-%dT%H:%M:%S'), 'Version' => '2003A.TsabreXML1.11.1'}) do
+		soap.namespaces["xmlns:SOAP-ENV"] = "http://schemas.xmlsoap.org/soap/envelope/"
+		soap.namespaces["xmlns:eb"] = "http://www.ebxml.org/namespaces/messageHeader"
+		soap.namespaces["xmlns:xlinx"] = "http://www.w3.org/1999/xlink"
+		soap.version = 1
+		soap.header = session.header('Hotel Description','sabreXML','HotelPropertyDescriptionLLSRQ')
+		soap.body = {
+			'POS' => { 'Source' => "", :attributes! => { 'Source' => { 'PseudoCityCode' => session.ipcc } } },
+				'AvailRequestSegments' => {
+						'AvailRequestSegment' => {
+								'StayDateRange' => '', :attributes! => { 'StayDateRange' => {
+										'Start' => start_time.strftime('%Y-%m-%d'), 'End' => end_time.strftime('%Y-%m-%d')
+								} }, 'RoomStayCandidates' => {
+								 'RoomStayCandidate' => { 'GuestCounts' => { 'GuestCount' => '', :attributes! => { 'GuestCount' => { 'Count' => guest_count } } } } 
 				}, 'HotelSearchCriteria' => {
-													'Criterion' => { 'HotelRef' => '', :attributes! => {
-														'HotelRef' => { 'HotelCode' => hotel_id }
-													} }
-										 }
-								}
+											'Criterion' => { 'HotelRef' => '', :attributes! => {
+												'HotelRef' => { 'HotelCode' => hotel_id }
+											} }
+								 }
 						}
 				}
-			end
-			result = response.to_hash[:hotel_property_description_rs]
-			raise SabreException::ConnectionError, error_message(result) if result[:errors] 
-			return response
-		end
+		}
+	end
+	result = response.to_hash[:hotel_property_description_rs]
+	raise SabreException::ConnectionError, error_message(result) if result[:errors] 
+	return response
+    end
   end
 end

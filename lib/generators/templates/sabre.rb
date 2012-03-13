@@ -5,3 +5,5 @@ ENDPOINT_URL = 'https://cert.webservices.sabre.com/tsts'
 IPCC = <provided by Sabre>
 USERNAME = <provided by Sabre>
 PASSWORD = <provided by Sabre>
+ACCOUNT_EMAIL = <provided by Sabre>
+DOMAIN = <provided by Sabre>

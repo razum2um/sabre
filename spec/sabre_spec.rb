@@ -5,32 +5,34 @@ describe Sabre do
     let(:client) do
       Savon::Client.new do
         #wsdl.namespace = 'http://wsdl-crt.cert.sabre.com/'
-        wsdl.document = 'http://wsdl-crt.cert.sabre.com/sabreXML1.0.00/tpf/OTA_HotelAvailLLS1.11.1RQ.wsdl'
+        #wsdl.document = 'http://wsdl-crt.cert.sabre.com/sabreXML1.0.00/tpf/OTA_HotelAvailLLS1.11.1RQ.wsdl'
+        wsdl.document = 'http://webservices.sabre.com/wsdl/sabreXML1.0.00/usg/SessionCreateRQ.wsdl'
       end
     end
 
-    before do
-      savon.expects(:ota_hotel_avail_rq).with(:username => '', :password => '')
+    it "expects the client to return soap_actions" do
+      client.wsdl.soap_actions.should == [:session_create_rq]
     end
 
-    it "mocks a SOAP request" do
-      client.request(:ota_hotel_avail_rq) do
-        soap.body = { :username => '', :password => '' }
-      end
-    end
   end
 
   context "Send SOAP Requests to Sabre" do
     before(:each) do 
       Sabre.cert_wsdl_url = 'http://wsdl-crt.cert.sabre.com/sabreXML1.0.00/usg/SessionCreateRQ.wsdl'
       Sabre.wsdl_url = 'http://wsdl-crt.cert.sabre.com/sabreXML1.0.00/tpf/'
-      Sabre.ipcc = ''
-      Sabre.username = ''
-      Sabre.password = ''
+      Sabre.ipcc = 'P40G'
+      Sabre.account_email = 'joe@example.com'
+      Sabre.domain = 'example.com'
+      Sabre.username = '7971'
+      Sabre.password = 'WS020212'
       @session = Sabre::Session.new
-      Sabre::Session.expects(:open).returns(true)
       @session.open
     end
+ 
+    #it "should open a session" do
+    #  FakeWeb.register_uri(:any,'http://wsdl-crt.cert.sabre.com/sabreXML1.0.00/usg/SessionCreateRQ.wsdl', :body => File.read('spec/fixtures/session_create_rq/success.xml'))
+    #  @session.expects(:open).returns(:success) 
+    #end
 
     it "should create a travel itinerary" do
       response = Sabre::Traveler.profile(@session, Faker::Name.first_name, Faker::Name.last_name, '303-861-9300')  
