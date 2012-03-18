@@ -93,12 +93,12 @@ module Sabre
 	    end
 	    result = response.to_hash[:hotel_property_description_rs]
 	    raise SabreException::ConnectionError, error_message(result) if result[:errors] 
-	   return response
-     end
-   end
+	    return response
+    end
 
     private
     def error_message(msg)
      "#{msg[:errors][:error][:@error_code]}: #{msg[:errors][:error][:@error_message]}: #{msg[:errors][:error][:error_info][:message]}" 
   	end
+  end
 end
