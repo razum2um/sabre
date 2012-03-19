@@ -72,7 +72,7 @@ module Sabre
     def self.rate_details(session, hotel_id, visit_start, visit_end, guest_count)
     	client = Sabre.client('HotelRateDescriptionLLS1.9.1RQ.wsdl')
 	    client.http.headers["Content-Type"] = "text/xml;charset=UTF-8"
-	    response = client.request(:hotel_rate_description_rq, { 'xmlns' => 'http://webservices.sabre.com/sabreXML/2003/07', 'xmlns:xs' => 'http://www.w3.org/2001/XMLSchema', 'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance', 'TimeStamp' => Time.now.strftime('%Y-%m-%dT%H:%M:%S'), 'Version' => '2003A.TsabreXML1.11.1'}) do
+	    response = client.request(:hotel_rate_description_rq, { 'xmlns' => 'http://webservices.sabre.com/sabreXML/2003/07', 'xmlns:xs' => 'http://www.w3.org/2001/XMLSchema', 'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance', 'TimeStamp' => Time.now.strftime('%Y-%m-%dT%H:%M:%S'), 'Version' => '1.9.1'}) do
 		    soap.namespaces["xmlns:SOAP-ENV"] = "http://schemas.xmlsoap.org/soap/envelope/"
 		    soap.namespaces["xmlns:eb"] = "http://www.ebxml.org/namespaces/messageHeader"
 		    soap.namespaces["xmlns:xlinx"] = "http://www.w3.org/1999/xlink"
@@ -83,8 +83,9 @@ module Sabre
 				  'AvailRequestSegments' => {
 					 	'AvailRequestSegment' => {
 							'StayDateRange' => '', :attributes! => { 'StayDateRange' => {
-							    			'Start' => visit_start.strftime('%Y-%m-%d'), 'End' => visit_end.strftime('%Y-%m-%d')
+							    			'Start' => visit_start.strftime('%m-%d'), 'End' => visit_end.strftime('%m-%d')
 							  } 
+              }, 'RatePlanCandidates' => { 'RatePlanCandidate' => '', :attributes! => { 'RatePlanCandidate' => { 'CurrencyCode' => 'USD', 'DecodeAll' => 'true' }} 
               }, 'RoomStayCandidates' => {
 								     'RoomStayCandidate' => { 'GuestCounts' => { 'GuestCount' => '', :attributes! => { 'GuestCount' => { 'Count' => guest_count } } } } 
 			    	  }, 'HotelSearchCriteria' => {
