@@ -69,7 +69,7 @@ module Sabre
       end
     end
 
-    def self.rate_details(session, hotel_id, visit_start, visit_end, guest_count)
+    def self.rate_details(session, hotel_id, visit_start, visit_end, guest_count, line_number)
     	client = Sabre.client('HotelRateDescriptionLLS1.9.1RQ.wsdl')
 	    client.http.headers["Content-Type"] = "text/xml;charset=UTF-8"
 	    response = client.request(:hotel_rate_description_rq, { 'xmlns' => 'http://webservices.sabre.com/sabreXML/2003/07', 'xmlns:xs' => 'http://www.w3.org/2001/XMLSchema', 'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance', 'TimeStamp' => Time.now.strftime('%Y-%m-%dT%H:%M:%S'), 'Version' => '1.9.1'}) do
@@ -82,7 +82,7 @@ module Sabre
 			    'POS' => { 'Source' => "", :attributes! => { 'Source' => { 'PseudoCityCode' => session.ipcc } } },
 				  'AvailRequestSegments' => {
 					 	'AvailRequestSegment' => {
-              'RatePlanCandidates' => { 'RatePlanCandidate' => '', :attributes! => { 'RatePlanCandidate' => { 'RPH' => '1' }} 
+              'RatePlanCandidates' => { 'RatePlanCandidate' => '', :attributes! => { 'RatePlanCandidate' => { 'RPH' => line_number.to_s }} 
 							}
 				    }
 			    }
