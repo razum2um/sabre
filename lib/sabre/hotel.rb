@@ -82,16 +82,7 @@ module Sabre
 			    'POS' => { 'Source' => "", :attributes! => { 'Source' => { 'PseudoCityCode' => session.ipcc } } },
 				  'AvailRequestSegments' => {
 					 	'AvailRequestSegment' => {
-							'StayDateRange' => '', :attributes! => { 'StayDateRange' => {
-							    			'Start' => visit_start.strftime('%m-%d'), 'End' => visit_end.strftime('%m-%d')
-							  } 
-              }, 'RatePlanCandidates' => { 'RatePlanCandidate' => '', :attributes! => { 'RatePlanCandidate' => { 'CurrencyCode' => 'USD', 'DecodeAll' => 'true' }} 
-              }, 'RoomStayCandidates' => {
-								     'RoomStayCandidate' => { 'GuestCounts' => { 'GuestCount' => '', :attributes! => { 'GuestCount' => { 'Count' => guest_count } } } } 
-			    	  }, 'HotelSearchCriteria' => {
-				    							'Criterion' => { 'HotelRef' => '', :attributes! => {
-					    							'HotelRef' => { 'HotelCode' => hotel_id }
-						  	} }
+              'RatePlanCandidates' => { 'RatePlanCandidate' => '', :attributes! => { 'RatePlanCandidate' => { 'RPH' => '1' }} 
 							}
 				    }
 			    }
