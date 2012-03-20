@@ -2,7 +2,6 @@ module Sabre
   module Traveler
     def self.profile(session,first_name,last_name,phone)
 	client = Sabre.client('TravelItineraryAddInfoLLS1.10.1RQ.wsdl')
-	client.http.headers["Content-Type"] = "text/xml;charset=UTF-8"
 	response = client.request(:travel_itinerary_add_info_rq, { 'xmlns' => 'http://webservices.sabre.com/sabreXML/2003/07', 'xmlns:xs' => 'http://www.w3.org/2001/XMLSchema', 'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance', 'TimeStamp' => Time.now.strftime('%Y-%m-%dT%H:%M:%S'), 'Version' => '1.10.1'}) do
 		soap.namespaces["xmlns:SOAP-ENV"] = "http://schemas.xmlsoap.org/soap/envelope/"
 		soap.namespaces["xmlns:eb"] = "http://www.ebxml.org/namespaces/messageHeader"
@@ -11,7 +10,7 @@ module Sabre
 		soap.version = 1 # Unable to internalize message if version 2 
 		soap.header = session.header('Travel Itinerary Info','sabreXML','TravelItineraryAddInfoLLSRQ')
 		soap.body = {
-			'POS' => { 'Source' => "", :attributes! => { 'Source' => { 'PseudoCityCode' => session.ipcc } } },
+			'POS' => Sabre.pos,
 			'AgencyInfo' => { 'Address' => { 
 							'AddressLine' => 'MyTravelersHaven.com',
 							'StreetNmbr' => '425 S. Cherry Street',
@@ -33,7 +32,6 @@ module Sabre
     
     def self.locate(session, transaction_code)
       client = Sabre.client('TravelItineraryReadLLS1.1.1RQ.wsdl')
-      client.http.headers["Content-Type"] = "text/xml;charset=UTF-8"
       response = client.request(:travel_itinerary_add_info_rq, { 'xmlns' => 'http://webservices.sabre.com/sabreXML/2003/07', 'xmlns:xs' => 'http://www.w3.org/2001/XMLSchema', 'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance', 'TimeStamp' => Time.now.strftime('%Y-%m-%dT%H:%M:%S'), 'Version' => '1.1.1'}) do
 	soap.namespaces["xmlns:SOAP-ENV"] = "http://schemas.xmlsoap.org/soap/envelope/"
 	soap.namespaces["xmlns:eb"] = "http://www.ebxml.org/namespaces/messageHeader"
@@ -42,10 +40,10 @@ module Sabre
 	soap.version = 1 # Unable to internalize message if version 2 
 	soap.header = session.header('Travel Itinerary Info','sabreXML','TravelItineraryReadLLSRQ')
 	soap.body = {
-	  'POS' => { 'Source' => "", :attributes! => { 'Source' => { 'PseudoCityCode' => session.ipcc } } },
-          'MessagingDetails' => { 'Transaction' => '', :attributes! => { 'Transaction' => { 'Code' => transaction_code } } },
+			'POS' => Sabre.pos,
+      'MessagingDetails' => { 'Transaction' => '', :attributes! => { 'Transaction' => { 'Code' => transaction_code } } },
           'UniqueID' => '', :attributes! => { 'UniqueID' => { 'ID' => reservation_id } } 
-        } 
+      } 
       end
     end
   end
