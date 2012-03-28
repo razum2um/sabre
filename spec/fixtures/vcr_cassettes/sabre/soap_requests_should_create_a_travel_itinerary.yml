@@ -1,0 +1,348 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: http://wsdl-crt.cert.sabre.com/sabreXML1.0.00/usg/SessionCreateRQ.wsdl
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: {}
+
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Server: 
+      - Apache-Coyote/1.1
+      Accept-Ranges: 
+      - bytes
+      Etag: 
+      - W/"2437-1332860800000"
+      Last-Modified: 
+      - Tue, 27 Mar 2012 15:06:40 GMT
+      Content-Type: 
+      - application/xml
+      Content-Length: 
+      - "2437"
+      Date: 
+      - Wed, 28 Mar 2012 04:49:33 GMT
+    body: 
+      encoding: US-ASCII
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd1="http://www.opentravel.org/OTA/2002/11" xmlns:tns="https://webservices.sabre.com/websvc" xmlns:eb="http://www.ebxml.org/namespaces/messageHeader" xmlns:wsse="http://schemas.xmlsoap.org/ws/2002/12/secext" targetNamespace="https://webservices.sabre.com/websvc">
+        	<types>
+        		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        			<xsd:import namespace="http://www.opentravel.org/OTA/2002/11" schemaLocation="SessionCreateRQRS.xsd"/>
+        			<xsd:import namespace="http://www.ebxml.org/namespaces/messageHeader" schemaLocation="msg-header-2_0.xsd"/>
+        			<xsd:import namespace="http://schemas.xmlsoap.org/ws/2002/12/secext" schemaLocation="wsse.xsd"/>
+        		</xsd:schema>
+        	</types>
+        	<message name="GetSessionCreateInput">
+        		<part name="header" element="eb:MessageHeader"/>
+        		<part name="header2" element="wsse:Security"/>
+        		<part name="body" element="xsd1:SessionCreateRQ"/>
+        	</message>
+        	<message name="GetSessionCreateOutput">
+        		<part name="header" element="eb:MessageHeader"/>
+        		<part name="header2" element="wsse:Security"/>
+        		<part name="body" element="xsd1:SessionCreateRS"/>
+        	</message>
+        	<portType name="SessionCreatePortType">
+        		<operation name="SessionCreateRQ">
+        			<input message="tns:GetSessionCreateInput"/>
+        			<output message="tns:GetSessionCreateOutput"/>
+        		</operation>
+        	</portType>
+        	<binding name="SessionCreateSoapBinding" type="tns:SessionCreatePortType">
+        		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        		<operation name="SessionCreateRQ">
+        			<soap:operation soapAction="OTA"/>
+        			<input>
+        				<soap:header message="tns:GetSessionCreateInput" part="header" use="literal"/>
+        				<soap:header message="tns:GetSessionCreateInput" part="header2" use="literal"/>
+        				<soap:body parts="body" use="literal"/>
+        			</input>
+        			<output>
+        				<soap:header message="tns:GetSessionCreateOutput" part="header" use="literal"/>
+        				<soap:header message="tns:GetSessionCreateOutput" part="header2" use="literal"/>
+        				<soap:body parts="body" use="literal"/>
+        			</output>
+        		</operation>
+        	</binding>
+        	<service name="SessionCreateRQService">
+        		<port name="SessionCreatePortType" binding="tns:SessionCreateSoapBinding">
+        			<soap:address location="https://sws-crt.cert.sabre.com/"/>
+        		</port>
+        	</service>
+        </definitions>
+
+    http_version: 
+  recorded_at: Wed, 28 Mar 2012 04:52:43 GMT
+- request: 
+    method: post
+    uri: https://sws-crt.cert.sabre.com/
+    body: 
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:wsdl="https://webservices.sabre.com/websvc" xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:eb="http://www.ebxml.org/namespaces/messageHeader" xmlns:xlinx="http://www.w3.org/1999/xlink"><env:Header><eb:MessageHeader SOAP-ENV:mustUnderstand="1" eb:version="2.0"><eb:ConversationId>joe@example.com</eb:ConversationId><eb:From><eb:PartyId type="urn:x12.org:IO5:01">example.com</eb:PartyId></eb:From><eb:To><eb:PartyId type="urn:x12.org:IO5:01">webservices.sabre.com</eb:PartyId></eb:To><eb:CPAId><IPCC></eb:CPAId><eb:Service eb:type="sabreXML">Session</eb:Service><eb:Action>SessionCreateRQ</eb:Action><eb:MessageData><eb:MessageId>mid:20120328-005243@example.com</eb:MessageId><eb:RefToMessageId xsi:nil="true"/><eb:Timestamp>2012-03-28T00:52:43Z</eb:Timestamp></eb:MessageData></eb:MessageHeader><wsse:Security xmlns:wsse="http://schemas.xmlsoap.org/ws/2002/12/secext"><wsse:UsernameToken><wsse:Username><USERNAME></wsse:Username><wsse:Password><PASSWORD></wsse:Password><Organization><IPCC></Organization><Domain>DEFAULT</Domain></wsse:UsernameToken></wsse:Security></env:Header><env:Body><SessionCreateRQ><POS><Source PseudoCityCode="<IPCC>"></Source></POS></SessionCreateRQ></env:Body></env:Envelope>
+    headers: 
+      Soapaction: 
+      - "\"OTA\""
+      Content-Type: 
+      - text/xml;charset=UTF-8
+      Content-Length: 
+      - "1416"
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Soapaction: 
+      - "\"\""
+      Content-Type: 
+      - text/xml;charset=utf-8
+      Date: 
+      - Wed, 28 Mar 2012 04:49:36 GMT
+      Server: 
+      - SWS
+      Connection: 
+      - close
+    body: 
+      encoding: US-ASCII
+      string: |-
+        <?xml version="1.0" encoding="UTF-8"?>
+        <soap-env:Envelope xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/"><soap-env:Header><eb:MessageHeader xmlns:eb="http://www.ebxml.org/namespaces/messageHeader" eb:version="1.0" soap-env:mustUnderstand="1"><eb:From><eb:PartyId eb:type="URI">webservices.sabre.com</eb:PartyId></eb:From><eb:To><eb:PartyId eb:type="URI">example.com</eb:PartyId></eb:To><eb:CPAId><IPCC></eb:CPAId><eb:ConversationId>joe@example.com</eb:ConversationId><eb:Service eb:type="sabreXML">Session</eb:Service><eb:Action>SessionCreateRS</eb:Action><eb:MessageData><eb:MessageId>3e049fee-84ff-4e6a-bcd2-8a71a58101f1@176</eb:MessageId><eb:Timestamp>2012-03-28T04:49:37</eb:Timestamp><eb:RefToMessageId>mid:20120328-005243@example.com</eb:RefToMessageId></eb:MessageData></eb:MessageHeader><wsse:Security xmlns:wsse="http://schemas.xmlsoap.org/ws/2002/12/secext"><wsse:BinarySecurityToken valueType="String" EncodingType="wsse:Base64Binary">Shared/IDL:IceSess\/SessMgr:1\.0.IDL/Common/!ICESMS\/ACPCRTC!ICESMSLB\/CRT.LB!-3939125910931280509!1443962!0</wsse:BinarySecurityToken></wsse:Security></soap-env:Header><soap-env:Body><SessionCreateRS xmlns="http://www.opentravel.org/OTA/2002/11" version="1" status="Approved">	<ConversationId>joe@example.com</ConversationId></SessionCreateRS></soap-env:Body></soap-env:Envelope>
+    http_version: 
+  recorded_at: Wed, 28 Mar 2012 04:52:43 GMT
+- request: 
+    method: get
+    uri: http://wsdl-crt.cert.sabre.com/sabreXML1.0.00/tpf/TravelItineraryAddInfoLLS1.10.1RQ.wsdl
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Content-Type: 
+      - text/xml;charset=UTF-8
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Server: 
+      - Apache-Coyote/1.1
+      Accept-Ranges: 
+      - bytes
+      Etag: 
+      - W/"2717-1332860540000"
+      Last-Modified: 
+      - Tue, 27 Mar 2012 15:02:20 GMT
+      Content-Type: 
+      - application/xml
+      Content-Length: 
+      - "2717"
+      Date: 
+      - Wed, 28 Mar 2012 04:49:33 GMT
+    body: 
+      encoding: US-ASCII
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd1="http://webservices.sabre.com/sabreXML/2003/07" xmlns:xsd2="http://webservices.sabre.com/sabreXML/2003/07" xmlns:xsd3="http://www.opentravel.org/OTA/2002/08" xmlns:tns="https://webservices.sabre.com/websvc" xmlns:eb="http://www.ebxml.org/namespaces/messageHeader" xmlns:wsse="http://schemas.xmlsoap.org/ws/2002/12/secext" targetNamespace="https://webservices.sabre.com/websvc">
+        	<types>
+        		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        			<xsd:import namespace="http://webservices.sabre.com/sabreXML/2003/07" schemaLocation="TravelItineraryAddInfoLLS1.10.1RQRS.xsd"/>
+        			<xsd:import namespace="http://www.ebxml.org/namespaces/messageHeader" schemaLocation="msg-header-2_0.xsd"/>
+        			<xsd:import namespace="http://schemas.xmlsoap.org/ws/2002/12/secext" schemaLocation="wsse.xsd"/>
+        		</xsd:schema>
+        	</types>
+        	<message name="TravelItineraryAddInfoInput">
+        		<part name="header" element="eb:MessageHeader"/>
+        		<part name="header2" element="wsse:Security"/>
+        		<part name="body" element="xsd1:TravelItineraryAddInfoRQ"/>
+        	</message>
+        	<message name="TravelItineraryAddInfoOutput">
+        		<part name="header" element="eb:MessageHeader"/>
+        		<part name="header2" element="wsse:Security"/>
+        		<part name="body" element="xsd2:TravelItineraryAddInfoRS"/>
+        	</message>
+        	<portType name="TravelItineraryAddInfoPortType">
+        		<operation name="TravelItineraryAddInfoRQ">
+        			<input message="tns:TravelItineraryAddInfoInput"/>
+        			<output message="tns:TravelItineraryAddInfoOutput"/>
+        		</operation>
+        	</portType>
+        	<binding name="TravelItineraryAddInfoSoapBinding" type="tns:TravelItineraryAddInfoPortType">
+        		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        		<operation name="TravelItineraryAddInfoRQ">
+        			<soap:operation soapAction="OTA"/>
+        			<input>
+        				<soap:header message="tns:TravelItineraryAddInfoInput" part="header" use="literal"/>
+        				<soap:header message="tns:TravelItineraryAddInfoInput" part="header2" use="literal"/>
+        				<soap:body parts="body" use="literal"/>
+        			</input>
+        			<output>
+        				<soap:header message="tns:TravelItineraryAddInfoOutput" part="header" use="literal"/>
+        				<soap:header message="tns:TravelItineraryAddInfoOutput" part="header2" use="literal"/>
+        				<soap:body parts="body" use="literal"/>
+        			</output>
+        		</operation>
+        	</binding>
+        	<service name="TravelItineraryAddInfoService">
+        		<port name="TravelItineraryAddInfoPortType" binding="tns:TravelItineraryAddInfoSoapBinding">
+        			<soap:address location="https://sws-crt.cert.sabre.com/"/>
+        		</port>
+        	</service>
+        </definitions>
+
+    http_version: 
+  recorded_at: Wed, 28 Mar 2012 04:52:44 GMT
+- request: 
+    method: post
+    uri: https://sws-crt.cert.sabre.com/
+    body: 
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:wsdl="https://webservices.sabre.com/websvc" xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:eb="http://www.ebxml.org/namespaces/messageHeader" xmlns:xlinx="http://www.w3.org/1999/xlink"><env:Header><eb:MessageHeader SOAP-ENV:mustUnderstand="1" eb:version="2.0"><eb:ConversationId>joe@example.com</eb:ConversationId><eb:From><eb:PartyId type="urn:x12.org:IO5:01">example.com</eb:PartyId></eb:From><eb:To><eb:PartyId type="urn:x12.org:IO5:01">webservices.sabre.com</eb:PartyId></eb:To><eb:CPAId><IPCC></eb:CPAId><eb:Service eb:type="sabreXML">Travel Itinerary Info</eb:Service><eb:Action>TravelItineraryAddInfoLLSRQ</eb:Action><eb:MessageData><eb:MessageId>mid:20120328-005244@example.com</eb:MessageId><eb:RefToMessageId>mid:20120328-005243@example.com</eb:RefToMessageId><eb:Timestamp>2012-03-28T00:52:44Z</eb:Timestamp></eb:MessageData></eb:MessageHeader><wsse:Security xmlns:wsse="http://schemas.xmlsoap.org/ws/2002/12/secext"><wsse:BinarySecurityToken xmlns:wsu="http://schemas.xmlsoap.org/ws/2002/12/utility" wsu:Id="SabreSecurityToken" valueType="String" EncodingType="wsse:Base64Binary">Shared/IDL:IceSess\/SessMgr:1\.0.IDL/Common/!ICESMS\/ACPCRTC!ICESMSLB\/CRT.LB!-3939125910931280509!1443962!0</wsse:BinarySecurityToken></wsse:Security></env:Header><env:Body><TravelItineraryAddInfoRQ xmlns="http://webservices.sabre.com/sabreXML/2003/07" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" TimeStamp="2012-03-28T00:52:43" Version="1.10.1"><POS><Source PseudoCityCode="<IPCC>"></Source></POS><AgencyInfo><Address><AddressLine>MyTravelersHaven.com</AddressLine><StreetNmbr>425 S. Cherry Street</StreetNmbr><CityName>DENVER</CityName><PostalCode>80246</PostalCode><StateCountyProv StateCode="CO"></StateCountyProv><CountryCode>US</CountryCode></Address><Ticketing TicketType="7T-"></Ticketing></AgencyInfo><CustomerInfo><PersonName TravelerRefNumber="1.1" NameReference="REF1"><GivenName>Shaun</GivenName><Surname>Waelchi</Surname></PersonName><Telephone AreaCityCode="" PhoneNumber="303-861-9300" PhoneUseType="H" TravelerRefNumber="1.1"></Telephone></CustomerInfo></TravelItineraryAddInfoRQ></env:Body></env:Envelope>
+    headers: 
+      Content-Type: 
+      - text/xml;charset=UTF-8
+      Soapaction: 
+      - "\"OTA\""
+      Content-Length: 
+      - "2395"
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Soapaction: 
+      - "\"\""
+      Content-Type: 
+      - text/xml;charset=utf-8
+      Date: 
+      - Wed, 28 Mar 2012 04:49:37 GMT
+      Server: 
+      - SWS
+      Connection: 
+      - close
+    body: 
+      encoding: UTF-8
+      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\
+        <soap-env:Envelope xmlns:soap-env=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap-env:Header><eb:MessageHeader xmlns:eb=\"http://www.ebxml.org/namespaces/messageHeader\" eb:version=\"1.0\" soap-env:mustUnderstand=\"1\"><eb:From><eb:PartyId eb:type=\"URI\">webservices.sabre.com</eb:PartyId></eb:From><eb:To><eb:PartyId eb:type=\"URI\">example.com</eb:PartyId></eb:To><eb:CPAId><IPCC></eb:CPAId><eb:ConversationId>joe@example.com</eb:ConversationId><eb:Service eb:type=\"sabreXML\">Travel Itinerary Info</eb:Service><eb:Action>TravelItineraryAddInfoLLSRS</eb:Action><eb:MessageData><eb:MessageId>afdae721-191d-4025-b34a-8cd0fbe17c99@152</eb:MessageId><eb:Timestamp>2012-03-28T04:49:37</eb:Timestamp><eb:RefToMessageId>mid:20120328-005244@example.com</eb:RefToMessageId></eb:MessageData></eb:MessageHeader><wsse:Security xmlns:wsse=\"http://schemas.xmlsoap.org/ws/2002/12/secext\"><wsse:BinarySecurityToken valueType=\"String\" EncodingType=\"wsse:Base64Binary\">Shared/IDL:IceSess\\/SessMgr:1\\.0.IDL/Common/!ICESMS\\/ACPCRTC!ICESMSLB\\/CRT.LB!-3939125910931280509!1443962!0</wsse:BinarySecurityToken></wsse:Security></soap-env:Header><soap-env:Body><TravelItineraryAddInfoRS xmlns=\"http://webservices.sabre.com/sabreXML/2003/07\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" TimeStamp=\"2012-03-28T04:49:37\" Version=\"1.10.1\"><Success/><TPA_Extensions><HostCommand>-WAELCHI/SHAUN*REF1\xC3\x82\xC2\xA79303-861-9300-H\xC3\x82\xC2\xA7W-MYTRAVELERSHAVEN.COM\xC3\x82\xC2\xA5425 S. CHERRY STREET\xC3\x82\xC2\xA5DENVER CO US 80246\xC3\x82\xC2\xA77T-</HostCommand></TPA_Extensions></TravelItineraryAddInfoRS></soap-env:Body></soap-env:Envelope>"
+    http_version: 
+  recorded_at: Wed, 28 Mar 2012 04:52:44 GMT
+- request: 
+    method: get
+    uri: http://wsdl-crt.cert.sabre.com/sabreXML1.0.00/usg/SessionCreateRQ.wsdl
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: {}
+
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Server: 
+      - Apache-Coyote/1.1
+      Accept-Ranges: 
+      - bytes
+      Etag: 
+      - W/"2437-1332860800000"
+      Last-Modified: 
+      - Tue, 27 Mar 2012 15:06:40 GMT
+      Content-Type: 
+      - application/xml
+      Content-Length: 
+      - "2437"
+      Date: 
+      - Wed, 28 Mar 2012 04:49:35 GMT
+    body: 
+      encoding: US-ASCII
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd1="http://www.opentravel.org/OTA/2002/11" xmlns:tns="https://webservices.sabre.com/websvc" xmlns:eb="http://www.ebxml.org/namespaces/messageHeader" xmlns:wsse="http://schemas.xmlsoap.org/ws/2002/12/secext" targetNamespace="https://webservices.sabre.com/websvc">
+        	<types>
+        		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        			<xsd:import namespace="http://www.opentravel.org/OTA/2002/11" schemaLocation="SessionCreateRQRS.xsd"/>
+        			<xsd:import namespace="http://www.ebxml.org/namespaces/messageHeader" schemaLocation="msg-header-2_0.xsd"/>
+        			<xsd:import namespace="http://schemas.xmlsoap.org/ws/2002/12/secext" schemaLocation="wsse.xsd"/>
+        		</xsd:schema>
+        	</types>
+        	<message name="GetSessionCreateInput">
+        		<part name="header" element="eb:MessageHeader"/>
+        		<part name="header2" element="wsse:Security"/>
+        		<part name="body" element="xsd1:SessionCreateRQ"/>
+        	</message>
+        	<message name="GetSessionCreateOutput">
+        		<part name="header" element="eb:MessageHeader"/>
+        		<part name="header2" element="wsse:Security"/>
+        		<part name="body" element="xsd1:SessionCreateRS"/>
+        	</message>
+        	<portType name="SessionCreatePortType">
+        		<operation name="SessionCreateRQ">
+        			<input message="tns:GetSessionCreateInput"/>
+        			<output message="tns:GetSessionCreateOutput"/>
+        		</operation>
+        	</portType>
+        	<binding name="SessionCreateSoapBinding" type="tns:SessionCreatePortType">
+        		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        		<operation name="SessionCreateRQ">
+        			<soap:operation soapAction="OTA"/>
+        			<input>
+        				<soap:header message="tns:GetSessionCreateInput" part="header" use="literal"/>
+        				<soap:header message="tns:GetSessionCreateInput" part="header2" use="literal"/>
+        				<soap:body parts="body" use="literal"/>
+        			</input>
+        			<output>
+        				<soap:header message="tns:GetSessionCreateOutput" part="header" use="literal"/>
+        				<soap:header message="tns:GetSessionCreateOutput" part="header2" use="literal"/>
+        				<soap:body parts="body" use="literal"/>
+        			</output>
+        		</operation>
+        	</binding>
+        	<service name="SessionCreateRQService">
+        		<port name="SessionCreatePortType" binding="tns:SessionCreateSoapBinding">
+        			<soap:address location="https://sws-crt.cert.sabre.com/"/>
+        		</port>
+        	</service>
+        </definitions>
+
+    http_version: 
+  recorded_at: Wed, 28 Mar 2012 04:52:44 GMT
+- request: 
+    method: post
+    uri: https://sws-crt.cert.sabre.com/
+    body: 
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:wsdl="https://webservices.sabre.com/websvc" xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:eb="http://www.ebxml.org/namespaces/messageHeader" xmlns:xlinx="http://www.w3.org/1999/xlink"><env:Header><eb:MessageHeader SOAP-ENV:mustUnderstand="1" eb:version="2.0"><eb:ConversationId>joe@example.com</eb:ConversationId><eb:From><eb:PartyId type="urn:x12.org:IO5:01">example.com</eb:PartyId></eb:From><eb:To><eb:PartyId type="urn:x12.org:IO5:01">webservices.sabre.com</eb:PartyId></eb:To><eb:CPAId><IPCC></eb:CPAId><eb:Service eb:type="sabreXML">Session</eb:Service><eb:Action>SessionCloseRQ</eb:Action><eb:MessageData><eb:MessageId>mid:20120328-005244@example.com</eb:MessageId><eb:RefToMessageId>mid:20120328-005243@example.com</eb:RefToMessageId><eb:Timestamp>2012-03-28T00:52:44Z</eb:Timestamp></eb:MessageData></eb:MessageHeader><wsse:Security xmlns:wsse="http://schemas.xmlsoap.org/ws/2002/12/secext"><wsse:BinarySecurityToken xmlns:wsu="http://schemas.xmlsoap.org/ws/2002/12/utility" wsu:Id="SabreSecurityToken" valueType="String" EncodingType="wsse:Base64Binary">Shared/IDL:IceSess\/SessMgr:1\.0.IDL/Common/!ICESMS\/ACPCRTC!ICESMSLB\/CRT.LB!-3939125910931280509!1443962!0</wsse:BinarySecurityToken></wsse:Security></env:Header><env:Body><sessionCloseRq><POS><Source PseudoCityCode="<IPCC>"></Source></POS></sessionCloseRq></env:Body></env:Envelope>
+    headers: 
+      Soapaction: 
+      - "\"sessionCloseRq\""
+      Content-Type: 
+      - text/xml;charset=UTF-8
+      Content-Length: 
+      - "1575"
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Soapaction: 
+      - "\"\""
+      Content-Type: 
+      - text/xml;charset=utf-8
+      Date: 
+      - Wed, 28 Mar 2012 04:49:38 GMT
+      Server: 
+      - SWS
+      Connection: 
+      - close
+    body: 
+      encoding: US-ASCII
+      string: |-
+        <?xml version="1.0" encoding="UTF-8"?>
+        <soap-env:Envelope xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/"><soap-env:Header><eb:MessageHeader xmlns:eb="http://www.ebxml.org/namespaces/messageHeader" eb:version="1.0" soap-env:mustUnderstand="1"><eb:From><eb:PartyId eb:type="URI">webservices.sabre.com</eb:PartyId></eb:From><eb:To><eb:PartyId eb:type="URI">example.com</eb:PartyId></eb:To><eb:CPAId><IPCC></eb:CPAId><eb:ConversationId>joe@example.com</eb:ConversationId><eb:Service eb:type="sabreXML">Session</eb:Service><eb:Action>SessionCloseRS</eb:Action><eb:MessageData><eb:MessageId>6cebafba-f4b0-4aa1-a9fa-f60aafb52dae@176</eb:MessageId><eb:Timestamp>2012-03-28T04:49:38</eb:Timestamp><eb:RefToMessageId>mid:20120328-005244@example.com</eb:RefToMessageId></eb:MessageData></eb:MessageHeader><wsse:Security xmlns:wsse="http://schemas.xmlsoap.org/ws/2002/12/secext"><wsse:BinarySecurityToken valueType="String" EncodingType="wsse:Base64Binary">Shared/IDL:IceSess\/SessMgr:1\.0.IDL/Common/!ICESMS\/ACPCRTC!ICESMSLB\/CRT.LB!-3939125910931280509!1443962!0</wsse:BinarySecurityToken></wsse:Security></soap-env:Header><soap-env:Body><SessionCloseRS xmlns="http://www.opentravel.org/OTA/2002/11" version="1" status="Approved"/></soap-env:Body></soap-env:Envelope>
+    http_version: 
+  recorded_at: Wed, 28 Mar 2012 04:52:45 GMT
+recorded_with: VCR 2.0.0

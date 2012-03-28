@@ -1,0 +1,578 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: http://wsdl-crt.cert.sabre.com/sabreXML1.0.00/usg/SessionCreateRQ.wsdl
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: {}
+
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Server: 
+      - Apache-Coyote/1.1
+      Accept-Ranges: 
+      - bytes
+      Etag: 
+      - W/"2437-1332860800000"
+      Last-Modified: 
+      - Tue, 27 Mar 2012 15:06:40 GMT
+      Content-Type: 
+      - application/xml
+      Content-Length: 
+      - "2437"
+      Date: 
+      - Wed, 28 Mar 2012 04:49:55 GMT
+    body: 
+      encoding: US-ASCII
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd1="http://www.opentravel.org/OTA/2002/11" xmlns:tns="https://webservices.sabre.com/websvc" xmlns:eb="http://www.ebxml.org/namespaces/messageHeader" xmlns:wsse="http://schemas.xmlsoap.org/ws/2002/12/secext" targetNamespace="https://webservices.sabre.com/websvc">
+        	<types>
+        		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        			<xsd:import namespace="http://www.opentravel.org/OTA/2002/11" schemaLocation="SessionCreateRQRS.xsd"/>
+        			<xsd:import namespace="http://www.ebxml.org/namespaces/messageHeader" schemaLocation="msg-header-2_0.xsd"/>
+        			<xsd:import namespace="http://schemas.xmlsoap.org/ws/2002/12/secext" schemaLocation="wsse.xsd"/>
+        		</xsd:schema>
+        	</types>
+        	<message name="GetSessionCreateInput">
+        		<part name="header" element="eb:MessageHeader"/>
+        		<part name="header2" element="wsse:Security"/>
+        		<part name="body" element="xsd1:SessionCreateRQ"/>
+        	</message>
+        	<message name="GetSessionCreateOutput">
+        		<part name="header" element="eb:MessageHeader"/>
+        		<part name="header2" element="wsse:Security"/>
+        		<part name="body" element="xsd1:SessionCreateRS"/>
+        	</message>
+        	<portType name="SessionCreatePortType">
+        		<operation name="SessionCreateRQ">
+        			<input message="tns:GetSessionCreateInput"/>
+        			<output message="tns:GetSessionCreateOutput"/>
+        		</operation>
+        	</portType>
+        	<binding name="SessionCreateSoapBinding" type="tns:SessionCreatePortType">
+        		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        		<operation name="SessionCreateRQ">
+        			<soap:operation soapAction="OTA"/>
+        			<input>
+        				<soap:header message="tns:GetSessionCreateInput" part="header" use="literal"/>
+        				<soap:header message="tns:GetSessionCreateInput" part="header2" use="literal"/>
+        				<soap:body parts="body" use="literal"/>
+        			</input>
+        			<output>
+        				<soap:header message="tns:GetSessionCreateOutput" part="header" use="literal"/>
+        				<soap:header message="tns:GetSessionCreateOutput" part="header2" use="literal"/>
+        				<soap:body parts="body" use="literal"/>
+        			</output>
+        		</operation>
+        	</binding>
+        	<service name="SessionCreateRQService">
+        		<port name="SessionCreatePortType" binding="tns:SessionCreateSoapBinding">
+        			<soap:address location="https://sws-crt.cert.sabre.com/"/>
+        		</port>
+        	</service>
+        </definitions>
+
+    http_version: 
+  recorded_at: Wed, 28 Mar 2012 04:53:05 GMT
+- request: 
+    method: post
+    uri: https://sws-crt.cert.sabre.com/
+    body: 
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:wsdl="https://webservices.sabre.com/websvc" xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:eb="http://www.ebxml.org/namespaces/messageHeader" xmlns:xlinx="http://www.w3.org/1999/xlink"><env:Header><eb:MessageHeader SOAP-ENV:mustUnderstand="1" eb:version="2.0"><eb:ConversationId>joe@example.com</eb:ConversationId><eb:From><eb:PartyId type="urn:x12.org:IO5:01">example.com</eb:PartyId></eb:From><eb:To><eb:PartyId type="urn:x12.org:IO5:01">webservices.sabre.com</eb:PartyId></eb:To><eb:CPAId><IPCC></eb:CPAId><eb:Service eb:type="sabreXML">Session</eb:Service><eb:Action>SessionCreateRQ</eb:Action><eb:MessageData><eb:MessageId>mid:20120328-005305@example.com</eb:MessageId><eb:RefToMessageId xsi:nil="true"/><eb:Timestamp>2012-03-28T00:53:05Z</eb:Timestamp></eb:MessageData></eb:MessageHeader><wsse:Security xmlns:wsse="http://schemas.xmlsoap.org/ws/2002/12/secext"><wsse:UsernameToken><wsse:Username><USERNAME></wsse:Username><wsse:Password><PASSWORD></wsse:Password><Organization><IPCC></Organization><Domain>DEFAULT</Domain></wsse:UsernameToken></wsse:Security></env:Header><env:Body><SessionCreateRQ><POS><Source PseudoCityCode="<IPCC>"></Source></POS></SessionCreateRQ></env:Body></env:Envelope>
+    headers: 
+      Soapaction: 
+      - "\"OTA\""
+      Content-Type: 
+      - text/xml;charset=UTF-8
+      Content-Length: 
+      - "1416"
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Soapaction: 
+      - "\"\""
+      Content-Type: 
+      - text/xml;charset=utf-8
+      Date: 
+      - Wed, 28 Mar 2012 04:49:59 GMT
+      Server: 
+      - SWS
+      Connection: 
+      - close
+    body: 
+      encoding: US-ASCII
+      string: |-
+        <?xml version="1.0" encoding="UTF-8"?>
+        <soap-env:Envelope xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/"><soap-env:Header><eb:MessageHeader xmlns:eb="http://www.ebxml.org/namespaces/messageHeader" eb:version="1.0" soap-env:mustUnderstand="1"><eb:From><eb:PartyId eb:type="URI">webservices.sabre.com</eb:PartyId></eb:From><eb:To><eb:PartyId eb:type="URI">example.com</eb:PartyId></eb:To><eb:CPAId><IPCC></eb:CPAId><eb:ConversationId>joe@example.com</eb:ConversationId><eb:Service eb:type="sabreXML">Session</eb:Service><eb:Action>SessionCreateRS</eb:Action><eb:MessageData><eb:MessageId>04fe650c-d98f-4788-8c36-94cce4aa0ac4@176</eb:MessageId><eb:Timestamp>2012-03-28T04:49:59</eb:Timestamp><eb:RefToMessageId>mid:20120328-005305@example.com</eb:RefToMessageId></eb:MessageData></eb:MessageHeader><wsse:Security xmlns:wsse="http://schemas.xmlsoap.org/ws/2002/12/secext"><wsse:BinarySecurityToken valueType="String" EncodingType="wsse:Base64Binary">Shared/IDL:IceSess\/SessMgr:1\.0.IDL/Common/!ICESMS\/ACPCRTC!ICESMSLB\/CRT.LB!-3939125821647366528!1444866!0</wsse:BinarySecurityToken></wsse:Security></soap-env:Header><soap-env:Body><SessionCreateRS xmlns="http://www.opentravel.org/OTA/2002/11" version="1" status="Approved">	<ConversationId>joe@example.com</ConversationId></SessionCreateRS></soap-env:Body></soap-env:Envelope>
+    http_version: 
+  recorded_at: Wed, 28 Mar 2012 04:53:05 GMT
+- request: 
+    method: get
+    uri: http://wsdl-crt.cert.sabre.com/sabreXML1.0.00/tpf/TravelItineraryAddInfoLLS1.10.1RQ.wsdl
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Content-Type: 
+      - text/xml;charset=UTF-8
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Server: 
+      - Apache-Coyote/1.1
+      Accept-Ranges: 
+      - bytes
+      Etag: 
+      - W/"2717-1332860540000"
+      Last-Modified: 
+      - Tue, 27 Mar 2012 15:02:20 GMT
+      Content-Type: 
+      - application/xml
+      Content-Length: 
+      - "2717"
+      Date: 
+      - Wed, 28 Mar 2012 04:49:55 GMT
+    body: 
+      encoding: US-ASCII
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd1="http://webservices.sabre.com/sabreXML/2003/07" xmlns:xsd2="http://webservices.sabre.com/sabreXML/2003/07" xmlns:xsd3="http://www.opentravel.org/OTA/2002/08" xmlns:tns="https://webservices.sabre.com/websvc" xmlns:eb="http://www.ebxml.org/namespaces/messageHeader" xmlns:wsse="http://schemas.xmlsoap.org/ws/2002/12/secext" targetNamespace="https://webservices.sabre.com/websvc">
+        	<types>
+        		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        			<xsd:import namespace="http://webservices.sabre.com/sabreXML/2003/07" schemaLocation="TravelItineraryAddInfoLLS1.10.1RQRS.xsd"/>
+        			<xsd:import namespace="http://www.ebxml.org/namespaces/messageHeader" schemaLocation="msg-header-2_0.xsd"/>
+        			<xsd:import namespace="http://schemas.xmlsoap.org/ws/2002/12/secext" schemaLocation="wsse.xsd"/>
+        		</xsd:schema>
+        	</types>
+        	<message name="TravelItineraryAddInfoInput">
+        		<part name="header" element="eb:MessageHeader"/>
+        		<part name="header2" element="wsse:Security"/>
+        		<part name="body" element="xsd1:TravelItineraryAddInfoRQ"/>
+        	</message>
+        	<message name="TravelItineraryAddInfoOutput">
+        		<part name="header" element="eb:MessageHeader"/>
+        		<part name="header2" element="wsse:Security"/>
+        		<part name="body" element="xsd2:TravelItineraryAddInfoRS"/>
+        	</message>
+        	<portType name="TravelItineraryAddInfoPortType">
+        		<operation name="TravelItineraryAddInfoRQ">
+        			<input message="tns:TravelItineraryAddInfoInput"/>
+        			<output message="tns:TravelItineraryAddInfoOutput"/>
+        		</operation>
+        	</portType>
+        	<binding name="TravelItineraryAddInfoSoapBinding" type="tns:TravelItineraryAddInfoPortType">
+        		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        		<operation name="TravelItineraryAddInfoRQ">
+        			<soap:operation soapAction="OTA"/>
+        			<input>
+        				<soap:header message="tns:TravelItineraryAddInfoInput" part="header" use="literal"/>
+        				<soap:header message="tns:TravelItineraryAddInfoInput" part="header2" use="literal"/>
+        				<soap:body parts="body" use="literal"/>
+        			</input>
+        			<output>
+        				<soap:header message="tns:TravelItineraryAddInfoOutput" part="header" use="literal"/>
+        				<soap:header message="tns:TravelItineraryAddInfoOutput" part="header2" use="literal"/>
+        				<soap:body parts="body" use="literal"/>
+        			</output>
+        		</operation>
+        	</binding>
+        	<service name="TravelItineraryAddInfoService">
+        		<port name="TravelItineraryAddInfoPortType" binding="tns:TravelItineraryAddInfoSoapBinding">
+        			<soap:address location="https://sws-crt.cert.sabre.com/"/>
+        		</port>
+        	</service>
+        </definitions>
+
+    http_version: 
+  recorded_at: Wed, 28 Mar 2012 04:53:05 GMT
+- request: 
+    method: post
+    uri: https://sws-crt.cert.sabre.com/
+    body: 
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:wsdl="https://webservices.sabre.com/websvc" xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:eb="http://www.ebxml.org/namespaces/messageHeader" xmlns:xlinx="http://www.w3.org/1999/xlink"><env:Header><eb:MessageHeader SOAP-ENV:mustUnderstand="1" eb:version="2.0"><eb:ConversationId>joe@example.com</eb:ConversationId><eb:From><eb:PartyId type="urn:x12.org:IO5:01">example.com</eb:PartyId></eb:From><eb:To><eb:PartyId type="urn:x12.org:IO5:01">webservices.sabre.com</eb:PartyId></eb:To><eb:CPAId><IPCC></eb:CPAId><eb:Service eb:type="sabreXML">Travel Itinerary Info</eb:Service><eb:Action>TravelItineraryAddInfoLLSRQ</eb:Action><eb:MessageData><eb:MessageId>mid:20120328-005305@example.com</eb:MessageId><eb:RefToMessageId>mid:20120328-005305@example.com</eb:RefToMessageId><eb:Timestamp>2012-03-28T00:53:05Z</eb:Timestamp></eb:MessageData></eb:MessageHeader><wsse:Security xmlns:wsse="http://schemas.xmlsoap.org/ws/2002/12/secext"><wsse:BinarySecurityToken xmlns:wsu="http://schemas.xmlsoap.org/ws/2002/12/utility" wsu:Id="SabreSecurityToken" valueType="String" EncodingType="wsse:Base64Binary">Shared/IDL:IceSess\/SessMgr:1\.0.IDL/Common/!ICESMS\/ACPCRTC!ICESMSLB\/CRT.LB!-3939125821647366528!1444866!0</wsse:BinarySecurityToken></wsse:Security></env:Header><env:Body><TravelItineraryAddInfoRQ xmlns="http://webservices.sabre.com/sabreXML/2003/07" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" TimeStamp="2012-03-28T00:53:05" Version="1.10.1"><POS><Source PseudoCityCode="<IPCC>"></Source></POS><AgencyInfo><Address><AddressLine>MyTravelersHaven.com</AddressLine><StreetNmbr>425 S. Cherry Street</StreetNmbr><CityName>DENVER</CityName><PostalCode>80246</PostalCode><StateCountyProv StateCode="CO"></StateCountyProv><CountryCode>US</CountryCode></Address><Ticketing TicketType="7T-"></Ticketing></AgencyInfo><CustomerInfo><PersonName TravelerRefNumber="1.1" NameReference="REF1"><GivenName>Ole</GivenName><Surname>Anderson</Surname></PersonName><Telephone AreaCityCode="" PhoneNumber="303-861-9300" PhoneUseType="H" TravelerRefNumber="1.1"></Telephone></CustomerInfo></TravelItineraryAddInfoRQ></env:Body></env:Envelope>
+    headers: 
+      Content-Type: 
+      - text/xml;charset=UTF-8
+      Soapaction: 
+      - "\"OTA\""
+      Content-Length: 
+      - "2394"
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Soapaction: 
+      - "\"\""
+      Content-Type: 
+      - text/xml;charset=utf-8
+      Date: 
+      - Wed, 28 Mar 2012 04:49:58 GMT
+      Server: 
+      - SWS
+      Connection: 
+      - close
+    body: 
+      encoding: UTF-8
+      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\
+        <soap-env:Envelope xmlns:soap-env=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap-env:Header><eb:MessageHeader xmlns:eb=\"http://www.ebxml.org/namespaces/messageHeader\" eb:version=\"1.0\" soap-env:mustUnderstand=\"1\"><eb:From><eb:PartyId eb:type=\"URI\">webservices.sabre.com</eb:PartyId></eb:From><eb:To><eb:PartyId eb:type=\"URI\">example.com</eb:PartyId></eb:To><eb:CPAId><IPCC></eb:CPAId><eb:ConversationId>joe@example.com</eb:ConversationId><eb:Service eb:type=\"sabreXML\">Travel Itinerary Info</eb:Service><eb:Action>TravelItineraryAddInfoLLSRS</eb:Action><eb:MessageData><eb:MessageId>752ea234-d78c-4fb1-b63b-d4c0816fd5d9@152</eb:MessageId><eb:Timestamp>2012-03-28T04:49:59</eb:Timestamp><eb:RefToMessageId>mid:20120328-005305@example.com</eb:RefToMessageId></eb:MessageData></eb:MessageHeader><wsse:Security xmlns:wsse=\"http://schemas.xmlsoap.org/ws/2002/12/secext\"><wsse:BinarySecurityToken valueType=\"String\" EncodingType=\"wsse:Base64Binary\">Shared/IDL:IceSess\\/SessMgr:1\\.0.IDL/Common/!ICESMS\\/ACPCRTC!ICESMSLB\\/CRT.LB!-3939125821647366528!1444866!0</wsse:BinarySecurityToken></wsse:Security></soap-env:Header><soap-env:Body><TravelItineraryAddInfoRS xmlns=\"http://webservices.sabre.com/sabreXML/2003/07\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" TimeStamp=\"2012-03-28T04:49:59\" Version=\"1.10.1\"><Success/><TPA_Extensions><HostCommand>-ANDERSON/OLE*REF1\xC3\x82\xC2\xA79303-861-9300-H\xC3\x82\xC2\xA7W-MYTRAVELERSHAVEN.COM\xC3\x82\xC2\xA5425 S. CHERRY STREET\xC3\x82\xC2\xA5DENVER CO US 80246\xC3\x82\xC2\xA77T-</HostCommand></TPA_Extensions></TravelItineraryAddInfoRS></soap-env:Body></soap-env:Envelope>"
+    http_version: 
+  recorded_at: Wed, 28 Mar 2012 04:53:06 GMT
+- request: 
+    method: get
+    uri: http://wsdl-crt.cert.sabre.com/sabreXML1.0.00/tpf/HotelPropertyDescriptionLLS1.12.1RQ.wsdl
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Content-Type: 
+      - text/xml;charset=UTF-8
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Server: 
+      - Apache-Coyote/1.1
+      Accept-Ranges: 
+      - bytes
+      Etag: 
+      - W/"2645-1332860541000"
+      Last-Modified: 
+      - Tue, 27 Mar 2012 15:02:21 GMT
+      Content-Type: 
+      - application/xml
+      Content-Length: 
+      - "2645"
+      Date: 
+      - Wed, 28 Mar 2012 04:49:56 GMT
+    body: 
+      encoding: US-ASCII
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd1="http://webservices.sabre.com/sabreXML/2003/07" xmlns:tns="https://webservices.sabre.com/websvc" xmlns:eb="http://www.ebxml.org/namespaces/messageHeader" xmlns:wsse="http://schemas.xmlsoap.org/ws/2002/12/secext" targetNamespace="https://webservices.sabre.com/websvc">
+        	<types>
+        		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        			<xsd:import namespace="http://webservices.sabre.com/sabreXML/2003/07" schemaLocation="HotelPropertyDescriptionLLS1.12.1RQRS.xsd"/>
+        			<xsd:import namespace="http://www.ebxml.org/namespaces/messageHeader" schemaLocation="msg-header-2_0.xsd"/>
+        			<xsd:import namespace="http://schemas.xmlsoap.org/ws/2002/12/secext" schemaLocation="wsse.xsd"/>
+        		</xsd:schema>
+        	</types>
+        	<message name="HotelPropertyDescriptionInput">
+        		<part name="header" element="eb:MessageHeader"/>
+        		<part name="header2" element="wsse:Security"/>
+        		<part name="body" element="xsd1:HotelPropertyDescriptionRQ"/>
+        	</message>
+        	<message name="HotelPropertyDescriptionOutput">
+        		<part name="header" element="eb:MessageHeader"/>
+        		<part name="header2" element="wsse:Security"/>
+        		<part name="body" element="xsd1:HotelPropertyDescriptionRS"/>
+        	</message>
+        	<portType name="HotelPropertyDescriptionPortType">
+        		<operation name="HotelPropertyDescriptionRQ">
+        			<input message="tns:HotelPropertyDescriptionInput"/>
+        			<output message="tns:HotelPropertyDescriptionOutput"/>
+        		</operation>
+        	</portType>
+        	<binding name="HotelPropertyDescriptionSoapBinding" type="tns:HotelPropertyDescriptionPortType">
+        		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        		<operation name="HotelPropertyDescriptionRQ">
+        			<soap:operation soapAction="OTA"/>
+        			<input>
+        				<soap:header message="tns:HotelPropertyDescriptionInput" part="header" use="literal"/>
+        				<soap:header message="tns:HotelPropertyDescriptionInput" part="header2" use="literal"/>
+        				<soap:body parts="body" use="literal"/>
+        			</input>
+        			<output>
+        				<soap:header message="tns:HotelPropertyDescriptionOutput" part="header" use="literal"/>
+        				<soap:header message="tns:HotelPropertyDescriptionOutput" part="header2" use="literal"/>
+        				<soap:body parts="body" use="literal"/>
+        			</output>
+        		</operation>
+        	</binding>
+        	<service name="HotelPropertyDescriptionService">
+        		<port name="HotelPropertyDescriptionPortType" binding="tns:HotelPropertyDescriptionSoapBinding">
+        			<soap:address location="https://sws-crt.cert.sabre.com/"/>
+        		</port>
+        	</service>
+        </definitions>
+
+    http_version: 
+  recorded_at: Wed, 28 Mar 2012 04:53:06 GMT
+- request: 
+    method: post
+    uri: https://sws-crt.cert.sabre.com/
+    body: 
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:wsdl="https://webservices.sabre.com/websvc" xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:eb="http://www.ebxml.org/namespaces/messageHeader" xmlns:xlinx="http://www.w3.org/1999/xlink"><env:Header><eb:MessageHeader SOAP-ENV:mustUnderstand="1" eb:version="2.0"><eb:ConversationId>joe@example.com</eb:ConversationId><eb:From><eb:PartyId type="urn:x12.org:IO5:01">example.com</eb:PartyId></eb:From><eb:To><eb:PartyId type="urn:x12.org:IO5:01">webservices.sabre.com</eb:PartyId></eb:To><eb:CPAId><IPCC></eb:CPAId><eb:Service eb:type="sabreXML">Hotel Description</eb:Service><eb:Action>HotelPropertyDescriptionLLSRQ</eb:Action><eb:MessageData><eb:MessageId>mid:20120328-005306@example.com</eb:MessageId><eb:RefToMessageId>mid:20120328-005305@example.com</eb:RefToMessageId><eb:Timestamp>2012-03-28T00:53:06Z</eb:Timestamp></eb:MessageData></eb:MessageHeader><wsse:Security xmlns:wsse="http://schemas.xmlsoap.org/ws/2002/12/secext"><wsse:BinarySecurityToken xmlns:wsu="http://schemas.xmlsoap.org/ws/2002/12/utility" wsu:Id="SabreSecurityToken" valueType="String" EncodingType="wsse:Base64Binary">Shared/IDL:IceSess\/SessMgr:1\.0.IDL/Common/!ICESMS\/ACPCRTC!ICESMSLB\/CRT.LB!-3939125821647366528!1444866!0</wsse:BinarySecurityToken></wsse:Security></env:Header><env:Body><HotelPropertyDescriptionRQ xmlns="http://webservices.sabre.com/sabreXML/2003/07" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" TimeStamp="2012-03-28T00:53:06" Version="2003A.TsabreXML1.11.1"><POS><Source PseudoCityCode="<IPCC>"></Source></POS><AvailRequestSegments><AvailRequestSegment><StayDateRange Start="2012-03-30" End="2012-04-02"></StayDateRange><RoomStayCandidates><RoomStayCandidate><GuestCounts><GuestCount Count="1"></GuestCount></GuestCounts></RoomStayCandidate></RoomStayCandidates><HotelSearchCriteria><Criterion><HotelRef HotelCode="0040713"></HotelRef></Criterion></HotelSearchCriteria></AvailRequestSegment></AvailRequestSegments></HotelPropertyDescriptionRQ></env:Body></env:Envelope>
+    headers: 
+      Content-Type: 
+      - text/xml;charset=UTF-8
+      Soapaction: 
+      - "\"OTA\""
+      Content-Length: 
+      - "2244"
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Soapaction: 
+      - "\"\""
+      Content-Type: 
+      - text/xml;charset=utf-8
+      Date: 
+      - Wed, 28 Mar 2012 04:50:02 GMT
+      Server: 
+      - SWS
+      Connection: 
+      - close
+    body: 
+      encoding: UTF-8
+      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\
+        <soap-env:Envelope xmlns:soap-env=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap-env:Header><eb:MessageHeader xmlns:eb=\"http://www.ebxml.org/namespaces/messageHeader\" eb:version=\"1.0\" soap-env:mustUnderstand=\"1\"><eb:From><eb:PartyId eb:type=\"URI\">webservices.sabre.com</eb:PartyId></eb:From><eb:To><eb:PartyId eb:type=\"URI\">example.com</eb:PartyId></eb:To><eb:CPAId><IPCC></eb:CPAId><eb:ConversationId>joe@example.com</eb:ConversationId><eb:Service eb:type=\"sabreXML\">Hotel Description</eb:Service><eb:Action>HotelPropertyDescriptionLLSRS</eb:Action><eb:MessageData><eb:MessageId>67632e95-3639-47d4-a3c2-baa967b152ba@176</eb:MessageId><eb:Timestamp>2012-03-28T04:50:02</eb:Timestamp><eb:RefToMessageId>mid:20120328-005306@example.com</eb:RefToMessageId></eb:MessageData></eb:MessageHeader><wsse:Security xmlns:wsse=\"http://schemas.xmlsoap.org/ws/2002/12/secext\"><wsse:BinarySecurityToken valueType=\"String\" EncodingType=\"wsse:Base64Binary\">Shared/IDL:IceSess\\/SessMgr:1\\.0.IDL/Common/!ICESMS\\/ACPCRTC!ICESMSLB\\/CRT.LB!-3939125821647366528!1444866!0</wsse:BinarySecurityToken></wsse:Security></soap-env:Header><soap-env:Body><HotelPropertyDescriptionRS xmlns=\"http://webservices.sabre.com/sabreXML/2003/07\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" TimeStamp=\"2012-03-28T04:50:02\" AltLangID=\"en-us\" Version=\"2003A.TsabreXML1.11.1\" PrimaryLangID=\"en-us\" EchoToken=\"String\" SequenceNmbr=\"1\" Target=\"Production\"><Success/><RoomStays><RoomStay><RatePlans><RatePlan><Guarantee><GuaranteesAccepted><GuaranteeAccepted><PaymentCard CardCode=\"AX\" CardType=\"AMERICAN EXPRESS\"/><PaymentCard CardCode=\"CA\" CardType=\"MASTERCARD\"/><PaymentCard CardCode=\"DC\" CardType=\"DINERS CLUB CARD\"/><PaymentCard CardCode=\"DS\" CardType=\"DISCOVER CARD\"/><PaymentCard CardCode=\"IK\" CardType=\"MASTER CARD\"/><PaymentCard CardCode=\"MC\" CardType=\"MASTER CARD\"/><PaymentCard CardCode=\"VI\" CardType=\"VISA\"/><PaymentCard CardCode=\"VS\" CardType=\"VISA\"/><Text>/GDPST            DEPOSIT WILL BE SENT</Text><Text>/GDPST...         IMMEDIATE DEPOSIT TYPE OR FORM</Text></GuaranteeAccepted></GuaranteesAccepted></Guarantee></RatePlan></RatePlans><RoomRates><RoomRate RatePlanCode=\"A01LV7\" RPH=\"1\"><TPA_Extensions><Product Identification=\"BEST AVAILABLE RATE\"/><Text>2 ROOM SUITE-1 KING BED-NONSMOKING</Text><Text>COMP COOKED TO ORDER BRKFST-EVENING RECEPTION</Text><AdditionalInfo><CancelPolicy Option=\"H\" Numeric=\"24\"/><GuaranteeSurcharge>G</GuaranteeSurcharge></AdditionalInfo></TPA_Extensions><Rates><Rate CurrencyCode=\"USD\" Amount=\"119.00\"/></Rates></RoomRate><RoomRate RatePlanCode=\"A03LV7\" RPH=\"2\"><TPA_Extensions><Product Identification=\"BEST AVAILABLE RATE\"/><Text>2 RM ACCESSIBLE SUITE-1 KING BED-NONSMOKING</Text><Text>SOME W/ ROLL IN SHOWER-STROBE ALARMS-SOFABED</Text><AdditionalInfo><CancelPolicy Option=\"H\" Numeric=\"24\"/><GuaranteeSurcharge>G</GuaranteeSurcharge></AdditionalInfo></TPA_Extensions><Rates><Rate CurrencyCode=\"USD\" Amount=\"119.00\"/></Rates></RoomRate><RoomRate RatePlanCode=\"A06LV7\" RPH=\"3\"><TPA_Extensions><Product Identification=\"BEST AVAILABLE RATE\"/><Text>2 ROOM SUITE-2 DOUBLE BEDS-NONSMOKING</Text><Text>COMP COOKED TO ORDER BRKFST-EVENING RECEPTION</Text><AdditionalInfo><CancelPolicy Option=\"H\" Numeric=\"24\"/><GuaranteeSurcharge>G</GuaranteeSurcharge></AdditionalInfo></TPA_Extensions><Rates><Rate CurrencyCode=\"USD\" Amount=\"139.00\" ChangeIndicator=\"Y\"/></Rates></RoomRate><RoomRate RatePlanCode=\"A08LV7\" RPH=\"4\"><TPA_Extensions><Product Identification=\"BEST AVAILABLE RATE\"/><Text>2 ROOM ACCESSIBLE SUITE-2 DBL BEDS-NONSMOKING</Text><Text>GRAB BARS IN BATH-STROBE ALARM-SOFABED-REFRIG</Text><AdditionalInfo><CancelPolicy Option=\"H\" Numeric=\"24\"/><GuaranteeSurcharge>G</GuaranteeSurcharge></AdditionalInfo></TPA_Extensions><Rates><Rate CurrencyCode=\"USD\" Amount=\"139.00\" ChangeIndicator=\"Y\"/></Rates></RoomRate><RoomRate RatePlanCode=\"A02LV7\" RPH=\"5\"><TPA_Extensions><Product Identification=\"BEST AVAILABLE RATE\"/><Text>2 ROOM SUITE-1 KING BED-SMOKING</Text><Text>COMP COOKED TO ORDER BRKFST-EVENING RECEPTION</Text><AdditionalInfo><CancelPolicy Option=\"H\" Numeric=\"24\"/><GuaranteeSurcharge>G</GuaranteeSurcharge></AdditionalInfo></TPA_Extensions><Rates><Rate CurrencyCode=\"USD\" Amount=\"119.00\"/></Rates></RoomRate><RoomRate RatePlanCode=\"A01ASA\" RPH=\"6\"><TPA_Extensions><Product Identification=\"SHOP TILL YOU DROP\"/><Text>2 ROOM SUITE-1 KING BED-NONSMOKING</Text><Text>COMP COOKED TO ORDER BRKFST-EVENING RECEPTION</Text><AdditionalInfo><CancelPolicy Option=\"H\" Numeric=\"24\"/><GuaranteeSurcharge>G</GuaranteeSurcharge></AdditionalInfo></TPA_Extensions><Rates><Rate CurrencyCode=\"USD\" Amount=\"169.00\"/></Rates></RoomRate><RoomRate RatePlanCode=\"A03ASA\" RPH=\"7\"><TPA_Extensions><Product Identification=\"SHOP TILL YOU DROP\"/><Text>2 RM ACCESSIBLE SUITE-1 KING BED-NONSMOKING</Text><Text>SOME W/ ROLL IN SHOWER-STROBE ALARMS-SOFABED</Text><AdditionalInfo><CancelPolicy Option=\"H\" Numeric=\"24\"/><GuaranteeSurcharge>G</GuaranteeSurcharge></AdditionalInfo></TPA_Extensions><Rates><Rate CurrencyCode=\"USD\" Amount=\"169.00\"/></Rates></RoomRate><RoomRate RatePlanCode=\"A06ASA\" RPH=\"8\"><TPA_Extensions><Product Identification=\"SHOP TILL YOU DROP\"/><Text>2 ROOM SUITE-2 DOUBLE BEDS-NONSMOKING</Text><Text>COMP COOKED TO ORDER BRKFST-EVENING RECEPTION</Text><AdditionalInfo><CancelPolicy Option=\"H\" Numeric=\"24\"/><GuaranteeSurcharge>G</GuaranteeSurcharge></AdditionalInfo></TPA_Extensions><Rates><Rate CurrencyCode=\"USD\" Amount=\"189.00\" ChangeIndicator=\"Y\"/></Rates></RoomRate><RoomRate RatePlanCode=\"A08ASA\" RPH=\"9\"><TPA_Extensions><Product Identification=\"SHOP TILL YOU DROP\"/><Text>2 ROOM ACCESSIBLE SUITE-2 DBL BEDS-NONSMOKING</Text><Text>GRAB BARS IN BATH-STROBE ALARM-SOFABED-REFRIG</Text><AdditionalInfo><CancelPolicy Option=\"H\" Numeric=\"24\"/><GuaranteeSurcharge>G</GuaranteeSurcharge></AdditionalInfo></TPA_Extensions><Rates><Rate CurrencyCode=\"USD\" Amount=\"189.00\" ChangeIndicator=\"Y\"/></Rates></RoomRate><RoomRate RatePlanCode=\"A02ASA\" RPH=\"10\"><TPA_Extensions><Product Identification=\"SHOP TILL YOU DROP\"/><Text>2 ROOM SUITE-1 KING BED-SMOKING</Text><Text>COMP COOKED TO ORDER BRKFST-EVENING RECEPTION</Text><AdditionalInfo><CancelPolicy Option=\"H\" Numeric=\"24\"/><GuaranteeSurcharge>G</GuaranteeSurcharge></AdditionalInfo></TPA_Extensions><Rates><Rate CurrencyCode=\"USD\" Amount=\"169.00\"/></Rates></RoomRate><RoomRate RatePlanCode=\"A01ASC\" RPH=\"11\"><TPA_Extensions><Product Identification=\"THIRD NIGHT FREE\"/><Text>2 ROOM SUITE-1 KING BED-NONSMOKING</Text><Text>COMP COOKED TO ORDER BRKFST-EVENING RECEPTION</Text><AdditionalInfo><CancelPolicy Option=\"H\" Numeric=\"24\"/><GuaranteeSurcharge>G</GuaranteeSurcharge></AdditionalInfo></TPA_Extensions><Rates><Rate CurrencyCode=\"USD\" Amount=\"119.00\"/></Rates></RoomRate><RoomRate RatePlanCode=\"A06ASC\" RPH=\"12\"><TPA_Extensions><Product Identification=\"THIRD NIGHT FREE\"/><Text>2 ROOM SUITE-2 DOUBLE BEDS-NONSMOKING</Text><Text>COMP COOKED TO ORDER BRKFST-EVENING RECEPTION</Text><AdditionalInfo><CancelPolicy Option=\"H\" Numeric=\"24\"/><GuaranteeSurcharge>G</GuaranteeSurcharge></AdditionalInfo></TPA_Extensions><Rates><Rate CurrencyCode=\"USD\" Amount=\"139.00\" ChangeIndicator=\"Y\"/></Rates></RoomRate><RoomRate RatePlanCode=\"A01AS9\" RPH=\"13\"><TPA_Extensions><Product Identification=\"DAY OUT WITH AMERICAN GIRL\"/><Text>2 ROOM SUITE-1 KING BED-NONSMOKING</Text><Text>COMP COOKED TO ORDER BRKFST-EVENING RECEPTION</Text><AdditionalInfo><CancelPolicy Option=\"H\" Numeric=\"24\"/><GuaranteeSurcharge>G</GuaranteeSurcharge></AdditionalInfo></TPA_Extensions><Rates><Rate CurrencyCode=\"USD\" Amount=\"159.00\"/></Rates></RoomRate><RoomRate RatePlanCode=\"A06AS9\" RPH=\"14\"><TPA_Extensions><Product Identification=\"DAY OUT WITH AMERICAN GIRL\"/><Text>2 ROOM SUITE-2 DOUBLE BEDS-NONSMOKING</Text><Text>COMP COOKED TO ORDER BRKFST-EVENING RECEPTION</Text><AdditionalInfo><CancelPolicy Option=\"H\" Numeric=\"24\"/><GuaranteeSurcharge>G</GuaranteeSurcharge></AdditionalInfo></TPA_Extensions><Rates><Rate CurrencyCode=\"USD\" Amount=\"179.00\" ChangeIndicator=\"Y\"/></Rates></RoomRate><RoomRate RatePlanCode=\"A01AS8\" RPH=\"15\"><TPA_Extensions><Product Identification=\"AMERICAN GIRL SLUMBER PARTY\"/><Text>2 ROOM SUITE-1 KING BED-NONSMOKING</Text><Text>COMP COOKED TO ORDER BRKFST-EVENING RECEPTION</Text><AdditionalInfo><CancelPolicy Option=\"H\" Numeric=\"24\"/><GuaranteeSurcharge>G</GuaranteeSurcharge></AdditionalInfo></TPA_Extensions><Rates><Rate CurrencyCode=\"USD\" Amount=\"159.00\"/></Rates></RoomRate><RoomRate RatePlanCode=\"A06AS8\" RPH=\"16\"><TPA_Extensions><Product Identification=\"AMERICAN GIRL SLUMBER PARTY\"/><Text>2 ROOM SUITE-2 DOUBLE BEDS-NONSMOKING</Text><Text>COMP COOKED TO ORDER BRKFST-EVENING RECEPTION</Text><AdditionalInfo><CancelPolicy Option=\"H\" Numeric=\"24\"/><GuaranteeSurcharge>G</GuaranteeSurcharge></AdditionalInfo></TPA_Extensions><Rates><Rate CurrencyCode=\"USD\" Amount=\"159.00\"/></Rates></RoomRate><RoomRate RatePlanCode=\"A01A5Q\" RPH=\"17\"><TPA_Extensions><Product Identification=\"AAA RATE-MEMBER ID RQRD\"/><Text>2 ROOM SUITE-1 KING BED-NONSMOKING</Text><Text>COMP COOKED TO ORDER BRKFST-EVENING RECEPTION</Text><AdditionalInfo><CancelPolicy Option=\"H\" Numeric=\"24\"/><GuaranteeSurcharge>G</GuaranteeSurcharge></AdditionalInfo></TPA_Extensions><Rates><Rate CurrencyCode=\"USD\" Amount=\"113.05\"/></Rates></RoomRate></RoomRates><TimeSpan Start=\"2012-03-30T00:00:00\" End=\"2012-04-02T00:00:00\"/><BasicPropertyInfo HotelName=\"EMBASSY SUITES NEAR DALLAS GALL\" NumFloors=\"6\" ChainCode=\"ES\" HotelCode=\"0040713\" HotelCityCode=\"DFW\"><TPA_Extensions><Line RPH=\"001\"/><DirectConnect Ind=\"false\"><DCSellParticipant Ind=\"true\"/><DCAvailParticipant Ind=\"true\"/><UnAvail Ind=\"false\"/><RequestFail Ind=\"false\"/><AdditionalData Ind=\"true\"/></DirectConnect><PropertyOptionInfo><MealService Ind=\"true\"/><FamilyPlan Ind=\"true\"/><GovtSafetyFire Ind=\"true\"/><Golf Ind=\"false\"/><Tennis Ind=\"false\"/><Pool Ind=\"true\"/><FitnessCenter Ind=\"true\"/><BusinessReady Ind=\"false\"/><MeetingFacilities Ind=\"true\"/><Conventions Ind=\"false\"/><BusinessCenter Ind=\"true\"/><Dining Ind=\"true\"/><KidsFacilities Ind=\"false\"/><GameFacilities Ind=\"false\"/><Wheelchair Ind=\"true\"/><Recreation Ind=\"true\"/><Pets Ind=\"false\"/><Dataport Ind=\"true\"/><NonSmoking Ind=\"true\"/><DryClean Ind=\"true\"/><Jacuzzi Ind=\"true\"/><Breakfast Ind=\"true\"/><IndoorPool Ind=\"true\"/><OutdoorPool Ind=\"false\"/><KitchenFacilities Ind=\"true\"/><InteriorDoorways Ind=\"true\"/><AirportShuttle Ind=\"false\"/><IndPetRestriction Ind=\"false\"/><CarRentalCounter Ind=\"false\"/><Parking Ind=\"false\"/></PropertyOptionInfo><PropertyTypeInfo><Luxury Ind=\"false\"/><First Ind=\"true\"/><Economy Ind=\"false\"/><Motel Ind=\"false\"/><Resort Ind=\"false\"/><BedBreakfast Ind=\"false\"/><Castle Ind=\"false\"/><Farm Ind=\"false\"/><Apartments Ind=\"false\"/><Suites Ind=\"true\"/><ExtendedStay Ind=\"false\"/><Conventions Ind=\"false\"/><Moderate Ind=\"false\"/><AllInclusive Ind=\"false\"/></PropertyTypeInfo><IndexData><Index DistanceDirection=\" 22\" TransportationCode=\"O\" LocationCode=\"C\" CountryState=\"  TX\" Point=\"DALLAS\"/><Index DistanceDirection=\"  8\" TransportationCode=\"O\" LocationCode=\"A\" CountryState=\"  TX\" Point=\"EDS\"/><Index DistanceDirection=\" 20\" TransportationCode=\"O\" LocationCode=\"C\" CountryState=\"  TX\" Point=\"WEST END\"/><Index DistanceDirection=\" 18\" TransportationCode=\"O\" LocationCode=\"C\" CountryState=\"  TX\" Point=\"REUNION ARENA\"/><Index DistanceDirection=\" 12\" TransportationCode=\"O\" LocationCode=\"C\" CountryState=\"  \" Point=\"DAL\"/><Index DistanceDirection=\" 18\" TransportationCode=\"O\" LocationCode=\"C\" CountryState=\"  \" Point=\"DFW\"/></IndexData><Taxes><Text>15PCT TTL</Text></Taxes></TPA_Extensions><VendorMessages><VendorMessage InfoType=\"0040713\"><SubSection SubTitle=\"Description\"><Paragraph><Text>THE EMBASSY SUITES DALLAS HOTEL NEAR THE DALLAS GALLERIA</Text><Text>SHOPPING MALL IS CENTRALLY LOCATED IN THE PRESTIGIOUS NORTH</Text><Text>DALLAS/TOLLWAY BUSINESS CORRIDOR ONLY 500 YARDS FROM THE</Text><Text>GALLERIA TOWERS AND THE JP MORGAN CHASE INTERNATIONAL PLAZA.</Text><Text>ONLY ONE MILE FROM THE CITY OF ADDISON AND THE FAMOUS</Text><Text>ADDISON RESTAURANT ROW THIS FULL-SERVICE UPSCALE ALL-SUITE</Text><Text>HOTEL IS A SHORT DRIVE FROM SOUTHERN METHODIST UNIVERSITY</Text><Text>/SMU/ TEXAS STADIUM - HOME OF THE DALLAS COWBOYS AMERIQUEST</Text><Text>FIELD /FORMERLY KNOWN AS THE BALLPARK IN ARLINGTON/ - HOME</Text><Text>OF THE TEXAS RANGERS THE AMERICAN AIRLINES CENTER - HOME OF</Text><Text>THE DALLAS MAVERICKS AND DALLAS STARS THE TEXAS MOTOR</Text><Text>SPEEDWAY THE DALLAS MARKET CENTER THE DALLAS CONVENTION</Text><Text>CENTER AND THE HIGHLAND PARK AREA AND JUST MINUTES AWAY FROM</Text><Text>PLANO AND FRISCO. GUESTS OF THE AWARD-WINNING EMBASSY SUITES</Text><Text>DALLAS - NEAR THE GALLERIA HOTEL STAY IN SPACIOUS TWO-ROOM</Text><Text>SUITES AND RECEIVE A COMPLIMENTARY COOKED-TO-ORDER BREAKFAST</Text><Text>AND A NIGHTLY MANAGER*S RECEPTION. HIGH-SPEED INTERNET</Text><Text>ACCESS IS AVAILABLE THROUGHOUT THE HOTEL. COMPLIMENTARY</Text><Text>SHUTTLE SERVICE AVAILABLE WITH IN A THREE MILE RADIUS MONDAY</Text><Text>-THURSDAY 700AM TO 1230PM AND 400PM TO 1000PM FRIDAY 700AM</Text><Text>TO 1000PM AND SATURDAY -SUNDAY BASED ON AVAILABILITY.</Text><Text>.</Text></Paragraph></SubSection><SubSection SubTitle=\"Transportation\"><Paragraph><Text>- AREA TRANSPORTATION</Text><Text>COMPLIMENTARY HOTEL SHUTTLE WITHIN 3MI RADIUS 7A-11 00P</Text><Text>SUPER SHUTTLE FROM BOTH APTS AVAILABLE 24 HOURS AT</Text><Text>1-800-258-3826 OR 817-329-2000 ENTERPRISE RENTAL CAR 2 MILES</Text><Text>FROM HOTEL MON-FRI 7 30A-6 00P SAT 8 30A-12 30P</Text></Paragraph></SubSection><SubSection SubTitle=\"Rooms\"><Paragraph><Text>- 150 ROOMS</Text><Text>- 150 SUITES</Text><Text>- 6 FLOORS</Text><Text>- INTERIOR CORRIDORS</Text><Text>.</Text><Text>AMENITIES IN ALL ROOMS-</Text><Text>- AIR CONDITIONING       - ALARM CLOCK</Text><Text>- BATHROOM AMENITIES     - BATHTUB SHOWER</Text><Text>- CABLE NEWS             - CABLE TV</Text><Text>- COFFEE/TEA MAKER       - HAIR DRYER</Text><Text>- HIGH SPEED INTERNET    - IRONING BOARD</Text><Text>- KITCHEN                - MICROWAVE</Text><Text>- MODEM DATAPORT         - NEWSPAPER</Text><Text>- PHONE IN BATHROOM      - SAFE</Text><Text>- SOFA BED               - SPEAKER PHONE</Text><Text>- TEMPERATURE CONTROL    - TWO PHONE LINES</Text><Text>- VOICE MAIL             - WET BAR</Text><Text>- WORKDESK LAMP</Text><Text>.</Text><Text>AMENITIES IN SELECT ROOMS-</Text><Text>- DIRECT DIAL PHONE      - ELECTRICAL PLUG</Text><Text>ADAPTERS</Text><Text>- TELEPHONE ADAPTER      - VOLTAGE CONVERTERS</Text><Text>.</Text><Text>-FEATURED ROOM AMENITIES</Text><Text>.</Text><Text>NON-SMOKING ROOM</Text><Text>ACCESSIBLE</Text><Text>SHOWER FOR WHEELCHAIR</Text><Text>CONNECTING ROOMS</Text><Text>LEVER DOOR HANDLES</Text><Text>ADJUSTABLE CLOSET RODS</Text><Text>WELCOME AMENITY</Text><Text>STANDARD NETWORK TV</Text><Text>TWO PHONES</Text><Text>TELEPHONE - AUTO WAKEUP</Text><Text>AUTOMATIC DOOR CLOSER</Text><Text>TROUSER PRESS</Text><Text>BLACK-OUT CURTAINS</Text><Text>BOLSTER PILLOWS</Text><Text>120 AC</Text><Text>BATHROOM DOORS AT LEAST 32 INCHES WIDE</Text><Text>ROOMS ACCESSIBLE FOR WHEELCHAIRS</Text><Text>GRAB BARS IN BATHROOM</Text><Text>AMPLIFIED TELEPHONES</Text><Text>TTD TELEPHONE MACHINE</Text><Text>ROOM AIR FILTRATION</Text><Text>ONE-INCH DEADBOLT ON CONNECTING DOORS</Text><Text>EMERGENCY PHONE EXTENSION IN ALL GUEST ROOMS</Text><Text>.</Text><Text>.</Text></Paragraph></SubSection><SubSection SubTitle=\"Recreation\"><Paragraph><Text>.</Text><Text>RECREATION FACILITIES ONSITE-</Text><Text>-CARDIO EQUIPMENT             -INDOOR POOL</Text><Text>-JACUZZI                      -LIMITED HEALTH CLUB</Text><Text>-WEIGHT LIFTING               -WHIRLPOOL</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>RECREATION FACILITIES-</Text><Text>.</Text><Text>CHARGES MAY APPLY FOR SOME RECREATION FACILITIES. CONTACT</Text><Text>HOTEL FOR INFORMATION</Text><Text>.</Text></Paragraph></SubSection><SubSection SubTitle=\"Cancellation\"><Paragraph><Text>ALL RESERVATIONS MUST BE CANCELLED 24HRS PRIOR TO ARRIVAL</Text><Text>HOST TIME UNLESS DEPOSIT REQ. IF THIS RESERVATION HAS BEEN</Text><Text>MADE ELECTRONICALLY PLEASE CANCEL IT ELECTRONICALLY TO AVOID</Text><Text>CONFUSION AND A NO-SHOW BILL. POLICY SUBJECT TO CHANGE.</Text><Text>.</Text></Paragraph></SubSection><SubSection SubTitle=\"Directions\"><Paragraph><Text>- DALLAS/FORT WORTH.............18.0MI / 29.0KM</Text><Text>INTERNATIONAL AIRPORT</Text><Text>- DALLAS LOVE FIELD.............12.0MI / 19.3KM</Text><Text>- FROM DFW -</Text><Text>DALLAS NORTH TOLLWAY SOUTH TO I-635 WEST /LBJ FREEWAY/</Text><Text>FOLLOW THE SIGNS TO DFW AIRPORT NORTH ENTRANCE.</Text><Text>.</Text><Text>- FROM DAL -</Text><Text>DALLAS NORTH TOLLWAY SOUTH TO MOCKINGBIRD EXIT GO RIGHT.</Text><Text>TAKE ROAD DESIGNED AS THE ENTRANCE TO LOVE FIELD AIRPORT.</Text><Text>.</Text><Text>- ADDITIONAL DIRECTIONS</Text><Text>FROM NORTH OR SOUTH TAKE DALLAS NORTH TOLLWAY TO</Text><Text>SPRING VALLEY EXIT AND GO EAST ONE BLOCK TO NOEL</Text><Text>ROAD. HOTEL IS ON THE SOUTHWEST CORNER OF NOEL AND</Text><Text>SPRING VALLEY. PRESTIGE LIMO AVAILABLE FOR HIRE AT</Text><Text>972-385-0736</Text><Text>FRON EAST OR WEST TAKE LBJ FREEWAY /I-635/ TO THE</Text><Text>DALLAS NORTH TOLLWAY AND GO NORTH. EXIT SPRING</Text><Text>VALLEY AND GO EAST TO NOEL ROAD /ONE BLOCK/. HOTEL</Text><Text>IS ON THE SOUTHWEST CORNER OF NOEL ROAD AND SPRING</Text><Text>VALLEY.</Text><Text>.</Text><Text>-PARKING DETAILS</Text><Text>SELF PARKING. IN-OUT ALLOWED.  UNCOVERED PARKING</Text><Text>.</Text><Text>.</Text><Text>.</Text></Paragraph></SubSection><SubSection SubTitle=\"Location\"><Paragraph><Text>-URL  WWW.EMBASSYSUITES.COM/ES/DALLAS-GALLERIA</Text><Text>.</Text><Text>- DOWNTOWN ...........................10.0 MI/16.1 KM</Text></Paragraph></SubSection><SubSection SubTitle=\"Deposit\"><Paragraph><Text>DURING CERTAIN TIMES OF THE YEAR A DEPOSIT FOR PARTIAL OR</Text><Text>FULL STAY MAY BE REQUIRED AT THE TIME OF BOOKING. IF DEPOSIT</Text><Text>IS REQUIRED SEE RATE RULES TO AVOID FORFEITURE OF DEPOSIT.</Text><Text>.</Text></Paragraph></SubSection><SubSection SubTitle=\"Guarantee\"><Paragraph><Text>SEE RATES RULES FOR GUARANTEE REQUIREMENTS.</Text><Text>.</Text></Paragraph></SubSection><SubSection SubTitle=\"Policies\"><Paragraph><Text>ALL EMBASSY SUITES RATES INCLUDE A FREE COOKED TO</Text><Text>ORDER BREAKFAST AND A TWO HOUR MANAGERS RECEPTION.</Text><Text>.</Text><Text>.</Text><Text>.</Text><Text>-PET POLICY</Text><Text>PETS NOT ALLOWED</Text><Text>.</Text><Text>-FAMILY POLICY</Text><Text>CHILDREN 18 YEARS AND UNDER STAY FREE IN SAME SUITE WITH</Text><Text>PARENT.</Text><Text>.</Text><Text>-MINIMUM LENGTH OF STAY POLICY</Text><Text>MINIMUM NIGHT STAY MAY BE REQUIRED SEASONALLY.</Text><Text>.</Text></Paragraph></SubSection><SubSection SubTitle=\"Attractions\"><Paragraph><Text>ATTRACTIONS-</Text><Text>CITY CENTER                        10.0 MI /16.1 KM</Text><Text>VALLEY VIEW MALL                   1.0  MI /1.6  KM</Text></Paragraph></SubSection><SubSection SubTitle=\"Safety\"><Paragraph><Text>BRAILLE ELEVATOR</Text><Text>RESTRICTED PUBLIC ACCESS TO GUEST ROOM FLOORS</Text><Text>HOTEL COMPLIES WITH AAA SECURITY STANDARDS</Text><Text>.</Text><Text>.</Text><Text>-24 HOUR SECURITY             -ALARMS MONITORED</Text><Text>-STROBE LIGHTS IN HALLS       -STROBE ALARMS</Text><Text>-AUDIBLE ALARMS               -SMOKE ALARMS IN HALLS</Text><Text>-SMOKE ALARMS IN ROOMS        -SMOKE ALARMS PUBLIC AREAS</Text><Text>-SMOKE ALARM HARD WIRED       -ELEVATOR RECALL</Text><Text>-LINKED TO FIRE DEPT          -AUTOMATIC FIRE DOORS</Text><Text>-BASIC MEDICAL EQUIPMENT      -DEAD BOLTS</Text><Text>-ELECTRONIC KEYCARDS          -EMERGENCY EVAC PLAN</Text><Text>-EMERGENCY INFO IN ROOMS      -EMERGENCY LIGHTING</Text><Text>-EXIT MAPS IN ROOMS           -EXIT SIGNS LIT</Text><Text>-EXIT DOORS AUTO LOCK         -HALLWAY FIRE DETECTORS</Text><Text>-PUBLIC FIRE DETECTORS        -ROOM FIRE DETECTORS</Text><Text>-FIRE EXTINGUISHERS IN HALLS  -FIRST AID AVAILABLE</Text><Text>-SECONDARY LOCKS              -ROOMS HAVE VIEWPORTS</Text><Text>-MULTIPLE EXITS PER FLOOR     -PARKING AREAS LIT</Text><Text>-PATROLLED PARKING AREAS      -SAFETY COMPLIANT</Text><Text>-SECURITY PERSONNEL           -SECONDARY WINDOW LOCKS</Text><Text>-HALL SPRINKLERS              -PUBLIC AREAS SPRINKLERS</Text><Text>-SPRINKLERS ROOMS             -STAFF TRAINED IN CPR</Text><Text>-STAFF TRAINED TO DUP KEYS    -STAFF FIRST AID TRAINED</Text><Text>-UNIFORMED SECURITY           -VENTILATED STAIRWELLS</Text><Text>-WELL LIT WALKWAYS</Text><Text>.</Text><Text>- INTERIOR CORRIDORS</Text></Paragraph></SubSection><SubSection SubTitle=\"Dining\"><Paragraph><Text>FULL BREAKFAST - FREE COOKED-TO-ORDER BREAKFAST EACH DAY OF</Text><Text>YOUR STAY.</Text><Text>.</Text><Text>IN-ROOM DINING</Text><Text>DINE IN THE COMFORT OF YOUR ROOM AS THE MEAL IS</Text><Text>PREPARED AND DELIVERED FOR YOUR CONVENIENCE. AN</Text><Text>IN-ROOM MENU IS AVAILABLE IN YOUR GUEST DIRECTORY</Text><Text>FOR YOUR DINING SELECTIONS.</Text><Text>.</Text><Text>ETHAN*S AMERICAN BISTRO</Text><Text>FULL SERVICE CASUAL RESTAURANT FEATURES LOCAL AND</Text><Text>REGIONAL FARE AT MODERATE PRICES. FULL BREAKFAST</Text><Text>IS COMPLIMENTARY TO ALL GUESTS AND COMPLIMENTARY</Text><Text>COCKTAILS ARE AVAILABLE TO ALL GUESTS FROM</Text><Text>530P-730P.</Text><Text>RESTAURANT HOURS</Text><Text>M-F  6A -9A  11A - 11P</Text><Text>SA/SU 7A-1030A</Text><Text>.</Text><Text>CHAMBERLAINS</Text><Text>DEL FRISCO*S STEAKHOUSE</Text><Text>LA MADELINE</Text><Text>LANDRY*S SEAFOOD</Text><Text>MACARONI GRILL</Text><Text>ON THE BORDER</Text><Text>RUGGIERI*S</Text><Text>TAIWAN RESTAURANT</Text></Paragraph></SubSection><SubSection SubTitle=\"Facilities\"><Paragraph><Text>AIR CONDITIONING            MEETS BUILDING CODES</Text><Text>CONVENIENCE STORE           GIFT SHOP</Text><Text>DISABLED PARKING            DISABLED ACCESS</Text><Text>MEETS ADA SPECS             HOTEL SAFE</Text><Text>GUEST LAUNDRY</Text><Text>.</Text><Text>.</Text><Text>EXPRESS MAIL                MEETING FACILITIES</Text><Text>MULTI LINGUAL STAFF         RESTAURANT</Text><Text>CHILDREN*S MENU             CRIBS</Text><Text>HIGH CHAIR                  BAGGAGE STORAGE</Text><Text>ELEVATORS                   FLORIST</Text><Text>LOUNGE                      LUGGAGE HOLD</Text><Text>ROOM SERVICE</Text><Text>.</Text><Text>.</Text></Paragraph></SubSection><SubSection SubTitle=\"Awards\"><Paragraph><Text>RATINGS-</Text><Text>.</Text><Text>- AAA DIAMOND</Text><Text>3 DIAMONDS</Text><Text>.</Text><Text>- MOBIL RATING</Text><Text>N STARS</Text><Text>.</Text></Paragraph></SubSection><SubSection SubTitle=\"Services\"><Paragraph><Text>.</Text><Text>-SERVICES ON PROPERTY</Text><Text>- AUDIO VISUAL EQUIPMENT      - BREAKFAST BUFFET</Text><Text>- BUSINESS CENTER             - BUSINESS CENTER SERVICES</Text><Text>- COCKTAIL                    - COMPUTER</Text><Text>- COPY SERVICE                - EARLY CHECK OUT PENALTY</Text><Text>- EXPRESS CHECK OUT           - FAXING INCOMING</Text><Text>- FAXING OUTGOING             - LATE CHECK OUT</Text><Text>- LAUNDRY VALET               - LOCAL SHUTTLE</Text><Text>- SHUTTLE TO ATTRACTIONS      - PARKING</Text><Text>- SOCIAL HOUR</Text><Text>.</Text><Text>.</Text><Text>SOME SERVICES MAY INCUR AN ADDITIONAL CHARGE</Text><Text>.</Text></Paragraph></SubSection><SubSection SubTitle=\"MiscServices\"><Paragraph><Text>- YEAR BUILT</Text><Text>1998</Text><Text>- YEAR REMODELED</Text><Text>2005</Text><Text>.</Text><Text>- COMMISSION PERCENT   10 PCT</Text><Text>- COMMISSION PLAN MEMBER CENTRALIZED PROGRAMS - YE</Text><Text>.</Text></Paragraph></SubSection><SubSection SubTitle=\"Additional Attractions\"><Paragraph><Text>CORPORATE LOCATIONS-</Text><Text>AT - T                             1.0  MI/ 1.6  KM</Text><Text>AT-T WIRELESS                      1.0  MI/ 1.6  KM</Text><Text>BANCTEC HQ                         1.0  MI/ 1.6  KM</Text><Text>EMC CORP                           2.0  MI/ 3.2  KM</Text><Text>JC PENNEY HQ                       7.0  MI/ 11.3 KM</Text><Text>LAWSON SOFTWARE                    0.3  MI/ 0.4  KM</Text><Text>MARY KAY CORPORATE HQ              2.0  MI/ 3.2  KM</Text><Text>PIZZA INN                          1.0  MI/ 1.6  KM</Text><Text>SUN MICROSYSTEMS                   2.0  MI/ 3.2  KM</Text><Text>TENET HEALTHCARE                   0.3  MI/ 0.4  KM</Text></Paragraph></SubSection></VendorMessage></VendorMessages><Position Longitude=\"-96.817950\" Latitude=\"32.938400\"/><Address><TPA_Extensions><AddressLine>14021 NOEL ROAD</AddressLine><AddressLine>DALLAS TX 75240</AddressLine><AddressLine> </AddressLine></TPA_Extensions><CountryName Code=\"US\"/></Address><ContactNumbers><ContactNumber PhoneNumber=\"1-972-364-3640\"/><TPA_Extensions><FaxNumber PhoneNumber=\"1-972-364-3641\"/></TPA_Extensions></ContactNumbers><Award Provider=\"NTM3  CROWN\"/></BasicPropertyInfo></RoomStay></RoomStays><TPA_Extensions><HostCommand>\xC3\x82\xC2\x86\xC3\x82\xC2\x86\xC3\x82\xC2\x86A\xC3\x82\xC2\x86\xC3\x82\xC2\x86RS01S093\xC3\x82\xC2\x86HOD0040713/30MAR-02APR1</HostCommand></TPA_Extensions></HotelPropertyDescriptionRS></soap-env:Body></soap-env:Envelope>"
+    http_version: 
+  recorded_at: Wed, 28 Mar 2012 04:53:09 GMT
+- request: 
+    method: get
+    uri: http://wsdl-crt.cert.sabre.com/sabreXML1.0.00/tpf/OTA_HotelResLLS1.4.1RQ.wsdl
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Content-Type: 
+      - text/xml;charset=UTF-8
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Server: 
+      - Apache-Coyote/1.1
+      Accept-Ranges: 
+      - bytes
+      Etag: 
+      - W/"2416-1332860611000"
+      Last-Modified: 
+      - Tue, 27 Mar 2012 15:03:31 GMT
+      Content-Type: 
+      - application/xml
+      Content-Length: 
+      - "2416"
+      Date: 
+      - Wed, 28 Mar 2012 04:50:00 GMT
+    body: 
+      encoding: US-ASCII
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd1="http://webservices.sabre.com/sabreXML/2003/07" xmlns:tns="https://webservices.sabre.com/websvc" xmlns:eb="http://www.ebxml.org/namespaces/messageHeader" xmlns:wsse="http://schemas.xmlsoap.org/ws/2002/12/secext" targetNamespace="https://webservices.sabre.com/websvc">
+        	<types>
+        		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        			<xsd:import namespace="http://webservices.sabre.com/sabreXML/2003/07" schemaLocation="OTA_HotelResLLS1.4.1RQRS.xsd"/>
+        			<xsd:import namespace="http://www.ebxml.org/namespaces/messageHeader" schemaLocation="msg-header-2_0.xsd"/>
+        			<xsd:import namespace="http://schemas.xmlsoap.org/ws/2002/12/secext" schemaLocation="wsse.xsd"/>
+        		</xsd:schema>
+        	</types>
+        	<message name="OTA_HotelResInput">
+        		<part name="header" element="eb:MessageHeader"/>
+        		<part name="header2" element="wsse:Security"/>
+        		<part name="body" element="xsd1:OTA_HotelResRQ"/>
+        	</message>
+        	<message name="OTA_HotelResOutput">
+        		<part name="header" element="eb:MessageHeader"/>
+        		<part name="header2" element="wsse:Security"/>
+        		<part name="body" element="xsd1:OTA_HotelResRS"/>
+        	</message>
+        	<portType name="OTA_HotelResPortType">
+        		<operation name="OTA_HotelResRQ">
+        			<input message="tns:OTA_HotelResInput"/>
+        			<output message="tns:OTA_HotelResOutput"/>
+        		</operation>
+        	</portType>
+        	<binding name="OTA_HotelResSoapBinding" type="tns:OTA_HotelResPortType">
+        		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        		<operation name="OTA_HotelResRQ">
+        			<soap:operation soapAction="OTA"/>
+        			<input>
+        				<soap:header message="tns:OTA_HotelResInput" part="header" use="literal"/>
+        				<soap:header message="tns:OTA_HotelResInput" part="header2" use="literal"/>
+        				<soap:body parts="body" use="literal"/>
+        			</input>
+        			<output>
+        				<soap:header message="tns:OTA_HotelResOutput" part="header" use="literal"/>
+        				<soap:header message="tns:OTA_HotelResOutput" part="header2" use="literal"/>
+        				<soap:body parts="body" use="literal"/>
+        			</output>
+        		</operation>
+        	</binding>
+        	<service name="OTA_HotelResService">
+        		<port name="OTA_HotelResPortType" binding="tns:OTA_HotelResSoapBinding">
+        			<soap:address location="https://sws-crt.cert.sabre.com/"/>
+        		</port>
+        	</service>
+        </definitions>
+
+    http_version: 
+  recorded_at: Wed, 28 Mar 2012 04:53:09 GMT
+- request: 
+    method: post
+    uri: https://sws-crt.cert.sabre.com/
+    body: 
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:wsdl="https://webservices.sabre.com/websvc" xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:eb="http://www.ebxml.org/namespaces/messageHeader" xmlns:xlinx="http://www.w3.org/1999/xlink"><env:Header><eb:MessageHeader SOAP-ENV:mustUnderstand="1" eb:version="2.0"><eb:ConversationId>joe@example.com</eb:ConversationId><eb:From><eb:PartyId type="urn:x12.org:IO5:01">example.com</eb:PartyId></eb:From><eb:To><eb:PartyId type="urn:x12.org:IO5:01">webservices.sabre.com</eb:PartyId></eb:To><eb:CPAId><IPCC></eb:CPAId><eb:Service eb:type="sabreXML">Hotel Booking</eb:Service><eb:Action>OTA_HotelResLLSRQ</eb:Action><eb:MessageData><eb:MessageId>mid:20120328-005309@example.com</eb:MessageId><eb:RefToMessageId>mid:20120328-005305@example.com</eb:RefToMessageId><eb:Timestamp>2012-03-28T00:53:09Z</eb:Timestamp></eb:MessageData></eb:MessageHeader><wsse:Security xmlns:wsse="http://schemas.xmlsoap.org/ws/2002/12/secext"><wsse:BinarySecurityToken xmlns:wsu="http://schemas.xmlsoap.org/ws/2002/12/utility" wsu:Id="SabreSecurityToken" valueType="String" EncodingType="wsse:Base64Binary">Shared/IDL:IceSess\/SessMgr:1\.0.IDL/Common/!ICESMS\/ACPCRTC!ICESMSLB\/CRT.LB!-3939125821647366528!1444866!0</wsse:BinarySecurityToken></wsse:Security></env:Header><env:Body><OTA_HotelResRQ xmlns="http://webservices.sabre.com/sabreXML/2003/07" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" TimeStamp="2012-03-28T00:53:09" Version="1.4.1" Target="Test"><POS><Source PseudoCityCode="<IPCC>"></Source></POS><HotelReservations><HotelReservation><RoomStays><RoomStay><RoomTypes><RoomType NumberOfUnits="1"></RoomType></RoomTypes><BasicPropertyInfo><Line Number="1"></Line></BasicPropertyInfo></RoomStay></RoomStays><Profiles><Customer><PaymentForm><PaymentCard CardCode="AX" CardNumber="378282246310005" ExpireDate="2012-06"><Guarantee Code="G"><PersonName><Surname>TEST</Surname></PersonName></Guarantee></PaymentCard></PaymentForm></Customer></Profiles></HotelReservation></HotelReservations></OTA_HotelResRQ></env:Body></env:Envelope>
+    headers: 
+      Content-Type: 
+      - text/xml;charset=UTF-8
+      Soapaction: 
+      - "\"OTA\""
+      Content-Length: 
+      - "2283"
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Soapaction: 
+      - "\"\""
+      Content-Type: 
+      - text/xml;charset=utf-8
+      Date: 
+      - Wed, 28 Mar 2012 04:50:04 GMT
+      Server: 
+      - SWS
+      Connection: 
+      - close
+    body: 
+      encoding: UTF-8
+      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\
+        <soap-env:Envelope xmlns:soap-env=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap-env:Header><eb:MessageHeader xmlns:eb=\"http://www.ebxml.org/namespaces/messageHeader\" eb:version=\"1.0\" soap-env:mustUnderstand=\"1\"><eb:From><eb:PartyId eb:type=\"URI\">webservices.sabre.com</eb:PartyId></eb:From><eb:To><eb:PartyId eb:type=\"URI\">example.com</eb:PartyId></eb:To><eb:CPAId><IPCC></eb:CPAId><eb:ConversationId>joe@example.com</eb:ConversationId><eb:Service eb:type=\"sabreXML\">Hotel Booking</eb:Service><eb:Action>OTA_HotelResLLSRS</eb:Action><eb:MessageData><eb:MessageId>f843e807-8bae-40a1-9944-e14c22e9074d@152</eb:MessageId><eb:Timestamp>2012-03-28T04:50:04</eb:Timestamp><eb:RefToMessageId>mid:20120328-005309@example.com</eb:RefToMessageId></eb:MessageData></eb:MessageHeader><wsse:Security xmlns:wsse=\"http://schemas.xmlsoap.org/ws/2002/12/secext\"><wsse:BinarySecurityToken valueType=\"String\" EncodingType=\"wsse:Base64Binary\">Shared/IDL:IceSess\\/SessMgr:1\\.0.IDL/Common/!ICESMS\\/ACPCRTC!ICESMSLB\\/CRT.LB!-3939125821647366528!1444866!0</wsse:BinarySecurityToken></wsse:Security></soap-env:Header><soap-env:Body><OTA_HotelResRS xmlns=\"http://webservices.sabre.com/sabreXML/2003/07\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" TimeStamp=\"2012-03-28T04:50:04\" AltLangID=\"en-us\" Version=\"1.4.1\" PrimaryLangID=\"en-us\" EchoToken=\"String\" SequenceNmbr=\"1\" Target=\"Production\"><Success/><HotelReservations><HotelReservation><Line Status=\"HK\" Number=\" 1\"/><RoomStays><RoomStay><RoomTypes><RoomType NumberOfUnits=\"1\"/></RoomTypes><RatePlans><RatePlan><Guarantee><GuaranteesAccepted><GuaranteeAccepted><PaymentCard CardNumber=\"AX378282246310005EXP 06 12-TEST\"/></GuaranteeAccepted></GuaranteesAccepted></Guarantee></RatePlan></RatePlans><RoomRates><RoomRate><Rates><Rate><Base CurrencyCode=\"USD\" Amount=\"119.00\"/></Rate></Rates></RoomRate></RoomRates><GuestCounts><GuestCount Count=\"1\"/></GuestCounts><TimeSpan Start=\"30MAR\" End=\"02APR\" Duration=\"3\"/><CancelPenalties><CancelPenalty PolicyCode=\"C24H\"/></CancelPenalties><BasicPropertyInfo HotelName=\" EMBASSY SUITES NEAR\" ChainCode=\"ES\" HotelCityCode=\"DFW\" HotelCode=\"  40713\"/><SpecialRequests><SpecialRequest><Text>40713 ARR30MAR 24 HR CANCELLATION REQUIRED</Text><Text>40713 ARR30MAR GUARANTEED BY CREDIT CARD</Text><Text>HOT RATES IN A COOL PLACE. ES OMAHA / LA VISTA</Text><Text>RATES STARTING AT 107.00 INCLUDING BFAST/PKG / BOA</Text></SpecialRequest></SpecialRequests><ConfirmationNumber>83776865</ConfirmationNumber></RoomStay></RoomStays></HotelReservation></HotelReservations><TPA_Extensions><HostCommand>\xC3\x82\xC2\x86\xC3\x82\xC2\x86\xC3\x82\xC2\x86A\xC3\x82\xC2\x86\xC3\x82\xC2\x86RS01S093\xC3\x82\xC2\x860H1\xC3\x82\xC2\xA51/GAX378282246310005EXP 06 12-TEST</HostCommand></TPA_Extensions></OTA_HotelResRS></soap-env:Body></soap-env:Envelope>"
+    http_version: 
+  recorded_at: Wed, 28 Mar 2012 04:53:11 GMT
+- request: 
+    method: get
+    uri: http://wsdl-crt.cert.sabre.com/sabreXML1.0.00/usg/SessionCreateRQ.wsdl
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: {}
+
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Server: 
+      - Apache-Coyote/1.1
+      Accept-Ranges: 
+      - bytes
+      Etag: 
+      - W/"2437-1332860800000"
+      Last-Modified: 
+      - Tue, 27 Mar 2012 15:06:40 GMT
+      Content-Type: 
+      - application/xml
+      Content-Length: 
+      - "2437"
+      Date: 
+      - Wed, 28 Mar 2012 04:50:02 GMT
+    body: 
+      encoding: US-ASCII
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd1="http://www.opentravel.org/OTA/2002/11" xmlns:tns="https://webservices.sabre.com/websvc" xmlns:eb="http://www.ebxml.org/namespaces/messageHeader" xmlns:wsse="http://schemas.xmlsoap.org/ws/2002/12/secext" targetNamespace="https://webservices.sabre.com/websvc">
+        	<types>
+        		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        			<xsd:import namespace="http://www.opentravel.org/OTA/2002/11" schemaLocation="SessionCreateRQRS.xsd"/>
+        			<xsd:import namespace="http://www.ebxml.org/namespaces/messageHeader" schemaLocation="msg-header-2_0.xsd"/>
+        			<xsd:import namespace="http://schemas.xmlsoap.org/ws/2002/12/secext" schemaLocation="wsse.xsd"/>
+        		</xsd:schema>
+        	</types>
+        	<message name="GetSessionCreateInput">
+        		<part name="header" element="eb:MessageHeader"/>
+        		<part name="header2" element="wsse:Security"/>
+        		<part name="body" element="xsd1:SessionCreateRQ"/>
+        	</message>
+        	<message name="GetSessionCreateOutput">
+        		<part name="header" element="eb:MessageHeader"/>
+        		<part name="header2" element="wsse:Security"/>
+        		<part name="body" element="xsd1:SessionCreateRS"/>
+        	</message>
+        	<portType name="SessionCreatePortType">
+        		<operation name="SessionCreateRQ">
+        			<input message="tns:GetSessionCreateInput"/>
+        			<output message="tns:GetSessionCreateOutput"/>
+        		</operation>
+        	</portType>
+        	<binding name="SessionCreateSoapBinding" type="tns:SessionCreatePortType">
+        		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        		<operation name="SessionCreateRQ">
+        			<soap:operation soapAction="OTA"/>
+        			<input>
+        				<soap:header message="tns:GetSessionCreateInput" part="header" use="literal"/>
+        				<soap:header message="tns:GetSessionCreateInput" part="header2" use="literal"/>
+        				<soap:body parts="body" use="literal"/>
+        			</input>
+        			<output>
+        				<soap:header message="tns:GetSessionCreateOutput" part="header" use="literal"/>
+        				<soap:header message="tns:GetSessionCreateOutput" part="header2" use="literal"/>
+        				<soap:body parts="body" use="literal"/>
+        			</output>
+        		</operation>
+        	</binding>
+        	<service name="SessionCreateRQService">
+        		<port name="SessionCreatePortType" binding="tns:SessionCreateSoapBinding">
+        			<soap:address location="https://sws-crt.cert.sabre.com/"/>
+        		</port>
+        	</service>
+        </definitions>
+
+    http_version: 
+  recorded_at: Wed, 28 Mar 2012 04:53:11 GMT
+- request: 
+    method: post
+    uri: https://sws-crt.cert.sabre.com/
+    body: 
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:wsdl="https://webservices.sabre.com/websvc" xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:eb="http://www.ebxml.org/namespaces/messageHeader" xmlns:xlinx="http://www.w3.org/1999/xlink"><env:Header><eb:MessageHeader SOAP-ENV:mustUnderstand="1" eb:version="2.0"><eb:ConversationId>joe@example.com</eb:ConversationId><eb:From><eb:PartyId type="urn:x12.org:IO5:01">example.com</eb:PartyId></eb:From><eb:To><eb:PartyId type="urn:x12.org:IO5:01">webservices.sabre.com</eb:PartyId></eb:To><eb:CPAId><IPCC></eb:CPAId><eb:Service eb:type="sabreXML">Session</eb:Service><eb:Action>SessionCloseRQ</eb:Action><eb:MessageData><eb:MessageId>mid:20120328-005311@example.com</eb:MessageId><eb:RefToMessageId>mid:20120328-005305@example.com</eb:RefToMessageId><eb:Timestamp>2012-03-28T00:53:11Z</eb:Timestamp></eb:MessageData></eb:MessageHeader><wsse:Security xmlns:wsse="http://schemas.xmlsoap.org/ws/2002/12/secext"><wsse:BinarySecurityToken xmlns:wsu="http://schemas.xmlsoap.org/ws/2002/12/utility" wsu:Id="SabreSecurityToken" valueType="String" EncodingType="wsse:Base64Binary">Shared/IDL:IceSess\/SessMgr:1\.0.IDL/Common/!ICESMS\/ACPCRTC!ICESMSLB\/CRT.LB!-3939125821647366528!1444866!0</wsse:BinarySecurityToken></wsse:Security></env:Header><env:Body><sessionCloseRq><POS><Source PseudoCityCode="<IPCC>"></Source></POS></sessionCloseRq></env:Body></env:Envelope>
+    headers: 
+      Soapaction: 
+      - "\"sessionCloseRq\""
+      Content-Type: 
+      - text/xml;charset=UTF-8
+      Content-Length: 
+      - "1575"
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Soapaction: 
+      - "\"\""
+      Content-Type: 
+      - text/xml;charset=utf-8
+      Date: 
+      - Wed, 28 Mar 2012 04:50:04 GMT
+      Server: 
+      - SWS
+      Connection: 
+      - close
+    body: 
+      encoding: US-ASCII
+      string: |-
+        <?xml version="1.0" encoding="UTF-8"?>
+        <soap-env:Envelope xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/"><soap-env:Header><eb:MessageHeader xmlns:eb="http://www.ebxml.org/namespaces/messageHeader" eb:version="1.0" soap-env:mustUnderstand="1"><eb:From><eb:PartyId eb:type="URI">webservices.sabre.com</eb:PartyId></eb:From><eb:To><eb:PartyId eb:type="URI">example.com</eb:PartyId></eb:To><eb:CPAId><IPCC></eb:CPAId><eb:ConversationId>joe@example.com</eb:ConversationId><eb:Service eb:type="sabreXML">Session</eb:Service><eb:Action>SessionCloseRS</eb:Action><eb:MessageData><eb:MessageId>9e00c1dc-1abe-4976-b01f-adc1b585bc3e@176</eb:MessageId><eb:Timestamp>2012-03-28T04:50:05</eb:Timestamp><eb:RefToMessageId>mid:20120328-005311@example.com</eb:RefToMessageId></eb:MessageData></eb:MessageHeader><wsse:Security xmlns:wsse="http://schemas.xmlsoap.org/ws/2002/12/secext"><wsse:BinarySecurityToken valueType="String" EncodingType="wsse:Base64Binary">Shared/IDL:IceSess\/SessMgr:1\.0.IDL/Common/!ICESMS\/ACPCRTC!ICESMSLB\/CRT.LB!-3939125821647366528!1444866!0</wsse:BinarySecurityToken></wsse:Security></soap-env:Header><soap-env:Body><SessionCloseRS xmlns="http://www.opentravel.org/OTA/2002/11" version="1" status="Approved"/></soap-env:Body></soap-env:Envelope>
+    http_version: 
+  recorded_at: Wed, 28 Mar 2012 04:53:12 GMT
+recorded_with: VCR 2.0.0

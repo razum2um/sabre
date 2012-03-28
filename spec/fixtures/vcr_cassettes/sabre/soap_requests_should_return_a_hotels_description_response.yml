@@ -1,0 +1,348 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: http://wsdl-crt.cert.sabre.com/sabreXML1.0.00/usg/SessionCreateRQ.wsdl
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: {}
+
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Server: 
+      - Apache-Coyote/1.1
+      Accept-Ranges: 
+      - bytes
+      Etag: 
+      - W/"2437-1332860800000"
+      Last-Modified: 
+      - Tue, 27 Mar 2012 15:06:40 GMT
+      Content-Type: 
+      - application/xml
+      Content-Length: 
+      - "2437"
+      Date: 
+      - Wed, 28 Mar 2012 04:49:49 GMT
+    body: 
+      encoding: US-ASCII
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd1="http://www.opentravel.org/OTA/2002/11" xmlns:tns="https://webservices.sabre.com/websvc" xmlns:eb="http://www.ebxml.org/namespaces/messageHeader" xmlns:wsse="http://schemas.xmlsoap.org/ws/2002/12/secext" targetNamespace="https://webservices.sabre.com/websvc">
+        	<types>
+        		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        			<xsd:import namespace="http://www.opentravel.org/OTA/2002/11" schemaLocation="SessionCreateRQRS.xsd"/>
+        			<xsd:import namespace="http://www.ebxml.org/namespaces/messageHeader" schemaLocation="msg-header-2_0.xsd"/>
+        			<xsd:import namespace="http://schemas.xmlsoap.org/ws/2002/12/secext" schemaLocation="wsse.xsd"/>
+        		</xsd:schema>
+        	</types>
+        	<message name="GetSessionCreateInput">
+        		<part name="header" element="eb:MessageHeader"/>
+        		<part name="header2" element="wsse:Security"/>
+        		<part name="body" element="xsd1:SessionCreateRQ"/>
+        	</message>
+        	<message name="GetSessionCreateOutput">
+        		<part name="header" element="eb:MessageHeader"/>
+        		<part name="header2" element="wsse:Security"/>
+        		<part name="body" element="xsd1:SessionCreateRS"/>
+        	</message>
+        	<portType name="SessionCreatePortType">
+        		<operation name="SessionCreateRQ">
+        			<input message="tns:GetSessionCreateInput"/>
+        			<output message="tns:GetSessionCreateOutput"/>
+        		</operation>
+        	</portType>
+        	<binding name="SessionCreateSoapBinding" type="tns:SessionCreatePortType">
+        		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        		<operation name="SessionCreateRQ">
+        			<soap:operation soapAction="OTA"/>
+        			<input>
+        				<soap:header message="tns:GetSessionCreateInput" part="header" use="literal"/>
+        				<soap:header message="tns:GetSessionCreateInput" part="header2" use="literal"/>
+        				<soap:body parts="body" use="literal"/>
+        			</input>
+        			<output>
+        				<soap:header message="tns:GetSessionCreateOutput" part="header" use="literal"/>
+        				<soap:header message="tns:GetSessionCreateOutput" part="header2" use="literal"/>
+        				<soap:body parts="body" use="literal"/>
+        			</output>
+        		</operation>
+        	</binding>
+        	<service name="SessionCreateRQService">
+        		<port name="SessionCreatePortType" binding="tns:SessionCreateSoapBinding">
+        			<soap:address location="https://sws-crt.cert.sabre.com/"/>
+        		</port>
+        	</service>
+        </definitions>
+
+    http_version: 
+  recorded_at: Wed, 28 Mar 2012 04:52:59 GMT
+- request: 
+    method: post
+    uri: https://sws-crt.cert.sabre.com/
+    body: 
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:wsdl="https://webservices.sabre.com/websvc" xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:eb="http://www.ebxml.org/namespaces/messageHeader" xmlns:xlinx="http://www.w3.org/1999/xlink"><env:Header><eb:MessageHeader SOAP-ENV:mustUnderstand="1" eb:version="2.0"><eb:ConversationId>joe@example.com</eb:ConversationId><eb:From><eb:PartyId type="urn:x12.org:IO5:01">example.com</eb:PartyId></eb:From><eb:To><eb:PartyId type="urn:x12.org:IO5:01">webservices.sabre.com</eb:PartyId></eb:To><eb:CPAId><IPCC></eb:CPAId><eb:Service eb:type="sabreXML">Session</eb:Service><eb:Action>SessionCreateRQ</eb:Action><eb:MessageData><eb:MessageId>mid:20120328-005259@example.com</eb:MessageId><eb:RefToMessageId xsi:nil="true"/><eb:Timestamp>2012-03-28T00:52:59Z</eb:Timestamp></eb:MessageData></eb:MessageHeader><wsse:Security xmlns:wsse="http://schemas.xmlsoap.org/ws/2002/12/secext"><wsse:UsernameToken><wsse:Username><USERNAME></wsse:Username><wsse:Password><PASSWORD></wsse:Password><Organization><IPCC></Organization><Domain>DEFAULT</Domain></wsse:UsernameToken></wsse:Security></env:Header><env:Body><SessionCreateRQ><POS><Source PseudoCityCode="<IPCC>"></Source></POS></SessionCreateRQ></env:Body></env:Envelope>
+    headers: 
+      Soapaction: 
+      - "\"OTA\""
+      Content-Type: 
+      - text/xml;charset=UTF-8
+      Content-Length: 
+      - "1416"
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Soapaction: 
+      - "\"\""
+      Content-Type: 
+      - text/xml;charset=utf-8
+      Date: 
+      - Wed, 28 Mar 2012 04:49:52 GMT
+      Server: 
+      - SWS
+      Connection: 
+      - close
+    body: 
+      encoding: US-ASCII
+      string: |-
+        <?xml version="1.0" encoding="UTF-8"?>
+        <soap-env:Envelope xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/"><soap-env:Header><eb:MessageHeader xmlns:eb="http://www.ebxml.org/namespaces/messageHeader" eb:version="1.0" soap-env:mustUnderstand="1"><eb:From><eb:PartyId eb:type="URI">webservices.sabre.com</eb:PartyId></eb:From><eb:To><eb:PartyId eb:type="URI">example.com</eb:PartyId></eb:To><eb:CPAId><IPCC></eb:CPAId><eb:ConversationId>joe@example.com</eb:ConversationId><eb:Service eb:type="sabreXML">Session</eb:Service><eb:Action>SessionCreateRS</eb:Action><eb:MessageData><eb:MessageId>516ae08e-e473-4e62-ae2a-ed1d936c55ed@176</eb:MessageId><eb:Timestamp>2012-03-28T04:49:53</eb:Timestamp><eb:RefToMessageId>mid:20120328-005259@example.com</eb:RefToMessageId></eb:MessageData></eb:MessageHeader><wsse:Security xmlns:wsse="http://schemas.xmlsoap.org/ws/2002/12/secext"><wsse:BinarySecurityToken valueType="String" EncodingType="wsse:Base64Binary">Shared/IDL:IceSess\/SessMgr:1\.0.IDL/Common/!ICESMS\/ACPCRTD!ICESMSLB\/CRT.LB!-3939125800575739515!1520475!0</wsse:BinarySecurityToken></wsse:Security></soap-env:Header><soap-env:Body><SessionCreateRS xmlns="http://www.opentravel.org/OTA/2002/11" version="1" status="Approved">	<ConversationId>joe@example.com</ConversationId></SessionCreateRS></soap-env:Body></soap-env:Envelope>
+    http_version: 
+  recorded_at: Wed, 28 Mar 2012 04:53:00 GMT
+- request: 
+    method: get
+    uri: http://wsdl-crt.cert.sabre.com/sabreXML1.0.00/tpf/HotelPropertyDescriptionLLS1.12.1RQ.wsdl
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Content-Type: 
+      - text/xml;charset=UTF-8
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Server: 
+      - Apache-Coyote/1.1
+      Accept-Ranges: 
+      - bytes
+      Etag: 
+      - W/"2645-1332860541000"
+      Last-Modified: 
+      - Tue, 27 Mar 2012 15:02:21 GMT
+      Content-Type: 
+      - application/xml
+      Content-Length: 
+      - "2645"
+      Date: 
+      - Wed, 28 Mar 2012 04:49:50 GMT
+    body: 
+      encoding: US-ASCII
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd1="http://webservices.sabre.com/sabreXML/2003/07" xmlns:tns="https://webservices.sabre.com/websvc" xmlns:eb="http://www.ebxml.org/namespaces/messageHeader" xmlns:wsse="http://schemas.xmlsoap.org/ws/2002/12/secext" targetNamespace="https://webservices.sabre.com/websvc">
+        	<types>
+        		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        			<xsd:import namespace="http://webservices.sabre.com/sabreXML/2003/07" schemaLocation="HotelPropertyDescriptionLLS1.12.1RQRS.xsd"/>
+        			<xsd:import namespace="http://www.ebxml.org/namespaces/messageHeader" schemaLocation="msg-header-2_0.xsd"/>
+        			<xsd:import namespace="http://schemas.xmlsoap.org/ws/2002/12/secext" schemaLocation="wsse.xsd"/>
+        		</xsd:schema>
+        	</types>
+        	<message name="HotelPropertyDescriptionInput">
+        		<part name="header" element="eb:MessageHeader"/>
+        		<part name="header2" element="wsse:Security"/>
+        		<part name="body" element="xsd1:HotelPropertyDescriptionRQ"/>
+        	</message>
+        	<message name="HotelPropertyDescriptionOutput">
+        		<part name="header" element="eb:MessageHeader"/>
+        		<part name="header2" element="wsse:Security"/>
+        		<part name="body" element="xsd1:HotelPropertyDescriptionRS"/>
+        	</message>
+        	<portType name="HotelPropertyDescriptionPortType">
+        		<operation name="HotelPropertyDescriptionRQ">
+        			<input message="tns:HotelPropertyDescriptionInput"/>
+        			<output message="tns:HotelPropertyDescriptionOutput"/>
+        		</operation>
+        	</portType>
+        	<binding name="HotelPropertyDescriptionSoapBinding" type="tns:HotelPropertyDescriptionPortType">
+        		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        		<operation name="HotelPropertyDescriptionRQ">
+        			<soap:operation soapAction="OTA"/>
+        			<input>
+        				<soap:header message="tns:HotelPropertyDescriptionInput" part="header" use="literal"/>
+        				<soap:header message="tns:HotelPropertyDescriptionInput" part="header2" use="literal"/>
+        				<soap:body parts="body" use="literal"/>
+        			</input>
+        			<output>
+        				<soap:header message="tns:HotelPropertyDescriptionOutput" part="header" use="literal"/>
+        				<soap:header message="tns:HotelPropertyDescriptionOutput" part="header2" use="literal"/>
+        				<soap:body parts="body" use="literal"/>
+        			</output>
+        		</operation>
+        	</binding>
+        	<service name="HotelPropertyDescriptionService">
+        		<port name="HotelPropertyDescriptionPortType" binding="tns:HotelPropertyDescriptionSoapBinding">
+        			<soap:address location="https://sws-crt.cert.sabre.com/"/>
+        		</port>
+        	</service>
+        </definitions>
+
+    http_version: 
+  recorded_at: Wed, 28 Mar 2012 04:53:00 GMT
+- request: 
+    method: post
+    uri: https://sws-crt.cert.sabre.com/
+    body: 
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:wsdl="https://webservices.sabre.com/websvc" xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:eb="http://www.ebxml.org/namespaces/messageHeader" xmlns:xlinx="http://www.w3.org/1999/xlink"><env:Header><eb:MessageHeader SOAP-ENV:mustUnderstand="1" eb:version="2.0"><eb:ConversationId>joe@example.com</eb:ConversationId><eb:From><eb:PartyId type="urn:x12.org:IO5:01">example.com</eb:PartyId></eb:From><eb:To><eb:PartyId type="urn:x12.org:IO5:01">webservices.sabre.com</eb:PartyId></eb:To><eb:CPAId><IPCC></eb:CPAId><eb:Service eb:type="sabreXML">Hotel Description</eb:Service><eb:Action>HotelPropertyDescriptionLLSRQ</eb:Action><eb:MessageData><eb:MessageId>mid:20120328-005300@example.com</eb:MessageId><eb:RefToMessageId>mid:20120328-005259@example.com</eb:RefToMessageId><eb:Timestamp>2012-03-28T00:53:00Z</eb:Timestamp></eb:MessageData></eb:MessageHeader><wsse:Security xmlns:wsse="http://schemas.xmlsoap.org/ws/2002/12/secext"><wsse:BinarySecurityToken xmlns:wsu="http://schemas.xmlsoap.org/ws/2002/12/utility" wsu:Id="SabreSecurityToken" valueType="String" EncodingType="wsse:Base64Binary">Shared/IDL:IceSess\/SessMgr:1\.0.IDL/Common/!ICESMS\/ACPCRTD!ICESMSLB\/CRT.LB!-3939125800575739515!1520475!0</wsse:BinarySecurityToken></wsse:Security></env:Header><env:Body><HotelPropertyDescriptionRQ xmlns="http://webservices.sabre.com/sabreXML/2003/07" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" TimeStamp="2012-03-28T00:53:00" Version="2003A.TsabreXML1.11.1"><POS><Source PseudoCityCode="<IPCC>"></Source></POS><AvailRequestSegments><AvailRequestSegment><StayDateRange Start="2012-03-30" End="2012-04-02"></StayDateRange><RoomStayCandidates><RoomStayCandidate><GuestCounts><GuestCount Count="1"></GuestCount></GuestCounts></RoomStayCandidate></RoomStayCandidates><HotelSearchCriteria><Criterion><HotelRef HotelCode="0031653"></HotelRef></Criterion></HotelSearchCriteria></AvailRequestSegment></AvailRequestSegments></HotelPropertyDescriptionRQ></env:Body></env:Envelope>
+    headers: 
+      Content-Type: 
+      - text/xml;charset=UTF-8
+      Soapaction: 
+      - "\"OTA\""
+      Content-Length: 
+      - "2244"
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Soapaction: 
+      - "\"\""
+      Content-Type: 
+      - text/xml;charset=utf-8
+      Date: 
+      - Wed, 28 Mar 2012 04:49:57 GMT
+      Server: 
+      - SWS
+      Connection: 
+      - close
+    body: 
+      encoding: UTF-8
+      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\
+        <soap-env:Envelope xmlns:soap-env=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap-env:Header><eb:MessageHeader xmlns:eb=\"http://www.ebxml.org/namespaces/messageHeader\" eb:version=\"1.0\" soap-env:mustUnderstand=\"1\"><eb:From><eb:PartyId eb:type=\"URI\">webservices.sabre.com</eb:PartyId></eb:From><eb:To><eb:PartyId eb:type=\"URI\">example.com</eb:PartyId></eb:To><eb:CPAId><IPCC></eb:CPAId><eb:ConversationId>joe@example.com</eb:ConversationId><eb:Service eb:type=\"sabreXML\">Hotel Description</eb:Service><eb:Action>HotelPropertyDescriptionLLSRS</eb:Action><eb:MessageData><eb:MessageId>1ad9deff-bf82-4e49-ad70-e92fdc0219b1@176</eb:MessageId><eb:Timestamp>2012-03-28T04:49:57</eb:Timestamp><eb:RefToMessageId>mid:20120328-005300@example.com</eb:RefToMessageId></eb:MessageData></eb:MessageHeader><wsse:Security xmlns:wsse=\"http://schemas.xmlsoap.org/ws/2002/12/secext\"><wsse:BinarySecurityToken valueType=\"String\" EncodingType=\"wsse:Base64Binary\">Shared/IDL:IceSess\\/SessMgr:1\\.0.IDL/Common/!ICESMS\\/ACPCRTD!ICESMSLB\\/CRT.LB!-3939125800575739515!1520475!0</wsse:BinarySecurityToken></wsse:Security></soap-env:Header><soap-env:Body><HotelPropertyDescriptionRS xmlns=\"http://webservices.sabre.com/sabreXML/2003/07\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" TimeStamp=\"2012-03-28T04:49:57\" AltLangID=\"en-us\" Version=\"2003A.TsabreXML1.11.1\" PrimaryLangID=\"en-us\" EchoToken=\"String\" SequenceNmbr=\"1\" Target=\"Production\"><Success/><RoomStays><RoomStay><RatePlans><RatePlan><Guarantee><GuaranteesAccepted><GuaranteeAccepted><PaymentCard CardCode=\"AX\" CardType=\"AMERICAN EXPRESS\"/><PaymentCard CardCode=\"CA\" CardType=\"MASTERCARD\"/><PaymentCard CardCode=\"DC\" CardType=\"DINERS CLUB CARD\"/><PaymentCard CardCode=\"DS\" CardType=\"DISCOVER CARD\"/><PaymentCard CardCode=\"VI\" CardType=\"VISA\"/></GuaranteeAccepted></GuaranteesAccepted></Guarantee></RatePlan></RatePlans><RoomRates><TPA_Extensions><RateList><Rate Code=\"GRS\" Description=\"GREATRATE\"/><Rate Code=\"LGE\" Description=\"LATEGETAWAYS\"/><Rate Code=\"OO3\" Description=\"WARWICK WINTER PROMOTION\"/><Rate Code=\"R8A\" Description=\"WARWICK WEEKEND\"/></RateList></TPA_Extensions><RoomRate RatePlanCode=\"ROHRC0\" RPH=\"1\"><TPA_Extensions><Product Identification=\"BEST AVAILABLE RATE\"/><Text>DELUXE RUN OF HOUSE KING/QUEEN/2 DOUBLES</Text><Text>350-400 SQ FEET WI-FI ACCESS MANY W/ BALCONY</Text><AdditionalInfo><CancelPolicy Option=\"D\" Numeric=\"01\"/><GuaranteeSurcharge>G</GuaranteeSurcharge><Commission>10.0 PERCENT COMMISSION</Commission></AdditionalInfo></TPA_Extensions><Rates><Rate CurrencyCode=\"USD\" Amount=\"499.00\" ChangeIndicator=\"Y\"><TPA_Extensions><HotelTotalPricing Amount=\"938.32\"><Disclaimer>INCLUDES TAXES AND SURCHARGES</Disclaimer><TotalTaxes Amount=\"121.32\"/><RateRange ExpireDate=\"01APR\" Amount=\"159.00\" EffectiveDate=\"30MAR\"/><RateRange ExpireDate=\"02APR\" Amount=\"499.00\" EffectiveDate=\"01APR\"/></HotelTotalPricing></TPA_Extensions></Rate></Rates></RoomRate><RoomRate RatePlanCode=\"B1KRC0\" RPH=\"2\"><TPA_Extensions><Product Identification=\"BEST AVAILABLE RATE\"/><Text>CLASSIC ROOMS</Text><AdditionalInfo><CancelPolicy Option=\"D\" Numeric=\"01\"/><GuaranteeSurcharge>G</GuaranteeSurcharge><Commission>10.0 PERCENT COMMISSION</Commission></AdditionalInfo></TPA_Extensions><Rates><Rate CurrencyCode=\"USD\" Amount=\"499.00\" ChangeIndicator=\"Y\"><TPA_Extensions><HotelTotalPricing Amount=\"938.32\"><Disclaimer>INCLUDES TAXES AND SURCHARGES</Disclaimer><TotalTaxes Amount=\"121.32\"/><RateRange ExpireDate=\"01APR\" Amount=\"159.00\" EffectiveDate=\"30MAR\"/><RateRange ExpireDate=\"02APR\" Amount=\"499.00\" EffectiveDate=\"01APR\"/></HotelTotalPricing></TPA_Extensions></Rate></Rates></RoomRate><RoomRate RatePlanCode=\"A1KRC0\" RPH=\"3\"><TPA_Extensions><Product Identification=\"BEST AVAILABLE RATE\"/><Text>DELUXE KING</Text><AdditionalInfo><CancelPolicy Option=\"D\" Numeric=\"01\"/><GuaranteeSurcharge>G</GuaranteeSurcharge><Commission>10.0 PERCENT COMMISSION</Commission></AdditionalInfo></TPA_Extensions><Rates><Rate CurrencyCode=\"USD\" Amount=\"519.00\" ChangeIndicator=\"Y\"><TPA_Extensions><HotelTotalPricing Amount=\"1007.23\"><Disclaimer>INCLUDES TAXES AND SURCHARGES</Disclaimer><TotalTaxes Amount=\"130.23\"/><RateRange ExpireDate=\"01APR\" Amount=\"179.00\" EffectiveDate=\"30MAR\"/><RateRange ExpireDate=\"02APR\" Amount=\"519.00\" EffectiveDate=\"01APR\"/></HotelTotalPricing></TPA_Extensions></Rate></Rates></RoomRate><RoomRate RatePlanCode=\"A2DRC0\" RPH=\"4\"><TPA_Extensions><Product Identification=\"BEST AVAILABLE RATE\"/><Text>DELUXE DOUBLE</Text><AdditionalInfo><CancelPolicy Option=\"D\" Numeric=\"01\"/><GuaranteeSurcharge>G</GuaranteeSurcharge><Commission>10.0 PERCENT COMMISSION</Commission></AdditionalInfo></TPA_Extensions><Rates><Rate CurrencyCode=\"USD\" Amount=\"519.00\" ChangeIndicator=\"Y\"><TPA_Extensions><HotelTotalPricing Amount=\"1007.23\"><Disclaimer>INCLUDES TAXES AND SURCHARGES</Disclaimer><TotalTaxes Amount=\"130.23\"/><RateRange ExpireDate=\"01APR\" Amount=\"179.00\" EffectiveDate=\"30MAR\"/><RateRange ExpireDate=\"02APR\" Amount=\"519.00\" EffectiveDate=\"01APR\"/></HotelTotalPricing></TPA_Extensions></Rate></Rates></RoomRate><RoomRate RatePlanCode=\"E1KRC0\" RPH=\"5\"><TPA_Extensions><Product Identification=\"BEST AVAILABLE RATE\"/><Text>JUNIOR SUITES</Text><AdditionalInfo><CancelPolicy Option=\"D\" Numeric=\"01\"/><GuaranteeSurcharge>G</GuaranteeSurcharge><Commission>10.0 PERCENT COMMISSION</Commission></AdditionalInfo></TPA_Extensions><Rates><Rate CurrencyCode=\"USD\" Amount=\"539.00\" ChangeIndicator=\"Y\"><TPA_Extensions><HotelTotalPricing Amount=\"1076.14\"><Disclaimer>INCLUDES TAXES AND SURCHARGES</Disclaimer><TotalTaxes Amount=\"139.14\"/><RateRange ExpireDate=\"01APR\" Amount=\"199.00\" EffectiveDate=\"30MAR\"/><RateRange ExpireDate=\"02APR\" Amount=\"539.00\" EffectiveDate=\"01APR\"/></HotelTotalPricing></TPA_Extensions></Rate></Rates></RoomRate><RoomRate RatePlanCode=\"STORC0\" RPH=\"6\"><TPA_Extensions><Product Identification=\"BEST AVAILABLE RATE\"/><Text>COLORADO ONE-BEDROOM SUITES</Text><AdditionalInfo><CancelPolicy Option=\"D\" Numeric=\"01\"/><GuaranteeSurcharge>G</GuaranteeSurcharge><Commission>10.0 PERCENT COMMISSION</Commission></AdditionalInfo></TPA_Extensions><Rates><Rate CurrencyCode=\"USD\" Amount=\"559.00\" ChangeIndicator=\"Y\"><TPA_Extensions><HotelTotalPricing Amount=\"1145.05\"><Disclaimer>INCLUDES TAXES AND SURCHARGES</Disclaimer><TotalTaxes Amount=\"148.05\"/><RateRange ExpireDate=\"01APR\" Amount=\"219.00\" EffectiveDate=\"30MAR\"/><RateRange ExpireDate=\"02APR\" Amount=\"559.00\" EffectiveDate=\"01APR\"/></HotelTotalPricing></TPA_Extensions></Rate></Rates></RoomRate><RoomRate RatePlanCode=\"S1KRC0\" RPH=\"7\"><TPA_Extensions><Product Identification=\"BEST AVAILABLE RATE\"/><Text>MILE HIGH ONE-BEDROOM SUITES</Text><AdditionalInfo><CancelPolicy Option=\"D\" Numeric=\"01\"/><GuaranteeSurcharge>G</GuaranteeSurcharge><Commission>10.0 PERCENT COMMISSION</Commission></AdditionalInfo></TPA_Extensions><Rates><Rate CurrencyCode=\"USD\" Amount=\"579.00\" ChangeIndicator=\"Y\"><TPA_Extensions><HotelTotalPricing Amount=\"1213.96\"><Disclaimer>INCLUDES TAXES AND SURCHARGES</Disclaimer><TotalTaxes Amount=\"156.96\"/><RateRange ExpireDate=\"01APR\" Amount=\"239.00\" EffectiveDate=\"30MAR\"/><RateRange ExpireDate=\"02APR\" Amount=\"579.00\" EffectiveDate=\"01APR\"/></HotelTotalPricing></TPA_Extensions></Rate></Rates></RoomRate><RoomRate RatePlanCode=\"A1QRC0\" RPH=\"8\"><TPA_Extensions><Product Identification=\"BEST AVAILABLE RATE\"/><Text>DELUXE QUEEN ROOM 1 QUEEN BED 425 SQUARE FT</Text><Text>MANY WITH BALCONIES</Text><AdditionalInfo><CancelPolicy Option=\"D\" Numeric=\"01\"/><GuaranteeSurcharge>G</GuaranteeSurcharge><Commission>10.0 PERCENT COMMISSION</Commission></AdditionalInfo></TPA_Extensions><Rates><Rate CurrencyCode=\"USD\" Amount=\"999.00\" ChangeIndicator=\"Y\"><TPA_Extensions><HotelTotalPricing Amount=\"2661.07\"><Disclaimer>INCLUDES TAXES AND SURCHARGES</Disclaimer><TotalTaxes Amount=\"344.07\"/><RateRange ExpireDate=\"01APR\" Amount=\"659.00\" EffectiveDate=\"30MAR\"/><RateRange ExpireDate=\"02APR\" Amount=\"999.00\" EffectiveDate=\"01APR\"/></HotelTotalPricing></TPA_Extensions></Rate></Rates></RoomRate></RoomRates><TimeSpan Start=\"2012-03-30T00:00:00\" End=\"2012-04-02T00:00:00\"/><BasicPropertyInfo HotelName=\"WARWICK DENVER HOTEL\" NumFloors=\"15\" ChainCode=\"WK\" HotelCode=\"0031653\" HotelCityCode=\"DEN\"><TPA_Extensions><Line RPH=\"001\"/><DirectConnect Ind=\"true\"><DCSellParticipant Ind=\"true\"/><DCAvailParticipant Ind=\"true\"/><UnAvail Ind=\"false\"/><RequestFail Ind=\"false\"/><AdditionalData Ind=\"false\"/></DirectConnect><PropertyOptionInfo><MealService Ind=\"true\"/><FamilyPlan Ind=\"true\"/><GovtSafetyFire Ind=\"true\"/><Golf Ind=\"true\"/><Tennis Ind=\"false\"/><Pool Ind=\"true\"/><FitnessCenter Ind=\"true\"/><BusinessReady Ind=\"false\"/><MeetingFacilities Ind=\"true\"/><Conventions Ind=\"true\"/><BusinessCenter Ind=\"true\"/><Dining Ind=\"true\"/><KidsFacilities Ind=\"true\"/><GameFacilities Ind=\"false\"/><Wheelchair Ind=\"true\"/><Recreation Ind=\"true\"/><Pets Ind=\"true\"/><Dataport Ind=\"true\"/><NonSmoking Ind=\"false\"/><DryClean Ind=\"true\"/><Jacuzzi Ind=\"false\"/><Breakfast Ind=\"false\"/><IndoorPool Ind=\"true\"/><OutdoorPool Ind=\"true\"/><KitchenFacilities Ind=\"false\"/><InteriorDoorways Ind=\"false\"/><AirportShuttle Ind=\"false\"/><IndPetRestriction Ind=\"true\"/><CarRentalCounter Ind=\"false\"/><Parking Ind=\"false\"/></PropertyOptionInfo><PropertyTypeInfo><Luxury Ind=\"true\"/><First Ind=\"true\"/><Economy Ind=\"false\"/><Motel Ind=\"false\"/><Resort Ind=\"false\"/><BedBreakfast Ind=\"false\"/><Castle Ind=\"false\"/><Farm Ind=\"false\"/><Apartments Ind=\"false\"/><Suites Ind=\"false\"/><ExtendedStay Ind=\"false\"/><Conventions Ind=\"false\"/><Moderate Ind=\"false\"/><AllInclusive Ind=\"false\"/></PropertyTypeInfo><IndexData><Index DistanceDirection=\"  1\" TransportationCode=\"O\" LocationCode=\"A\" CountryState=\"  CO\" Point=\"UNION STATION\"/><Index DistanceDirection=\" 20\" TransportationCode=\"O\" LocationCode=\"C\" CountryState=\"  CO\" Point=\"DENVER\"/><Index DistanceDirection=\"  2\" TransportationCode=\"O\" LocationCode=\"A\" CountryState=\"  CO\" Point=\"DENVER ZOO\"/><Index DistanceDirection=\"  1\" TransportationCode=\"O\" LocationCode=\"A\" CountryState=\"  CO\" Point=\"COORS FIELD\"/><Index DistanceDirection=\" 75\" TransportationCode=\"O\" LocationCode=\"R\" CountryState=\"  \" Point=\"COS\"/><Index DistanceDirection=\" 15\" TransportationCode=\"O\" LocationCode=\"C\" CountryState=\"  \" Point=\"BJC\"/><Index DistanceDirection=\" 24\" TransportationCode=\"O\" LocationCode=\"C\" CountryState=\"  \" Point=\"DEN\"/></IndexData><Taxes><Text>14.8PCTRM</Text><Text>13.85PRSMI</Text></Taxes></TPA_Extensions><VendorMessages><VendorMessage InfoType=\"0031653\"><SubSection SubTitle=\"Description\"><Paragraph><Text>SITUATED IN THE HEART OF DENVER S TRENDY UPTOWN</Text><Text>NEIGHBORHOOD, WARWICK DENVER HOTEL IS WITHIN MINUTES</Text><Text>OF THE STATE CAPITOL, 16TH STREET MALL, THE DENVER</Text><Text>CONVENTION CENTER, PEPSI CENTER, THE CHERRY CREEK</Text><Text>SHOPPING DISTRICT AND OTHER DENVER ATTRACTIONS.  THE</Text><Text>HOTEL IS NEARING A USD25M DOLLAR RENOVATION, OFFERING</Text><Text>VISITORS THE ULTIMATE IN COMFORT.  ALL ROOMS HAVE NEW</Text><Text>CARPETING, IMPORTED ITALIAN WINDOW TREATMENTS, NEW</Text><Text>FURNITURE INCLUDING:  A LEATHER MAHOGANY DESK CHAIR,</Text><Text>32 INCH FLAT SCREEN TV S, SERTA EUROTOP MATTRESSES, AND</Text><Text>300 THREAD COUNT SATIN STRIPED SHEETS.  COME REDISCOVER</Text><Text>THE WARWICK DENVER HOTEL, NOW AT AN EVEN GREATER VALUE.</Text><Text>A COMPLIMENTARY TOWN CAR SERVICE IS AVAILABLE TO GUESTS</Text><Text>OF WARWICK DENVER HOTEL FOR THEIR TRANSPORTATION NEEDS</Text><Text>WITHIN THE DOWNTOWN DENVER AREA, ON A FIRST COME, FIRST</Text><Text>SERVED BASIS.</Text><Text>WARWICK DENVER HOTEL BOASTS THE MOST SPACIOUS ROOMS</Text><Text>IN DOWNTOWN DENVER, THE MAJORITY OF WHICH HAVE PRIVATE</Text><Text>BALCONIES WITH A TABLE AND TWO CHAIRS, FLOOR TO CEILING</Text><Text>GLASS WINDOWS OFFERING IMPRESSIVE VIEWS OF EITHER DOWN</Text><Text>TOWN, THE FRONT RANGE OR THE ROCKY MOUNTAINS. HOME OF</Text><Text>DENVERS ONLY ROOF-TOP POOL OPEN YEAR ROUND, GUESTS CAN</Text><Text>RELAX ON THE POOL DECK WITH REFRESHMENTS AND LIGHT FARE</Text><Text>SERVED FROM THE AWARD-WINNING RANDOLPHS RESTAURANT AND</Text><Text>BAR.</Text><Text>WITH 10,000 SQUARE FEET OF FLEXIBLE MEETING AND EVENT</Text><Text>SPACE, WARWICK DENVER HOTEL IS THE PERFECT DENVER VENUE</Text><Text>FOR CORPORATE MEETINGS AND ELEGANT SOCIAL EVENTS IN</Text><Text>DOWNTOWN,  DENVER. THIS LUXURY DENVER HOTEL S</Text><Text>PROFESSIONAL STAFF WILL</Text><Text>GIVE YOU THE PERSONALIZED SERVICE NEEDED TO CREATE A</Text><Text>UNIQUE EVENT. THE WARWICK DENVER HOTEL IS ALSO EQUIPPED</Text><Text>WITH STATE-OF-THE-ART AUDIO-VISUAL AND</Text><Text>TELECOMMUNICATION SERVICES INCLUDING WI-FI INTERNET</Text><Text>ACCESS, A 24-HOUR BUSINESS CENTRE AND FITNESS CENTRE.</Text></Paragraph></SubSection><SubSection SubTitle=\"Transportation\"><Paragraph><Text>PUBLIC TRANSPORTATION</Text><Text>CAR RENTAL</Text><Text>TAXI</Text><Text>**FEES MAY APPLY TO ABOVE TRANSPORTATION**</Text></Paragraph></SubSection><SubSection SubTitle=\"Rooms\"><Paragraph><Text>EACH OF OUR OVERSIZED GUEST ROOMS FEATURES TWO-LINE</Text><Text>TELEPHONES WITH DATA PORTS/ HAIR DRYER/ VOICE MAIL/ IRON</Text><Text>AND IRONING BOARD/ IN-ROOM SAFE/ COFFEE MAKER/ MINI-BAR/</Text><Text>MANY WITH FULL SIZED BALCONY WITH A TABLE AND TWO CHAIRS/</Text><Text>FINE MARBLE BATHROOM. ALL ROOMS HAVE NEW CARPETING/</Text><Text>IMPORTED ITALIAN WINDOW TREATMENTS/ NEW FURNITURE</Text><Text>INCLUDING-  A LEATHER MAHOGANY DESK CHAIR/ 32INCH FLAT</Text><Text>SCREEN TV S/ SERTA EUROTOP MATTRESSES/ AND 300 THREAD</Text><Text>COUNT SATIN STRIPED SHEETS.</Text><Text>B1K- CLASSIC ROOMS -350 SQUARE FEET- ELEGANT AND</Text><Text>WARM/ OUR CLASSIC ROOMS OFFER PLENTY OF SPACE TO</Text><Text>WORK OR RELAX/ ENSURING YOU HAVE A COMFORTABLE STAY.</Text><Text>MANY ROOMS FEATURE SPECTACULAR FLOOR-TO-CEILING</Text><Text>GLASS DOORS FILLING ONE WALL OF THE ROOM/ THROUGH</Text><Text>WHICH YOU CAN ENJOY BEAUTIFUL VIEWS OF DOWNTOWN</Text><Text>DENVER OR THE PARK-FILLED TRENDY UPTOWN NEIGHBORHOOD</Text><Text>AT CAPITOL HILL. OR STEP OUTSIDE ONTO YOUR PRIVATE</Text><Text>BALCONY FOR A BREATH OF FRESH AIR/ DENVER STYLE.</Text><Text>A1K- DELUXE KING -425 SQ FEET- THESE OVERSIZED ROOMS</Text><Text>ARE AMONG THE LARGEST HOTEL ROOMS DENVER HAS TO</Text><Text>OFFER. WITH BREATHTAKING VIEWS OF DENVER S CITYSCAPE</Text><Text>OR THE FRONT RANGE OF THE ROCKY MOUNTAINS/ THIS IS</Text><Text>TRULY YOUR HOME AWAY FROM HOME.  ROOM IS FURNISHED</Text><Text>WITH 1 KING SIZED BED. ALL NEW FURNISHINGS/32 INCHES</Text><Text>FLAT SCREEN/ HIGH-DEFINITION TVS/ RICH FABRICS AND A</Text><Text>PRIVATE BALCONY ALL COMBINE TO PUT THE LUXE IN THESE</Text><Text>DELUXE ROOMS.</Text><Text>A2D- DELUXE DOUBLE -425 SQ FEET- THESE OVERSIZED</Text><Text>ROOMS ARE AMONG THE LARGEST HOTEL ROOMS DENVER HAS</Text><Text>TO OFFER. WITH BREATHTAKING VIEWS OF DENVER S</Text><Text>CITYSCAPE OR THE FRONT RANGE OF THE ROCKY</Text><Text>MOUNTAINS/ THIS IS TRULY YOUR HOME AWAY FROM HOME.</Text><Text>ROOM IS FURNISHED WITH 2 DOUBLE SIZED BEDS. ALL NEW</Text><Text>FURNISHINGS/ 32 INCHES FLAT SCREEN/ HIGH-DEFINITION</Text></Paragraph></SubSection><SubSection SubTitle=\"Recreation\"><Paragraph><Text>FTNS CTR - HEALTH CLUB      OUTDOOR HEATED POOL</Text><Text>INDOOR HEATED POOL -        SWIMMING POOL</Text><Text>INDOOR HEATED SWIMMING</Text><Text>POOL</Text><Text>OFF-SITE</Text><Text>BOUTIQUES - SHOPS           GOLF DRIVING RANGE</Text><Text>CASINO - CASINO             GOLF PUTTING GREEN</Text><Text>CROSS COUNTRY SKIING -      HORSEBACK RIDING</Text><Text>CROSS COUNTRY SKIING       JOGGING TRACK</Text><Text>DISCO - NIGHT CLUB -        PLAYGROUND</Text><Text>DISCO/NIGHT CLUB           STEAM ROOM</Text><Text>DOWNHILL SKIING - DOWNHILL  TENNIS COURTS - TENNIS</Text><Text>SKIING                      COURT/S</Text><Text>FISHING - FISHING</Text><Text>**FEES MAY APPLY TO ABOVE ACTIVITIES**</Text></Paragraph></SubSection><SubSection SubTitle=\"Cancellation\"><Paragraph><Text>THIS PROPERTY REQUIRES A NOTIFICATION OF CANCELLATION BY</Text><Text>4PM HOTEL TIME 1 DAY PRIOR TO ARRIVAL TO AVOID A PENALTY.</Text></Paragraph></SubSection><SubSection SubTitle=\"Directions\"><Paragraph><Text>FROM DENVER INTERNATIONAL AIRPORT - TAKE PENA BLVD SOUTH</Text><Text>TO I-70 WEST. EXIT COLORADO BLVD, TAKE A LEFT HEADING</Text><Text>SOUTH. TAKE COLORADO BLVD TO 17TH ST AND MAKE A RIGHT</Text><Text>TURN. 17TH ST TURNS INTO 18TH ST. STAY ON 18TH STREET.</Text><Text>TURN LEFT ON GRANT ST. THE HOTEL IS LOCATED ON THE CORNER</Text><Text>OF 18TH AND GRANT ST.</Text><Text>FROM COLORADO SPRINGS, CO - NORTH ON I-25 TO COLFAX ST,</Text><Text>EXIT COLFAX EAST, GO EAST ON COLFAX THROUGH DOWNTOWN TO</Text><Text>LOGAN STREET, TURN LEFT/NORTH ON LOGAN TO 18TH ST, TURN</Text><Text>LEFT, HOTEL IS ON LEFT HAND SIDE.</Text><Text>FROM COLORADO CONVENTION CENTER - 15TH ST SOUTH TO COLFAX</Text><Text>AVE TURN LEFT/EAST GO TO LOGAN STREET, TURN LEFT/NORTH TO</Text><Text>18TH ST, TURN LEFT/WEST ON 18TH ST, HOTEL IS ON THE LEFT</Text><Text>HAND SIDE.</Text><Text>PARKING SERVICE - THE WARWICK HOTEL DENVER HAS BOTH</Text><Text>SURFACE AND UNDERGROUND PARKING AVAILABLE. HEIGHT</Text><Text>CLEARANCE FOR UNDERGROUND PARKING IS 6 FEET.</Text><Text>OVERNIGHT SELF-PARKING - 12USD PER NIGHT WITH IN AND OUT</Text><Text>PRIVILEGES, OVERNIGHT VALET PARKING - 15USD PER NIGHT</Text><Text>DAYTIME SELF-PARKING - 2USD PER HALF HOUR 1USD</Text><Text>MAXIMUM. DAYTIME VALET PARKING - 8USD</Text><Text>SUPER SHUTTLE - TO AND FROM THE AIRPORT - 19 USD PER</Text><Text>PERSON ONE WAY AND 34 USD ROUND TRIP. 303-370-1300</Text></Paragraph></SubSection><SubSection SubTitle=\"Location\"><Paragraph><Text>THE WARWICK HOTEL IS LOCATED IN THE TRENDY UPTOWN</Text><Text>NEIGHBORHOOD, NEAR THE STATE CAPITOL, 16TH STREET</Text><Text>PEDESTRIAN MALL AND THE CONVENTION CENTER.  ALL</Text><Text>PRO-SPORTING VENUES ARE WITHIN 3 MILES OF THE HOTEL</Text><Text>AND THE CHERRY CREEK SHOP</Text></Paragraph></SubSection><SubSection SubTitle=\"Deposit\"><Paragraph><Text>SEE GAURANTEE POLICY</Text></Paragraph></SubSection><SubSection SubTitle=\"Guarantee\"><Paragraph><Text>CREDIT CARD REQUIRED AT TIME OF BOOKING TO GUARANTEE</Text><Text>ARRIVAL. SEE...HCG SCREEN FOR CREDIT CARDS ACCEPTED.</Text><Text>MINIMUM 1 NIGHTS DEPOSIT ACCEPTED AFTER INITIAL CREDIT</Text><Text>CARD GUARANTEE. SEND DEPOSIT IN LISTED CURRENCY.</Text><Text>SEE...Y/HHL/QWK/P13 FOR WARWICK INTERNATIONAL HOTELS</Text><Text>OFFICE LOCATIONS.</Text><Text>AUTHORIZED AGENTS CAN GUARANTEE TO THEIR AGENCY</Text><Text>IDENTIFICATION NUMBER.  SEE...Y/HHL/QWK/P31 FOR DETAILS.</Text></Paragraph></SubSection><SubSection SubTitle=\"Policies\"><Paragraph><Text>HOTEL TAXES ARE-</Text><Text>13.45 PERCENT</Text><Text>HOTEL SERVICE CHARGE IS-</Text><Text>FROM 09JAN08 - END</Text><Text>13.85 PER ROOM STAY - MI</Text><Text>FROM 07APR00 - GOVT ID MUST BE PRESENTED AT CHECK IN TO</Text><Text>RECEIVE GOVT RATE</Text><Text>MINIMUM NIGHT STAY MAY APPLY</Text><Text>TRAVEL AGENT COMMISSIONS ARE-</Text><Text>10.00 PERCENT</Text><Text>FAMILY PLAN - THERE IS NO CHARGE FOR ONE CHILD 18 YEARS</Text><Text>OR UNDER, WHEN SHARING ACCOMMODATIONS WITH 2 PAYING</Text><Text>ADULTS AND USING EXISTING BEDS. MAXIMUM 4 PERSONS PER</Text><Text>ROOM.</Text><Text>RESERVATIONS ACCEPTED UNTIL 4PM LOCAL HOTEL TIME ON DAY</Text><Text>OF ARRIVAL, HOWEVER IT IS RECOMMENDED THAT WHEN MAKING</Text><Text>RESERVATIONS ON THE SAME DAY AS ARRIVAL THAT THEY ARE</Text><Text>CONFIRMED NO LATER THAN 12 NOON LOCAL HOTEL TIME.</Text><Text>PETS PERMITTED - SMALL PETS ALLOWED - FEE</Text></Paragraph></SubSection><SubSection SubTitle=\"Attractions\"><Paragraph><Text>DENVER INTERNATIONAL AIRPORT - 24 MI / 39 KM</Text><Text>PEDESTRAIN MALL - 0 MI / 0 KM</Text><Text>STATE CAPITOL - 0 MI / 0 KM</Text><Text>SUPERSHUTTLE - 0 MI / 0 KM</Text><Text>TABOR CENTER - 1 MI / 2 KM</Text><Text>US GOVERMENT MINT - 1 MI / 2 KM</Text><Text>BUS STATION - 1 MI / 2 KM</Text><Text>UNION STATION RAILROAD - 1 MI / 2 KM</Text><Text>CIVIC CENTER - 1 MI / 2 KM</Text><Text>CURRIGAN EXHIBITIION HALL - 1 MI / 2 KM</Text><Text>DENVER ART MUSEUM - 1 MI / 2 KM</Text><Text>DENVER CTR PERFORMING ARTS - 1 MI / 2 KM</Text><Text>DENVER PAVILLION SHOPPING - 1 MI / 2 KM</Text><Text>BOTANIC GARDENS - 3 MI / 5 KM</Text><Text>DENVER NATURAL HISTORY MUSEU - 3 MI / 5 KM</Text><Text>DENVER UNIVERSITY - 4 MI / 6 KM</Text><Text>BOULDER COLORADO - 20 MI / 32 KM</Text><Text>CENTENNIAL AIRPORT - 25 MI / 40 KM</Text><Text>16TH STREET PEDESTRIAN MALL- 5 MI / W</Text><Text>DENVER PAVILLION SHOPPING - 5 MI / W</Text><Text>ELITCH GARDENS SIX FLAGS - 2 MI /  W</Text><Text>OCEAN JOURNEY AQUARIUM - 2 MI / W</Text><Text>UNION STATION - 2 MI / NW</Text></Paragraph></SubSection><SubSection SubTitle=\"Safety\"><Paragraph><Text>SECURITY</Text><Text>SMOKE ALARMS IN PUBLIC ROOMS</Text><Text>SPRINKLER SYSTEM IN PUBLIC ROOMS</Text><Text>KEY CARD - COMP ACCESS</Text><Text>SMOKE ALARMS IN GUEST ROOMS</Text><Text>SPRINKLER SYSTEM IN GUEST ROOMS</Text></Paragraph></SubSection><SubSection SubTitle=\"Dining\"><Paragraph><Text>RANDOLPH S RESTAURANT AND BAR</Text><Text>RANDOLPH S RESTAURANT SERVES CONTEMPORARY AMERICAN</Text><Text>CUISINE IN A COMFORTABLE, YET ELEGANT ATMOSPHERE.</Text><Text>CASCADES OF NATURAL LIGHT COME FROM THE FLOOR TO</Text><Text>CEILING GLASS DOORS WHICH OPEN UP TO OUR SEASONAL PATIO</Text><Text>WHERE YOU CAN ENJOY ALFRESCO DINING OR A SIGNATURE</Text><Text>COCKTAIL WHILE SOAKING UP THE DENVER SUN. IN THE</Text><Text>EVENINGS, CATCH UP WITH FRIENDS UNDER THE DENVER MOON</Text><Text>WITH A GLASS OF WINE FROM OUR AWARD-WINNING WINE LIST.</Text><Text>WHATEVER THE OCCASION, EXECUTIVE CHEF KRISTEN HARKNESS</Text><Text>AND CHEF DE CUISINE JAY SHEDLIN CREATE MENUS THAT ARE</Text><Text>CLEAN, YET FLAVORFUL, SHOWCASING THE FRESHEST, SEASONAL</Text><Text>INGREDIENTS. OUR FOUR DIAMOND SERVICE AND</Text><Text>AWARD-WINNING WINE LIST HAVE BEEN RECOGNIZED IN DENVER</Text><Text>FOR MANY YEARS. RANDOLPH S BAR SERVES LIGHT FARE DAILY</Text><Text>FROM 11AM UNTIL 11PM, AND WILL CONTINUE TO SERVE CLASSIC</Text><Text>COCKTAILS UNTIL 12 MIDNIGHT.OUR AWARD-WINNING WINE LIST</Text><Text>COMPLEMENTS THE SEASONAL MENUS, CULMINATING IN ONE OF</Text><Text>DENVER S FINEST DINING EXPERIENCES. RANDOLPH S SERVES</Text><Text>BREAKFAST, LUNCH AND DINNER DAILY, PLUS A LIGHT FARE</Text><Text>MENU IS AVAILABLE IN THE BAR FROM 1100 AM DAILY.</Text><Text>NAMED ONE OF DENVER S -BEST HAPPY HOURS- BY 5280 MAGAZINE,</Text><Text>RANDOLPH S BAR IS THE PERFECT PLACE TO END A LONG DAY.  IN</Text><Text>ADDITION, RANDOLPH S WAS VOTED BEST OUTDOOR DINING, BEST</Text><Text>WINE LIST , BEST ROMANTIC DINING , BEST AMERICAN FOOD,</Text><Text>BEST FINE DINING RESTAURANT, AND DENVER S - 1 BEST CHILL</Text><Text>SCENE FOR NIGHTLIFE.</Text><Text>OPEN: BREAKFAST - MONDAY TO FRIDAY - 600 AM TO 1100 AM</Text><Text>SATURDAY AND SUNDAY - 700 AM TO 100 PM</Text><Text>LUNCH - MONDAY TO FRIDAY - 1100 AM TO 200 PM</Text><Text>DINNER   DAILY - 500 PM TO 1000 PM</Text><Text>LIGHT FARE - DAILY - 1100 AM TO 1100 PM SMOKING</Text><Text>PERMITTED ON OUTDOOR PATIO</Text><Text>VISIT RANDOLPH S ONLINE AT: WWW.RANDOLPHSDENVER.COM.</Text><Text>17TH AVENUE GRILL - 0.5 MILES SOUTHEAST</Text><Text>OPEN SUNDAY - SATURDAY FOR LUNCH AND DINNER SERVING</Text><Text>SEAFOO</Text></Paragraph></SubSection><SubSection SubTitle=\"Facilities\"><Paragraph><Text>AIR CONDITION - PBL RMS     FACSIMILE - FAX</Text><Text>BALLROOM                    NEWSSTAND</Text><Text>BAR                         PARKING</Text><Text>BUSINESS CENTRE - BUSINESS  COACH - BUS PARKING</Text><Text>CENTRE                     POOL SIDE SNACK BAR</Text><Text>COCKTAIL LOUNGE             PRIVATE GARAGE</Text><Text>CONFERENCE FACILITIES       RESTAURANT</Text><Text>DISABLED FAC - PBL RMS      110 - 120 VOLTAGE</Text><Text>ELEVATOR - LIFT</Text><Text>OFF-SITE</Text><Text>COFFEE SHOP                 MEDICAL FACILITIES</Text><Text>CRECHE - DAYCARE            PET KENNELS</Text><Text>DELICATESSEN                PHARMACY</Text><Text>FLORIST</Text><Text>**FEES MAY APPLY TO ABOVE FACILITIES**</Text></Paragraph></SubSection><SubSection SubTitle=\"Awards\"><Paragraph><Text>4 STAR</Text><Text>FIRST CLASS</Text></Paragraph></SubSection><SubSection SubTitle=\"Services\"><Paragraph><Text>24 HOUR FRONT DESK          PORTER - BELL HOP</Text><Text>CONCIERGE                   ROOM SERVICE - LIMITED -</Text><Text>FRNT DESK SAFE DPST BOX      6AM - 11PM</Text><Text>MAID SERVICE                VALET PARKING</Text><Text>MASSAGE SERVICE             VALET SERVICES</Text><Text>MULTILINGUAL STAFF          WAKEUP SERVICE</Text><Text>PHOTO COPYING</Text><Text>OFF-SITE</Text><Text>BARBER - MENS HAIRDRSR      DOCTOR AVAIL - ON CALL</Text><Text>CAR RENTAL - CAR HIRE       THEATRE DESK</Text><Text>CURRENCY EXCHANGE           TOUR DESK</Text><Text>**FEES MAY APPLY TO ABOVE SERVICES**</Text></Paragraph></SubSection><SubSection SubTitle=\"MiscServices\"><Paragraph><Text>HOTEL TAXES ARE-</Text><Text>14.85 PERCENT</Text><Text>HOTEL SERVICE CHARGE IS-</Text><Text>FROM 09JAN08 - END</Text><Text>13.85 PER ROOM STAY - MI</Text><Text>FROM 07APR00 - GOVT ID MUST BE PRESENTED AT CHECK IN TO</Text><Text>RECEIVE GOVT RATE</Text><Text>FROM 24DEC07 - END - INTERNET - USD 9.95 PER 24 HOURS</Text><Text>PARKING - USD 18 OVERNIGHT VALET TAXI TO AIRPORT - USD 46</Text><Text>PLUS USD 3.50 GATE FEE</Text><Text>MINIMUM NIGHT STAY MAY APPLY</Text><Text>TRAVEL AGENT COMMISSIONS ARE-</Text><Text>10.00 PERCENT</Text><Text>FAMILY PLAN - THERE IS NO CHARGE FOR CHILD</Text><Text>UNDER 18 USING EXISTING BEDS.</Text><Text>RESERVATIONS ACCEPTED UNTIL 4PM LOCAL HOTEL TIME ON DAY</Text><Text>OF ARRIVAL, HOWEVER IT IS RECOMMENDED THAT WHEN MAKING</Text><Text>RESERVATIONS ON THE SAME DAY AS ARRIVAL THAT THEY ARE</Text><Text>DAYTIME SELF-PARKING - 2USD PER HALF HOUR 1USD</Text><Text>PETS PERMITTED - SMALL PETS ALLOWED - FEE</Text><Text>MEAL PLAN - NO MEAL PLAN INCLUDED IN RATES</Text><Text>XXXRC0 - BEST AVAILABLE RATE</Text><Text>XXXRAC - PUBLISHED RACK RATE</Text><Text>XXXR8A-  WARWICK WEEKENDS SPECIAL -</Text><Text>INCLUDES BREAKFAST FOR 2/ FREE VALET AND WIFI/</Text><Text>PRICE INCLUDES ALL TAXES AND GRATUITIES</Text><Text>XXXWE5- WARWICK ESCAPES SPECIAL -</Text><Text>INCLUDES BREAKFAST FOR 2/ FREE VALET AND WIFI/</Text><Text>PRICE INCLUDES ALL TAXES AND GRATUITIES</Text><Text>XXXGRS-  GREAT RATE SPECIAL - INCLUDES BREAKFAST FOR 2</Text><Text>XXXGOV - GOVERNMENT RATE - VALID FOR SINGLE AND</Text><Text>DOUBLE OCCUPANCY ONLY. GOVERNMENT ID IS REQUIRED</Text><Text>UPON CHECK IN</Text><Text>XXXPRO - THANKSGIVING TURKEY TROT PACKAGE</Text><Text>VALID NOVEMBER 26-27/  2009/ PACKAGES STARTING AT USD229</Text><Text>INCLUDES CLASSIC KING ROOM /UPGRADES AVAILABLE FOR</Text><Text>ADDITIONAL COST/ THANKSGIVING BRUNCH FOR 2/ AMERICAN</Text><Text>BREAKFAST FOR 2. RATES BASED ON DOUBLE OCCUPANCY.  ALL</Text><Text>GRATUITIES AND TAXES ARE ICLUDED.</Text><Text>XXXPR2 - THANKSGIVING GRAND ILLUMINATION PACKAGE</Text><Text>VALID NOVEMBER 26-29/ 2009/ PACKAGES STARTING AT</Text><Text>USD165 INCLUDES CLASSIC KING ROOM /UPGRADES AVAILABLE FOR</Text><Text>ADDITIONAL  COST/ AMERICAN BREAKFAST FOR</Text></Paragraph></SubSection><SubSection SubTitle=\"Additional Attractions\"><Paragraph><Text>CONFERENCE ROOMS-</Text><Text>1 MEETING ROOMS</Text><Text>CAPACITY OF LARGEST ROOM 350 PEOPLE</Text><Text>MAXIMUM CONFERENCE CAPACITY 60 PEOPLE</Text><Text>MAXIMUM BANQUET CAPACITY 200 PEOPLE</Text><Text>WITH 10000 SQUARE FEET OF VERSATILE MEETING AND BANQUET</Text><Text>SPACE, THE WARWICK DENVER IS PERFECT FOR CORPORATE</Text><Text>MEETINGS AND SOCIAL EVENTS. OUR CAPITOL BALLROOM CAN</Text><Text>ACCOMMODATE UP TO 200 PEOPLE AND IS DIVISIBLE INTO FOUR</Text><Text>ROOMS, WHILE OUR 15TH-FLOOR MILLENNIUM BALLROOM CAN</Text><Text>ACCOMMODATE 120 AND HAS MAGNIFICENT PANORAMIC VIEWS</Text><Text>OF DOWNTOWN AND THE FRONT RANGE. EACH OF OUR 11 EVENT</Text><Text>SPACE ROOMS FEATURES NATURAL LIGHT AND IS EQUIPPED WITH</Text><Text>STATE-OF-THE-ART AUDIO-VISUAL AND TELECOMMUNICATION</Text><Text>SERVICES INCLUDING WI-FI INTERNET ACCESS. A WEDDING AT</Text><Text>THE WARWICK SETS THE STANDARD FOR ROMANTIC ELEGANCE.</Text><Text>WHATEVER IS ENVISIONED - FROM SOPHISTICATED GLAMOUR TO</Text><Text>CHERISHED TRADITIONALISM, A CELEBRATION WITH HUNDREDS</Text><Text>OF GUESTS TO AN EXQUISITE DINNER FOR THE WEDDING COUPLE</Text><Text>AND FAMILY - A UNIQUE WEDDING AND RECEPTION CAN BE</Text><Text>CREATED TO PROVIDE MEMORIES FOR A LIFETIME TOGETHER. FOR</Text><Text>MORE INFORMATION ON OUR WEDDINGS AND OTHER EVENTS,</Text><Text>PLEASE  VISIT WWW.WARWICKDENVERWEDDINGS.COM. OUR</Text><Text>PROFESSIONAL STAFF WILL GIVE YOU THE PERSONALIZED SERVICE</Text><Text>NEEDED TO CREATE A UNIQUE EVENT. THE WARWICK OFFERS FULL</Text><Text>-SERVICE CATERING AND GREAT INCENTIVE PACKAGES. FOR MORE</Text><Text>INFORMATION, CONTACT OUR CATERING DEPARTMENT ON:</Text><Text>1 303 832 0309 OR E-MAIL:</Text><Text>CATERING.DENVERAT THE RATE WARWICKHOTELS.COM.</Text><Text>**FEES MAY APPLY TO ABOVE FACILITIES**</Text></Paragraph></SubSection></VendorMessage></VendorMessages><Position Longitude=\"-104.98356\" Latitude=\"39.744700\"/><Address><TPA_Extensions><AddressLine>1776 GRANT STREET</AddressLine><AddressLine>DENVER CO 80203-1211</AddressLine><AddressLine> </AddressLine></TPA_Extensions><CountryName Code=\"US\"/></Address><ContactNumbers><ContactNumber PhoneNumber=\"303-861-2000\"/><TPA_Extensions><FaxNumber PhoneNumber=\"303-832-0320\"/></TPA_Extensions></ContactNumbers><Award Provider=\"NTM3  CROWN\"/></BasicPropertyInfo></RoomStay></RoomStays><TPA_Extensions><HostCommand>\xC3\x82\xC2\x86\xC3\x82\xC2\x86\xC3\x82\xC2\x86A\xC3\x82\xC2\x86\xC3\x82\xC2\x86RS01S093\xC3\x82\xC2\x86HOD0031653/30MAR-02APR1</HostCommand></TPA_Extensions></HotelPropertyDescriptionRS></soap-env:Body></soap-env:Envelope>"
+    http_version: 
+  recorded_at: Wed, 28 Mar 2012 04:53:04 GMT
+- request: 
+    method: get
+    uri: http://wsdl-crt.cert.sabre.com/sabreXML1.0.00/usg/SessionCreateRQ.wsdl
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: {}
+
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Server: 
+      - Apache-Coyote/1.1
+      Accept-Ranges: 
+      - bytes
+      Etag: 
+      - W/"2437-1332860800000"
+      Last-Modified: 
+      - Tue, 27 Mar 2012 15:06:40 GMT
+      Content-Type: 
+      - application/xml
+      Content-Length: 
+      - "2437"
+      Date: 
+      - Wed, 28 Mar 2012 04:49:55 GMT
+    body: 
+      encoding: US-ASCII
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd1="http://www.opentravel.org/OTA/2002/11" xmlns:tns="https://webservices.sabre.com/websvc" xmlns:eb="http://www.ebxml.org/namespaces/messageHeader" xmlns:wsse="http://schemas.xmlsoap.org/ws/2002/12/secext" targetNamespace="https://webservices.sabre.com/websvc">
+        	<types>
+        		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        			<xsd:import namespace="http://www.opentravel.org/OTA/2002/11" schemaLocation="SessionCreateRQRS.xsd"/>
+        			<xsd:import namespace="http://www.ebxml.org/namespaces/messageHeader" schemaLocation="msg-header-2_0.xsd"/>
+        			<xsd:import namespace="http://schemas.xmlsoap.org/ws/2002/12/secext" schemaLocation="wsse.xsd"/>
+        		</xsd:schema>
+        	</types>
+        	<message name="GetSessionCreateInput">
+        		<part name="header" element="eb:MessageHeader"/>
+        		<part name="header2" element="wsse:Security"/>
+        		<part name="body" element="xsd1:SessionCreateRQ"/>
+        	</message>
+        	<message name="GetSessionCreateOutput">
+        		<part name="header" element="eb:MessageHeader"/>
+        		<part name="header2" element="wsse:Security"/>
+        		<part name="body" element="xsd1:SessionCreateRS"/>
+        	</message>
+        	<portType name="SessionCreatePortType">
+        		<operation name="SessionCreateRQ">
+        			<input message="tns:GetSessionCreateInput"/>
+        			<output message="tns:GetSessionCreateOutput"/>
+        		</operation>
+        	</portType>
+        	<binding name="SessionCreateSoapBinding" type="tns:SessionCreatePortType">
+        		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        		<operation name="SessionCreateRQ">
+        			<soap:operation soapAction="OTA"/>
+        			<input>
+        				<soap:header message="tns:GetSessionCreateInput" part="header" use="literal"/>
+        				<soap:header message="tns:GetSessionCreateInput" part="header2" use="literal"/>
+        				<soap:body parts="body" use="literal"/>
+        			</input>
+        			<output>
+        				<soap:header message="tns:GetSessionCreateOutput" part="header" use="literal"/>
+        				<soap:header message="tns:GetSessionCreateOutput" part="header2" use="literal"/>
+        				<soap:body parts="body" use="literal"/>
+        			</output>
+        		</operation>
+        	</binding>
+        	<service name="SessionCreateRQService">
+        		<port name="SessionCreatePortType" binding="tns:SessionCreateSoapBinding">
+        			<soap:address location="https://sws-crt.cert.sabre.com/"/>
+        		</port>
+        	</service>
+        </definitions>
+
+    http_version: 
+  recorded_at: Wed, 28 Mar 2012 04:53:04 GMT
+- request: 
+    method: post
+    uri: https://sws-crt.cert.sabre.com/
+    body: 
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:wsdl="https://webservices.sabre.com/websvc" xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:eb="http://www.ebxml.org/namespaces/messageHeader" xmlns:xlinx="http://www.w3.org/1999/xlink"><env:Header><eb:MessageHeader SOAP-ENV:mustUnderstand="1" eb:version="2.0"><eb:ConversationId>joe@example.com</eb:ConversationId><eb:From><eb:PartyId type="urn:x12.org:IO5:01">example.com</eb:PartyId></eb:From><eb:To><eb:PartyId type="urn:x12.org:IO5:01">webservices.sabre.com</eb:PartyId></eb:To><eb:CPAId><IPCC></eb:CPAId><eb:Service eb:type="sabreXML">Session</eb:Service><eb:Action>SessionCloseRQ</eb:Action><eb:MessageData><eb:MessageId>mid:20120328-005304@example.com</eb:MessageId><eb:RefToMessageId>mid:20120328-005259@example.com</eb:RefToMessageId><eb:Timestamp>2012-03-28T00:53:04Z</eb:Timestamp></eb:MessageData></eb:MessageHeader><wsse:Security xmlns:wsse="http://schemas.xmlsoap.org/ws/2002/12/secext"><wsse:BinarySecurityToken xmlns:wsu="http://schemas.xmlsoap.org/ws/2002/12/utility" wsu:Id="SabreSecurityToken" valueType="String" EncodingType="wsse:Base64Binary">Shared/IDL:IceSess\/SessMgr:1\.0.IDL/Common/!ICESMS\/ACPCRTD!ICESMSLB\/CRT.LB!-3939125800575739515!1520475!0</wsse:BinarySecurityToken></wsse:Security></env:Header><env:Body><sessionCloseRq><POS><Source PseudoCityCode="<IPCC>"></Source></POS></sessionCloseRq></env:Body></env:Envelope>
+    headers: 
+      Soapaction: 
+      - "\"sessionCloseRq\""
+      Content-Type: 
+      - text/xml;charset=UTF-8
+      Content-Length: 
+      - "1575"
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Soapaction: 
+      - "\"\""
+      Content-Type: 
+      - text/xml;charset=utf-8
+      Date: 
+      - Wed, 28 Mar 2012 04:49:57 GMT
+      Server: 
+      - SWS
+      Connection: 
+      - close
+    body: 
+      encoding: US-ASCII
+      string: |-
+        <?xml version="1.0" encoding="UTF-8"?>
+        <soap-env:Envelope xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/"><soap-env:Header><eb:MessageHeader xmlns:eb="http://www.ebxml.org/namespaces/messageHeader" eb:version="1.0" soap-env:mustUnderstand="1"><eb:From><eb:PartyId eb:type="URI">webservices.sabre.com</eb:PartyId></eb:From><eb:To><eb:PartyId eb:type="URI">example.com</eb:PartyId></eb:To><eb:CPAId><IPCC></eb:CPAId><eb:ConversationId>joe@example.com</eb:ConversationId><eb:Service eb:type="sabreXML">Session</eb:Service><eb:Action>SessionCloseRS</eb:Action><eb:MessageData><eb:MessageId>68ad4ca6-7d01-4396-99b1-c665226b3735@176</eb:MessageId><eb:Timestamp>2012-03-28T04:49:58</eb:Timestamp><eb:RefToMessageId>mid:20120328-005304@example.com</eb:RefToMessageId></eb:MessageData></eb:MessageHeader><wsse:Security xmlns:wsse="http://schemas.xmlsoap.org/ws/2002/12/secext"><wsse:BinarySecurityToken valueType="String" EncodingType="wsse:Base64Binary">Shared/IDL:IceSess\/SessMgr:1\.0.IDL/Common/!ICESMS\/ACPCRTD!ICESMSLB\/CRT.LB!-3939125800575739515!1520475!0</wsse:BinarySecurityToken></wsse:Security></soap-env:Header><soap-env:Body><SessionCloseRS xmlns="http://www.opentravel.org/OTA/2002/11" version="1" status="Approved"/></soap-env:Body></soap-env:Envelope>
+    http_version: 
+  recorded_at: Wed, 28 Mar 2012 04:53:05 GMT
+recorded_with: VCR 2.0.0

@@ -1,0 +1,348 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: http://wsdl-crt.cert.sabre.com/sabreXML1.0.00/usg/SessionCreateRQ.wsdl
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: {}
+
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Server: 
+      - Apache-Coyote/1.1
+      Accept-Ranges: 
+      - bytes
+      Etag: 
+      - W/"2437-1332860800000"
+      Last-Modified: 
+      - Tue, 27 Mar 2012 15:06:40 GMT
+      Content-Type: 
+      - application/xml
+      Content-Length: 
+      - "2437"
+      Date: 
+      - Wed, 28 Mar 2012 04:49:35 GMT
+    body: 
+      encoding: US-ASCII
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd1="http://www.opentravel.org/OTA/2002/11" xmlns:tns="https://webservices.sabre.com/websvc" xmlns:eb="http://www.ebxml.org/namespaces/messageHeader" xmlns:wsse="http://schemas.xmlsoap.org/ws/2002/12/secext" targetNamespace="https://webservices.sabre.com/websvc">
+        	<types>
+        		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        			<xsd:import namespace="http://www.opentravel.org/OTA/2002/11" schemaLocation="SessionCreateRQRS.xsd"/>
+        			<xsd:import namespace="http://www.ebxml.org/namespaces/messageHeader" schemaLocation="msg-header-2_0.xsd"/>
+        			<xsd:import namespace="http://schemas.xmlsoap.org/ws/2002/12/secext" schemaLocation="wsse.xsd"/>
+        		</xsd:schema>
+        	</types>
+        	<message name="GetSessionCreateInput">
+        		<part name="header" element="eb:MessageHeader"/>
+        		<part name="header2" element="wsse:Security"/>
+        		<part name="body" element="xsd1:SessionCreateRQ"/>
+        	</message>
+        	<message name="GetSessionCreateOutput">
+        		<part name="header" element="eb:MessageHeader"/>
+        		<part name="header2" element="wsse:Security"/>
+        		<part name="body" element="xsd1:SessionCreateRS"/>
+        	</message>
+        	<portType name="SessionCreatePortType">
+        		<operation name="SessionCreateRQ">
+        			<input message="tns:GetSessionCreateInput"/>
+        			<output message="tns:GetSessionCreateOutput"/>
+        		</operation>
+        	</portType>
+        	<binding name="SessionCreateSoapBinding" type="tns:SessionCreatePortType">
+        		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        		<operation name="SessionCreateRQ">
+        			<soap:operation soapAction="OTA"/>
+        			<input>
+        				<soap:header message="tns:GetSessionCreateInput" part="header" use="literal"/>
+        				<soap:header message="tns:GetSessionCreateInput" part="header2" use="literal"/>
+        				<soap:body parts="body" use="literal"/>
+        			</input>
+        			<output>
+        				<soap:header message="tns:GetSessionCreateOutput" part="header" use="literal"/>
+        				<soap:header message="tns:GetSessionCreateOutput" part="header2" use="literal"/>
+        				<soap:body parts="body" use="literal"/>
+        			</output>
+        		</operation>
+        	</binding>
+        	<service name="SessionCreateRQService">
+        		<port name="SessionCreatePortType" binding="tns:SessionCreateSoapBinding">
+        			<soap:address location="https://sws-crt.cert.sabre.com/"/>
+        		</port>
+        	</service>
+        </definitions>
+
+    http_version: 
+  recorded_at: Wed, 28 Mar 2012 04:52:45 GMT
+- request: 
+    method: post
+    uri: https://sws-crt.cert.sabre.com/
+    body: 
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:wsdl="https://webservices.sabre.com/websvc" xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:eb="http://www.ebxml.org/namespaces/messageHeader" xmlns:xlinx="http://www.w3.org/1999/xlink"><env:Header><eb:MessageHeader SOAP-ENV:mustUnderstand="1" eb:version="2.0"><eb:ConversationId>joe@example.com</eb:ConversationId><eb:From><eb:PartyId type="urn:x12.org:IO5:01">example.com</eb:PartyId></eb:From><eb:To><eb:PartyId type="urn:x12.org:IO5:01">webservices.sabre.com</eb:PartyId></eb:To><eb:CPAId><IPCC></eb:CPAId><eb:Service eb:type="sabreXML">Session</eb:Service><eb:Action>SessionCreateRQ</eb:Action><eb:MessageData><eb:MessageId>mid:20120328-005245@example.com</eb:MessageId><eb:RefToMessageId xsi:nil="true"/><eb:Timestamp>2012-03-28T00:52:45Z</eb:Timestamp></eb:MessageData></eb:MessageHeader><wsse:Security xmlns:wsse="http://schemas.xmlsoap.org/ws/2002/12/secext"><wsse:UsernameToken><wsse:Username><USERNAME></wsse:Username><wsse:Password><PASSWORD></wsse:Password><Organization><IPCC></Organization><Domain>DEFAULT</Domain></wsse:UsernameToken></wsse:Security></env:Header><env:Body><SessionCreateRQ><POS><Source PseudoCityCode="<IPCC>"></Source></POS></SessionCreateRQ></env:Body></env:Envelope>
+    headers: 
+      Soapaction: 
+      - "\"OTA\""
+      Content-Type: 
+      - text/xml;charset=UTF-8
+      Content-Length: 
+      - "1416"
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Soapaction: 
+      - "\"\""
+      Content-Type: 
+      - text/xml;charset=utf-8
+      Date: 
+      - Wed, 28 Mar 2012 04:49:38 GMT
+      Server: 
+      - SWS
+      Connection: 
+      - close
+    body: 
+      encoding: US-ASCII
+      string: |-
+        <?xml version="1.0" encoding="UTF-8"?>
+        <soap-env:Envelope xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/"><soap-env:Header><eb:MessageHeader xmlns:eb="http://www.ebxml.org/namespaces/messageHeader" eb:version="1.0" soap-env:mustUnderstand="1"><eb:From><eb:PartyId eb:type="URI">webservices.sabre.com</eb:PartyId></eb:From><eb:To><eb:PartyId eb:type="URI">example.com</eb:PartyId></eb:To><eb:CPAId><IPCC></eb:CPAId><eb:ConversationId>joe@example.com</eb:ConversationId><eb:Service eb:type="sabreXML">Session</eb:Service><eb:Action>SessionCreateRS</eb:Action><eb:MessageData><eb:MessageId>93e5bfb1-d984-4161-b905-8515262bb838@152</eb:MessageId><eb:Timestamp>2012-03-28T04:49:38</eb:Timestamp><eb:RefToMessageId>mid:20120328-005245@example.com</eb:RefToMessageId></eb:MessageData></eb:MessageHeader><wsse:Security xmlns:wsse="http://schemas.xmlsoap.org/ws/2002/12/secext"><wsse:BinarySecurityToken valueType="String" EncodingType="wsse:Base64Binary">Shared/IDL:IceSess\/SessMgr:1\.0.IDL/Common/!ICESMS\/ACPCRTC!ICESMSLB\/CRT.LB!-3939125904507854976!1444378!0</wsse:BinarySecurityToken></wsse:Security></soap-env:Header><soap-env:Body><SessionCreateRS xmlns="http://www.opentravel.org/OTA/2002/11" version="1" status="Approved">	<ConversationId>joe@example.com</ConversationId></SessionCreateRS></soap-env:Body></soap-env:Envelope>
+    http_version: 
+  recorded_at: Wed, 28 Mar 2012 04:52:45 GMT
+- request: 
+    method: get
+    uri: http://wsdl-crt.cert.sabre.com/sabreXML1.0.00/tpf/OTA_HotelAvailLLS1.11.1RQ.wsdl
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Content-Type: 
+      - text/xml;charset=UTF-8
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Server: 
+      - Apache-Coyote/1.1
+      Accept-Ranges: 
+      - bytes
+      Etag: 
+      - W/"2455-1332860610000"
+      Last-Modified: 
+      - Tue, 27 Mar 2012 15:03:30 GMT
+      Content-Type: 
+      - application/xml
+      Content-Length: 
+      - "2455"
+      Date: 
+      - Wed, 28 Mar 2012 04:49:35 GMT
+    body: 
+      encoding: US-ASCII
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd1="http://webservices.sabre.com/sabreXML/2003/07" xmlns:tns="https://webservices.sabre.com/websvc" xmlns:eb="http://www.ebxml.org/namespaces/messageHeader" xmlns:wsse="http://schemas.xmlsoap.org/ws/2002/12/secext" targetNamespace="https://webservices.sabre.com/websvc">
+        	<types>
+        		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        			<xsd:import namespace="http://webservices.sabre.com/sabreXML/2003/07" schemaLocation="OTA_HotelAvailLLS1.11.1RQRS.xsd"/>
+        			<xsd:import namespace="http://www.ebxml.org/namespaces/messageHeader" schemaLocation="msg-header-2_0.xsd"/>
+        			<xsd:import namespace="http://schemas.xmlsoap.org/ws/2002/12/secext" schemaLocation="wsse.xsd"/>
+        		</xsd:schema>
+        	</types>
+        	<message name="OTA_HotelAvailInput">
+        		<part name="header" element="eb:MessageHeader"/>
+        		<part name="header2" element="wsse:Security"/>
+        		<part name="body" element="xsd1:OTA_HotelAvailRQ"/>
+        	</message>
+        	<message name="OTA_HotelAvailOutput">
+        		<part name="header" element="eb:MessageHeader"/>
+        		<part name="header2" element="wsse:Security"/>
+        		<part name="body" element="xsd1:OTA_HotelAvailRS"/>
+        	</message>
+        	<portType name="OTA_HotelAvailPortType">
+        		<operation name="OTA_HotelAvailRQ">
+        			<input message="tns:OTA_HotelAvailInput"/>
+        			<output message="tns:OTA_HotelAvailOutput"/>
+        		</operation>
+        	</portType>
+        	<binding name="OTA_HotelAvailSoapBinding" type="tns:OTA_HotelAvailPortType">
+        		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        		<operation name="OTA_HotelAvailRQ">
+        			<soap:operation soapAction="OTA"/>
+        			<input>
+        				<soap:header message="tns:OTA_HotelAvailInput" part="header" use="literal"/>
+        				<soap:header message="tns:OTA_HotelAvailInput" part="header2" use="literal"/>
+        				<soap:body parts="body" use="literal"/>
+        			</input>
+        			<output>
+        				<soap:header message="tns:OTA_HotelAvailOutput" part="header" use="literal"/>
+        				<soap:header message="tns:OTA_HotelAvailOutput" part="header2" use="literal"/>
+        				<soap:body parts="body" use="literal"/>
+        			</output>
+        		</operation>
+        	</binding>
+        	<service name="OTA_HotelAvailService">
+        		<port name="OTA_HotelAvailPortType" binding="tns:OTA_HotelAvailSoapBinding">
+        			<soap:address location="https://sws-crt.cert.sabre.com/"/>
+        		</port>
+        	</service>
+        </definitions>
+
+    http_version: 
+  recorded_at: Wed, 28 Mar 2012 04:52:45 GMT
+- request: 
+    method: post
+    uri: https://sws-crt.cert.sabre.com/
+    body: 
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:wsdl="https://webservices.sabre.com/websvc" xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:eb="http://www.ebxml.org/namespaces/messageHeader" xmlns:xlinx="http://www.w3.org/1999/xlink"><env:Header><eb:MessageHeader SOAP-ENV:mustUnderstand="1" eb:version="2.0"><eb:ConversationId>joe@example.com</eb:ConversationId><eb:From><eb:PartyId type="urn:x12.org:IO5:01">example.com</eb:PartyId></eb:From><eb:To><eb:PartyId type="urn:x12.org:IO5:01">webservices.sabre.com</eb:PartyId></eb:To><eb:CPAId><IPCC></eb:CPAId><eb:Service eb:type="sabreXML">Hotel Availability</eb:Service><eb:Action>OTA_HotelAvailLLSRQ</eb:Action><eb:MessageData><eb:MessageId>mid:20120328-005245@example.com</eb:MessageId><eb:RefToMessageId>mid:20120328-005245@example.com</eb:RefToMessageId><eb:Timestamp>2012-03-28T00:52:45Z</eb:Timestamp></eb:MessageData></eb:MessageHeader><wsse:Security xmlns:wsse="http://schemas.xmlsoap.org/ws/2002/12/secext"><wsse:BinarySecurityToken xmlns:wsu="http://schemas.xmlsoap.org/ws/2002/12/utility" wsu:Id="SabreSecurityToken" valueType="String" EncodingType="wsse:Base64Binary">Shared/IDL:IceSess\/SessMgr:1\.0.IDL/Common/!ICESMS\/ACPCRTC!ICESMSLB\/CRT.LB!-3939125904507854976!1444378!0</wsse:BinarySecurityToken></wsse:Security></env:Header><env:Body><OTA_HotelAvailRQ xmlns="http://webservices.sabre.com/sabreXML/2003/07" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" TimeStamp="2012-03-28T00:52:45" Version="2003A.TsabreXML1.11.1"><POS><Source PseudoCityCode="<IPCC>"></Source></POS><AvailRequestSegments><AvailRequestSegment><StayDateRange Start="03-30" End="04-02"></StayDateRange><RatePlanCandidates SuppressRackRate="false"><RateRange CurrencyCode="USD" Max="1000.00" Min="20.00"></RateRange></RatePlanCandidates><RoomStayCandidates><RoomStayCandidate><GuestCounts><GuestCount Count="1"></GuestCount></GuestCounts></RoomStayCandidate></RoomStayCandidates><HotelSearchCriteria NumProperties="20"><Criterion><HotelRef Latitude="39.75" Longitude="-104.87"></HotelRef><RefPoint GEOCodeOnly="true" LocationCode="R">G</RefPoint></Criterion></HotelSearchCriteria></AvailRequestSegment></AvailRequestSegments></OTA_HotelAvailRQ></env:Body></env:Envelope>
+    headers: 
+      Content-Type: 
+      - text/xml;charset=UTF-8
+      Soapaction: 
+      - "\"OTA\""
+      Content-Length: 
+      - "2433"
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Soapaction: 
+      - "\"\""
+      Content-Type: 
+      - text/xml;charset=utf-8
+      Date: 
+      - Wed, 28 Mar 2012 04:49:51 GMT
+      Server: 
+      - SWS
+      Connection: 
+      - close
+    body: 
+      encoding: UTF-8
+      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\
+        <soap-env:Envelope xmlns:soap-env=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap-env:Header><eb:MessageHeader xmlns:eb=\"http://www.ebxml.org/namespaces/messageHeader\" eb:version=\"1.0\" soap-env:mustUnderstand=\"1\"><eb:From><eb:PartyId eb:type=\"URI\">webservices.sabre.com</eb:PartyId></eb:From><eb:To><eb:PartyId eb:type=\"URI\">example.com</eb:PartyId></eb:To><eb:CPAId><IPCC></eb:CPAId><eb:ConversationId>joe@example.com</eb:ConversationId><eb:Service eb:type=\"sabreXML\">Hotel Availability</eb:Service><eb:Action>OTA_HotelAvailLLSRS</eb:Action><eb:MessageData><eb:MessageId>f01fa1bb-2eac-4f18-8f85-a5aad7b82d3b@152</eb:MessageId><eb:Timestamp>2012-03-28T04:49:52</eb:Timestamp><eb:RefToMessageId>mid:20120328-005245@example.com</eb:RefToMessageId></eb:MessageData></eb:MessageHeader><wsse:Security xmlns:wsse=\"http://schemas.xmlsoap.org/ws/2002/12/secext\"><wsse:BinarySecurityToken valueType=\"String\" EncodingType=\"wsse:Base64Binary\">Shared/IDL:IceSess\\/SessMgr:1\\.0.IDL/Common/!ICESMS\\/ACPCRTC!ICESMSLB\\/CRT.LB!-3939125904507854976!1444378!0</wsse:BinarySecurityToken></wsse:Security></soap-env:Header><soap-env:Body><OTA_HotelAvailRS xmlns=\"http://webservices.sabre.com/sabreXML/2003/07\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" TimeStamp=\"2012-03-28T04:49:52\" Version=\"2003A.TsabreXML1.11.1\"><Success/><AdditionalAvail Ind=\"true\"/><AvailabilityOptions><AvailabilityOption RPH=\"001\"><BasicPropertyInfo AreaID=\"002NE\" ChainCode=\"MX\" Distance=\"M\" GEOConfidenceLevel=\"1\" HotelCityCode=\"DEN\" HotelCode=\"0033854\" HotelName=\"MOTEL 6 DENVER  AIRPORT\" Latitude=\"39.771452\" Longitude=\"-104.848355\"><Address><AddressLine>12020 E 39TH AVE</AddressLine><AddressLine>DENVER CO 80239</AddressLine></Address><ContactNumbers><ContactNumber Fax=\"1-303-375-7763\" Phone=\"1-303-371-1980\"/></ContactNumbers><DirectConnect><AltAvail Ind=\"false\"/><DCAvailParticipant Ind=\"true\"/><DCSellParticipant Ind=\"true\"/><RatesExceedMax Ind=\"false\"/><UnAvail Ind=\"false\"/></DirectConnect><LocationDescription Code=\"G\"><Text>DENVER</Text></LocationDescription><Property Rating=\"NTM\"><Text>1 CROWN</Text></Property><PropertyOptionInfo><ADA_Accessible Ind=\"false\"/><AdultsOnly Ind=\"false\"/><BeachFront Ind=\"false\"/><Breakfast Ind=\"false\"/><BusinessCenter Ind=\"false\"/><BusinessReady Ind=\"false\"/><Conventions Ind=\"false\"/><Dataport Ind=\"true\"/><Dining Ind=\"false\"/><DryClean Ind=\"false\"/><ExecutiveFloors Ind=\"false\"/><FitnessCenter Ind=\"false\"/><FreeLocalCalls Ind=\"true\"/><FreeParking Ind=\"true\"/><FreeShuttle Ind=\"false\"/><FreeWifiInMeetingRooms Ind=\"false\"/><FreeWifiInPublicSpaces Ind=\"false\"/><FreeWifiInRooms Ind=\"false\"/><FullServiceSpa Ind=\"false\"/><GameFacilities Ind=\"false\"/><Golf Ind=\"false\"/><HiSpeedInternet Ind=\"false\"/><HypoallergenicRooms Ind=\"false\"/><IndoorPool Ind=\"false\"/><InteriorDoorways Ind=\"false\"/><InRoomCoffeeTea Ind=\"false\"/><InRoomMiniBar Ind=\"false\"/><InRoomRefrigerator Ind=\"false\"/><InRoomSafe Ind=\"false\"/><Jacuzzi Ind=\"false\"/><KidsFacilities Ind=\"false\"/><KitchenFacilities Ind=\"false\"/><MealService Ind=\"false\"/><MeetingFacilities Ind=\"false\"/><NoAdultTv Ind=\"false\"/><NonSmoking Ind=\"true\"/><OutdoorPool Ind=\"true\"/><Pets Ind=\"true\"/><Pool Ind=\"true\"/><PublicTransportationAdjacent Ind=\"false\"/><RateAssured Ind=\"true\"/><RestrictedRoomAccess Ind=\"false\"/><Recreation Ind=\"false\"/><RoomService Ind=\"false\"/><RoomService24Hours Ind=\"false\"/><RoomsWithBalcony Ind=\"false\"/><SkiInOutProperty Ind=\"false\"/><SmokeFree Ind=\"false\"/><SmokingRoomsAvail Ind=\"false\"/><Tennis Ind=\"false\"/><WaterPurificationSystem Ind=\"false\"/><Wheelchair Ind=\"true\"/></PropertyOptionInfo><RateRange CurrencyCode=\"USD\" Max=\"48.99\" Min=\"45.99\"/><RoomRate RateLevelCode=\"RAC\" XPMGuaranteeRequired=\"6\"><AdditionalInfo><CancelPolicy Numeric=\"06\" Option=\"P\"/></AdditionalInfo><HotelRateCode>RAC</HotelRateCode><RateTypeCode>N1Q</RateTypeCode><RateTypeCode>C1Q</RateTypeCode><RateTypeCode>N2D</RateTypeCode><RateTypeCode>C2D</RateTypeCode><RateTypeCode>ND2</RateTypeCode></RoomRate><RoomRate RateLevelCode=\"COR\" XPMGuaranteeRequired=\"6\"><AdditionalInfo><CancelPolicy Numeric=\"06\" Option=\"P\"/></AdditionalInfo><HotelRateCode>COR</HotelRateCode><RateTypeCode>N1Q</RateTypeCode><RateTypeCode>C1Q</RateTypeCode><RateTypeCode>N2D</RateTypeCode><RateTypeCode>C2D</RateTypeCode><RateTypeCode>ND2</RateTypeCode></RoomRate><SpecialOffers Ind=\"false\"/></BasicPropertyInfo></AvailabilityOption><AvailabilityOption RPH=\"002\"><BasicPropertyInfo AreaID=\"002NE\" ChainCode=\"QI\" Distance=\"M\" GEOConfidenceLevel=\"1\" HotelCityCode=\"DEN\" HotelCode=\"0008708\" HotelName=\"QUALITY INN DENVER\" Latitude=\"39.772290\" Longitude=\"-104.847577\"><Address><AddressLine>3975 PEORIA WAY</AddressLine><AddressLine>DENVER CO 80239</AddressLine></Address><ContactNumbers><ContactNumber Fax=\"303-371-7015\" Phone=\"303-371-5640\"/></ContactNumbers><DirectConnect><AltAvail Ind=\"false\"/><DCAvailParticipant Ind=\"true\"/><DCSellParticipant Ind=\"true\"/><RatesExceedMax Ind=\"false\"/><UnAvail Ind=\"false\"/></DirectConnect><LocationDescription Code=\"G\"><Text>DENVER INTERNATIONA</Text></LocationDescription><Property Rating=\"NTM\"><Text>2 CROWN</Text></Property><PropertyOptionInfo><ADA_Accessible Ind=\"false\"/><AdultsOnly Ind=\"false\"/><BeachFront Ind=\"false\"/><Breakfast Ind=\"true\"/><BusinessCenter Ind=\"true\"/><BusinessReady Ind=\"false\"/><Conventions Ind=\"false\"/><Dataport Ind=\"true\"/><Dining Ind=\"true\"/><DryClean Ind=\"false\"/><ExecutiveFloors Ind=\"false\"/><FitnessCenter Ind=\"false\"/><FreeLocalCalls Ind=\"true\"/><FreeParking Ind=\"false\"/><FreeShuttle Ind=\"false\"/><FreeWifiInMeetingRooms Ind=\"false\"/><FreeWifiInPublicSpaces Ind=\"false\"/><FreeWifiInRooms Ind=\"false\"/><FullServiceSpa Ind=\"false\"/><GameFacilities Ind=\"false\"/><Golf Ind=\"false\"/><HiSpeedInternet Ind=\"true\"/><HypoallergenicRooms Ind=\"false\"/><IndoorPool Ind=\"false\"/><InteriorDoorways Ind=\"false\"/><InRoomCoffeeTea Ind=\"false\"/><InRoomMiniBar Ind=\"false\"/><InRoomRefrigerator Ind=\"false\"/><InRoomSafe Ind=\"false\"/><Jacuzzi Ind=\"false\"/><KidsFacilities Ind=\"false\"/><KitchenFacilities Ind=\"false\"/><MealService Ind=\"false\"/><MeetingFacilities Ind=\"false\"/><NoAdultTv Ind=\"false\"/><NonSmoking Ind=\"true\"/><OutdoorPool Ind=\"true\"/><Pets Ind=\"true\"/><Pool Ind=\"true\"/><PublicTransportationAdjacent Ind=\"false\"/><RateAssured Ind=\"true\"/><RestrictedRoomAccess Ind=\"false\"/><Recreation Ind=\"false\"/><RoomService Ind=\"false\"/><RoomService24Hours Ind=\"false\"/><RoomsWithBalcony Ind=\"false\"/><SkiInOutProperty Ind=\"false\"/><SmokeFree Ind=\"false\"/><SmokingRoomsAvail Ind=\"false\"/><Tennis Ind=\"false\"/><WaterPurificationSystem Ind=\"false\"/><Wheelchair Ind=\"true\"/></PropertyOptionInfo><RoomRate RateLevelCode=\"RAC\"><AdditionalInfo><CancelPolicy Numeric=\"00\"/></AdditionalInfo><HotelRateCode>RAC</HotelRateCode></RoomRate><SpecialOffers Ind=\"false\"/></BasicPropertyInfo></AvailabilityOption><AvailabilityOption RPH=\"003\"><BasicPropertyInfo AreaID=\"002NW\" ChainCode=\"DT\" Distance=\"M\" GEOConfidenceLevel=\"1\" HotelCityCode=\"DEN\" HotelCode=\"0020221\" HotelName=\"DOUBLETREE HOTEL DENVER\" Latitude=\"39.762350\" Longitude=\"-104.903455\"><Address><AddressLine>3203 QUEBEC STREET</AddressLine><AddressLine>DENVER CO 80207</AddressLine></Address><ContactNumbers><ContactNumber Fax=\"1-303-329-5233\" Phone=\"1-303-321-3333\"/></ContactNumbers><DirectConnect><AltAvail Ind=\"false\"/><DCAvailParticipant Ind=\"true\"/><DCSellParticipant Ind=\"true\"/><RatesExceedMax Ind=\"false\"/><UnAvail Ind=\"false\"/></DirectConnect><LocationDescription Code=\"G\"><Text>DOWNTOWN  FROM APT</Text></LocationDescription><Property Rating=\"NTM\"><Text>3 CROWN</Text></Property><PropertyOptionInfo><ADA_Accessible Ind=\"false\"/><AdultsOnly Ind=\"false\"/><BeachFront Ind=\"false\"/><Breakfast Ind=\"false\"/><BusinessCenter Ind=\"true\"/><BusinessReady Ind=\"false\"/><Conventions Ind=\"false\"/><Dataport Ind=\"true\"/><Dining Ind=\"true\"/><DryClean Ind=\"true\"/><ExecutiveFloors Ind=\"false\"/><FitnessCenter Ind=\"true\"/><FreeLocalCalls Ind=\"true\"/><FreeParking Ind=\"true\"/><FreeShuttle Ind=\"false\"/><FreeWifiInMeetingRooms Ind=\"false\"/><FreeWifiInPublicSpaces Ind=\"false\"/><FreeWifiInRooms Ind=\"false\"/><FullServiceSpa Ind=\"false\"/><GameFacilities Ind=\"false\"/><Golf Ind=\"true\"/><HiSpeedInternet Ind=\"true\"/><HypoallergenicRooms Ind=\"false\"/><IndoorPool Ind=\"true\"/><InteriorDoorways Ind=\"false\"/><InRoomCoffeeTea Ind=\"false\"/><InRoomMiniBar Ind=\"false\"/><InRoomRefrigerator Ind=\"false\"/><InRoomSafe Ind=\"false\"/><Jacuzzi Ind=\"false\"/><KidsFacilities Ind=\"false\"/><KitchenFacilities Ind=\"false\"/><MealService Ind=\"false\"/><MeetingFacilities Ind=\"true\"/><NoAdultTv Ind=\"false\"/><NonSmoking Ind=\"true\"/><OutdoorPool Ind=\"false\"/><Pets Ind=\"true\"/><Pool Ind=\"true\"/><PublicTransportationAdjacent Ind=\"false\"/><RateAssured Ind=\"true\"/><RestrictedRoomAccess Ind=\"false\"/><Recreation Ind=\"false\"/><RoomService Ind=\"true\"/><RoomService24Hours Ind=\"false\"/><RoomsWithBalcony Ind=\"false\"/><SkiInOutProperty Ind=\"false\"/><SmokeFree Ind=\"false\"/><SmokingRoomsAvail Ind=\"false\"/><Tennis Ind=\"true\"/><WaterPurificationSystem Ind=\"false\"/><Wheelchair Ind=\"true\"/></PropertyOptionInfo><RateRange CurrencyCode=\"USD\" Max=\"249.00\" Min=\"99.00\"/><RoomRate RateLevelCode=\"RAC\"><AdditionalInfo><CancelPolicy Numeric=\"00\"/></AdditionalInfo><HotelRateCode>RAC</HotelRateCode></RoomRate><SpecialOffers Ind=\"false\"/></BasicPropertyInfo></AvailabilityOption><AvailabilityOption RPH=\"004\"><BasicPropertyInfo AreaID=\"002N\" ChainCode=\"ES\" Distance=\"M\" GEOConfidenceLevel=\"1\" HotelCityCode=\"DEN\" HotelCode=\"0010339\" HotelName=\"EMBASSY SUITES DENVER AURORA\" Latitude=\"39.778401\" Longitude=\"-104.865755\"><Address><AddressLine>4444 NORTH HAVANA STREET</AddressLine><AddressLine>DENVER CO 80239</AddressLine></Address><ContactNumbers><ContactNumber Fax=\"1-303-371-4634\" Phone=\"1-303-375-0400\"/></ContactNumbers><DirectConnect><AltAvail Ind=\"false\"/><DCAvailParticipant Ind=\"true\"/><DCSellParticipant Ind=\"true\"/><RatesExceedMax Ind=\"false\"/><UnAvail Ind=\"false\"/></DirectConnect><LocationDescription Code=\"G\"><Text>DENVER CO</Text></LocationDescription><Property Rating=\"NTM\"><Text>3 CROWN</Text></Property><PropertyOptionInfo><ADA_Accessible Ind=\"false\"/><AdultsOnly Ind=\"false\"/><BeachFront Ind=\"false\"/><Breakfast Ind=\"true\"/><BusinessCenter Ind=\"true\"/><BusinessReady Ind=\"false\"/><Conventions Ind=\"false\"/><Dataport Ind=\"true\"/><Dining Ind=\"true\"/><DryClean Ind=\"true\"/><ExecutiveFloors Ind=\"false\"/><FitnessCenter Ind=\"true\"/><FreeLocalCalls Ind=\"true\"/><FreeParking Ind=\"true\"/><FreeShuttle Ind=\"false\"/><FreeWifiInMeetingRooms Ind=\"false\"/><FreeWifiInPublicSpaces Ind=\"false\"/><FreeWifiInRooms Ind=\"false\"/><FullServiceSpa Ind=\"false\"/><GameFacilities Ind=\"false\"/><Golf Ind=\"true\"/><HiSpeedInternet Ind=\"true\"/><HypoallergenicRooms Ind=\"false\"/><IndoorPool Ind=\"true\"/><InteriorDoorways Ind=\"false\"/><InRoomCoffeeTea Ind=\"false\"/><InRoomMiniBar Ind=\"false\"/><InRoomRefrigerator Ind=\"false\"/><InRoomSafe Ind=\"false\"/><Jacuzzi Ind=\"false\"/><KidsFacilities Ind=\"false\"/><KitchenFacilities Ind=\"false\"/><MealService Ind=\"false\"/><MeetingFacilities Ind=\"true\"/><NoAdultTv Ind=\"false\"/><NonSmoking Ind=\"true\"/><OutdoorPool Ind=\"false\"/><Pets Ind=\"true\"/><Pool Ind=\"true\"/><PublicTransportationAdjacent Ind=\"false\"/><RateAssured Ind=\"true\"/><RestrictedRoomAccess Ind=\"false\"/><Recreation Ind=\"false\"/><RoomService Ind=\"true\"/><RoomService24Hours Ind=\"false\"/><RoomsWithBalcony Ind=\"false\"/><SkiInOutProperty Ind=\"false\"/><SmokeFree Ind=\"false\"/><SmokingRoomsAvail Ind=\"false\"/><Tennis Ind=\"true\"/><WaterPurificationSystem Ind=\"false\"/><Wheelchair Ind=\"true\"/></PropertyOptionInfo><RateRange CurrencyCode=\"USD\" Max=\"299.00\" Min=\"109.00\"/><RoomRate RateLevelCode=\"RAC\"><AdditionalInfo><CancelPolicy Numeric=\"00\"/></AdditionalInfo><HotelRateCode>RAC</HotelRateCode></RoomRate><SpecialOffers Ind=\"false\"/></BasicPropertyInfo></AvailabilityOption><AvailabilityOption RPH=\"005\"><BasicPropertyInfo AreaID=\"002NW\" ChainCode=\"BR\" Distance=\"M\" GEOConfidenceLevel=\"1\" HotelCityCode=\"DEN\" HotelCode=\"0011462\" HotelName=\"RENAISSANCE DENVER HOTEL\" Latitude=\"39.769390\" Longitude=\"-104.903488\"><Address><AddressLine>3801 QUEBEC STREET</AddressLine><AddressLine>DENVER CO 80207</AddressLine></Address><ContactNumbers><ContactNumber Fax=\"303-321-1966\" Phone=\"303-399-7500\"/></ContactNumbers><DirectConnect><AltAvail Ind=\"false\"/><DCAvailParticipant Ind=\"true\"/><DCSellParticipant Ind=\"true\"/><RatesExceedMax Ind=\"false\"/><UnAvail Ind=\"false\"/></DirectConnect><LocationDescription Code=\"G\"><Text>DENVER  CO</Text></LocationDescription><Property Rating=\"NTM\"><Text>4 CROWN</Text></Property><PropertyOptionInfo><ADA_Accessible Ind=\"false\"/><AdultsOnly Ind=\"false\"/><BeachFront Ind=\"false\"/><Breakfast Ind=\"false\"/><BusinessCenter Ind=\"true\"/><BusinessReady Ind=\"false\"/><Conventions Ind=\"true\"/><Dataport Ind=\"true\"/><Dining Ind=\"true\"/><DryClean Ind=\"true\"/><ExecutiveFloors Ind=\"true\"/><FitnessCenter Ind=\"true\"/><FreeLocalCalls Ind=\"true\"/><FreeParking Ind=\"true\"/><FreeShuttle Ind=\"true\"/><FreeWifiInMeetingRooms Ind=\"false\"/><FreeWifiInPublicSpaces Ind=\"false\"/><FreeWifiInRooms Ind=\"false\"/><FullServiceSpa Ind=\"false\"/><GameFacilities Ind=\"false\"/><Golf Ind=\"false\"/><HiSpeedInternet Ind=\"true\"/><HypoallergenicRooms Ind=\"false\"/><IndoorPool Ind=\"true\"/><InteriorDoorways Ind=\"false\"/><InRoomCoffeeTea Ind=\"false\"/><InRoomMiniBar Ind=\"false\"/><InRoomRefrigerator Ind=\"false\"/><InRoomSafe Ind=\"false\"/><Jacuzzi Ind=\"false\"/><KidsFacilities Ind=\"false\"/><KitchenFacilities Ind=\"false\"/><MealService Ind=\"false\"/><MeetingFacilities Ind=\"true\"/><NoAdultTv Ind=\"false\"/><NonSmoking Ind=\"true\"/><OutdoorPool Ind=\"true\"/><Pets Ind=\"true\"/><Pool Ind=\"true\"/><PublicTransportationAdjacent Ind=\"false\"/><RateAssured Ind=\"true\"/><RestrictedRoomAccess Ind=\"false\"/><Recreation Ind=\"false\"/><RoomService Ind=\"true\"/><RoomService24Hours Ind=\"false\"/><RoomsWithBalcony Ind=\"false\"/><SkiInOutProperty Ind=\"false\"/><SmokeFree Ind=\"false\"/><SmokingRoomsAvail Ind=\"false\"/><Tennis Ind=\"false\"/><WaterPurificationSystem Ind=\"false\"/><Wheelchair Ind=\"true\"/></PropertyOptionInfo><RateRange CurrencyCode=\"USD\" Max=\"209.00\" Min=\"87.00\"/><RoomRate RateLevelCode=\"RAC\"><AdditionalInfo><CancelPolicy Numeric=\"00\"/></AdditionalInfo><HotelRateCode>RAC</HotelRateCode></RoomRate><SpecialOffers Ind=\"false\"/></BasicPropertyInfo></AvailabilityOption><AvailabilityOption RPH=\"006\"><BasicPropertyInfo AreaID=\"002NW\" ChainCode=\"RL\" Distance=\"M\" GEOConfidenceLevel=\"1\" HotelCityCode=\"DEN\" HotelCode=\"0002333\" HotelName=\"RED LION DENVER CENTRAL\" Latitude=\"39.774370\" Longitude=\"-104.902888\"><Address><AddressLine>4040 QUEBEC STREET</AddressLine><AddressLine>DENVER CO 80216</AddressLine></Address><ContactNumbers><ContactNumber Fax=\"1-303-355-7412\" Phone=\"1-303-321-6666\"/></ContactNumbers><DirectConnect><AltAvail Ind=\"false\"/><DCAvailParticipant Ind=\"true\"/><DCSellParticipant Ind=\"true\"/><RatesExceedMax Ind=\"false\"/><UnAvail Ind=\"false\"/></DirectConnect><LocationDescription Code=\"G\"><Text>QUEBEC SQUARE RETAI</Text></LocationDescription><Property Rating=\"NTM\"><Text>3 CROWN</Text></Property><PropertyOptionInfo><ADA_Accessible Ind=\"false\"/><AdultsOnly Ind=\"false\"/><BeachFront Ind=\"false\"/><Breakfast Ind=\"false\"/><BusinessCenter Ind=\"false\"/><BusinessReady Ind=\"false\"/><Conventions Ind=\"true\"/><Dataport Ind=\"true\"/><Dining Ind=\"true\"/><DryClean Ind=\"false\"/><ExecutiveFloors Ind=\"false\"/><FitnessCenter Ind=\"true\"/><FreeLocalCalls Ind=\"true\"/><FreeParking Ind=\"false\"/><FreeShuttle Ind=\"false\"/><FreeWifiInMeetingRooms Ind=\"false\"/><FreeWifiInPublicSpaces Ind=\"false\"/><FreeWifiInRooms Ind=\"false\"/><FullServiceSpa Ind=\"false\"/><GameFacilities Ind=\"false\"/><Golf Ind=\"false\"/><HiSpeedInternet Ind=\"true\"/><HypoallergenicRooms Ind=\"false\"/><IndoorPool Ind=\"false\"/><InteriorDoorways Ind=\"false\"/><InRoomCoffeeTea Ind=\"false\"/><InRoomMiniBar Ind=\"false\"/><InRoomRefrigerator Ind=\"false\"/><InRoomSafe Ind=\"false\"/><Jacuzzi Ind=\"false\"/><KidsFacilities Ind=\"true\"/><KitchenFacilities Ind=\"false\"/><MealService Ind=\"false\"/><MeetingFacilities Ind=\"true\"/><NoAdultTv Ind=\"false\"/><NonSmoking Ind=\"true\"/><OutdoorPool Ind=\"true\"/><Pets Ind=\"true\"/><Pool Ind=\"true\"/><PublicTransportationAdjacent Ind=\"false\"/><RateAssured Ind=\"true\"/><RestrictedRoomAccess Ind=\"false\"/><Recreation Ind=\"false\"/><RoomService Ind=\"true\"/><RoomService24Hours Ind=\"false\"/><RoomsWithBalcony Ind=\"false\"/><SkiInOutProperty Ind=\"false\"/><SmokeFree Ind=\"false\"/><SmokingRoomsAvail Ind=\"false\"/><Tennis Ind=\"false\"/><WaterPurificationSystem Ind=\"false\"/><Wheelchair Ind=\"true\"/></PropertyOptionInfo><RateRange CurrencyCode=\"USD\" Max=\"179.00\" Min=\"89.00\"/><RoomRate RateLevelCode=\"RAC\"><AdditionalInfo><CancelPolicy Numeric=\"00\"/></AdditionalInfo><HotelRateCode>RAC</HotelRateCode></RoomRate><SpecialOffers Ind=\"false\"/></BasicPropertyInfo></AvailabilityOption><AvailabilityOption RPH=\"007\"><BasicPropertyInfo AreaID=\"002NW\" ChainCode=\"CY\" Distance=\"M\" GEOConfidenceLevel=\"1\" HotelCityCode=\"DEN\" HotelCode=\"0017067\" HotelName=\"COURTYARD DEN STAPLETON\" Latitude=\"39.775152\" Longitude=\"-104.902444\"><Address><AddressLine>7415 E 41 ST</AddressLine><AddressLine>DENVER CO 80216</AddressLine></Address><ContactNumbers><ContactNumber Fax=\"303-399-7356\" Phone=\"303-333-3303\"/></ContactNumbers><DirectConnect><AltAvail Ind=\"false\"/><DCAvailParticipant Ind=\"true\"/><DCSellParticipant Ind=\"true\"/><RatesExceedMax Ind=\"false\"/><UnAvail Ind=\"false\"/></DirectConnect><LocationDescription Code=\"G\"><Text>DENVER CO</Text></LocationDescription><Property Rating=\"NTM\"><Text>3 CROWN</Text></Property><PropertyOptionInfo><ADA_Accessible Ind=\"false\"/><AdultsOnly Ind=\"false\"/><BeachFront Ind=\"false\"/><Breakfast Ind=\"false\"/><BusinessCenter Ind=\"true\"/><BusinessReady Ind=\"false\"/><Conventions Ind=\"true\"/><Dataport Ind=\"true\"/><Dining Ind=\"true\"/><DryClean Ind=\"true\"/><ExecutiveFloors Ind=\"false\"/><FitnessCenter Ind=\"true\"/><FreeLocalCalls Ind=\"false\"/><FreeParking Ind=\"true\"/><FreeShuttle Ind=\"false\"/><FreeWifiInMeetingRooms Ind=\"false\"/><FreeWifiInPublicSpaces Ind=\"false\"/><FreeWifiInRooms Ind=\"false\"/><FullServiceSpa Ind=\"false\"/><GameFacilities Ind=\"false\"/><Golf Ind=\"false\"/><HiSpeedInternet Ind=\"true\"/><HypoallergenicRooms Ind=\"false\"/><IndoorPool Ind=\"true\"/><InteriorDoorways Ind=\"false\"/><InRoomCoffeeTea Ind=\"false\"/><InRoomMiniBar Ind=\"false\"/><InRoomRefrigerator Ind=\"false\"/><InRoomSafe Ind=\"false\"/><Jacuzzi Ind=\"false\"/><KidsFacilities Ind=\"false\"/><KitchenFacilities Ind=\"false\"/><MealService Ind=\"false\"/><MeetingFacilities Ind=\"true\"/><NoAdultTv Ind=\"false\"/><NonSmoking Ind=\"true\"/><OutdoorPool Ind=\"false\"/><Pets Ind=\"false\"/><Pool Ind=\"true\"/><PublicTransportationAdjacent Ind=\"false\"/><RateAssured Ind=\"true\"/><RestrictedRoomAccess Ind=\"false\"/><Recreation Ind=\"false\"/><RoomService Ind=\"false\"/><RoomService24Hours Ind=\"false\"/><RoomsWithBalcony Ind=\"false\"/><SkiInOutProperty Ind=\"false\"/><SmokeFree Ind=\"false\"/><SmokingRoomsAvail Ind=\"false\"/><Tennis Ind=\"false\"/><WaterPurificationSystem Ind=\"false\"/><Wheelchair Ind=\"true\"/></PropertyOptionInfo><RateRange CurrencyCode=\"USD\" Max=\"179.00\" Min=\"66.00\"/><RoomRate RateLevelCode=\"RAC\"><AdditionalInfo><CancelPolicy Numeric=\"00\"/></AdditionalInfo><HotelRateCode>RAC</HotelRateCode></RoomRate><SpecialOffers Ind=\"false\"/></BasicPropertyInfo></AvailabilityOption><AvailabilityOption RPH=\"008\"><BasicPropertyInfo AreaID=\"003NW\" ChainCode=\"CI\" Distance=\"M\" GEOConfidenceLevel=\"1\" HotelCityCode=\"DEN\" HotelCode=\"0028302\" HotelName=\"COMFORT INN AND SUITES\" Latitude=\"39.782180\" Longitude=\"-104.903511\"><Address><AddressLine>4685 QUEBEC ST</AddressLine><AddressLine>DENVER CO 80216</AddressLine></Address><ContactNumbers><ContactNumber Fax=\"303-333-7710\" Phone=\"303-388-8100\"/></ContactNumbers><DirectConnect><AltAvail Ind=\"false\"/><DCAvailParticipant Ind=\"true\"/><DCSellParticipant Ind=\"true\"/><RatesExceedMax Ind=\"false\"/><UnAvail Ind=\"false\"/></DirectConnect><LocationDescription Code=\"G\"><Text>15MIN FROM DWTN DEN</Text></LocationDescription><Property Rating=\"NTM\"><Text>2 CROWN</Text></Property><PropertyOptionInfo><ADA_Accessible Ind=\"false\"/><AdultsOnly Ind=\"false\"/><BeachFront Ind=\"false\"/><Breakfast Ind=\"true\"/><BusinessCenter Ind=\"false\"/><BusinessReady Ind=\"false\"/><Conventions Ind=\"false\"/><Dataport Ind=\"false\"/><Dining Ind=\"false\"/><DryClean Ind=\"true\"/><ExecutiveFloors Ind=\"false\"/><FitnessCenter Ind=\"true\"/><FreeLocalCalls Ind=\"true\"/><FreeParking Ind=\"true\"/><FreeShuttle Ind=\"false\"/><FreeWifiInMeetingRooms Ind=\"false\"/><FreeWifiInPublicSpaces Ind=\"false\"/><FreeWifiInRooms Ind=\"false\"/><FullServiceSpa Ind=\"false\"/><GameFacilities Ind=\"false\"/><Golf Ind=\"false\"/><HiSpeedInternet Ind=\"true\"/><HypoallergenicRooms Ind=\"false\"/><IndoorPool Ind=\"false\"/><InteriorDoorways Ind=\"false\"/><InRoomCoffeeTea Ind=\"false\"/><InRoomMiniBar Ind=\"false\"/><InRoomRefrigerator Ind=\"false\"/><InRoomSafe Ind=\"false\"/><Jacuzzi Ind=\"false\"/><KidsFacilities Ind=\"false\"/><KitchenFacilities Ind=\"false\"/><MealService Ind=\"false\"/><MeetingFacilities Ind=\"true\"/><NoAdultTv Ind=\"false\"/><NonSmoking Ind=\"true\"/><OutdoorPool Ind=\"false\"/><Pets Ind=\"false\"/><Pool Ind=\"false\"/><PublicTransportationAdjacent Ind=\"false\"/><RateAssured Ind=\"true\"/><RestrictedRoomAccess Ind=\"false\"/><Recreation Ind=\"false\"/><RoomService Ind=\"false\"/><RoomService24Hours Ind=\"false\"/><RoomsWithBalcony Ind=\"false\"/><SkiInOutProperty Ind=\"false\"/><SmokeFree Ind=\"false\"/><SmokingRoomsAvail Ind=\"false\"/><Tennis Ind=\"false\"/><WaterPurificationSystem Ind=\"false\"/><Wheelchair Ind=\"true\"/></PropertyOptionInfo><RoomRate RateLevelCode=\"RAC\"><AdditionalInfo><CancelPolicy Numeric=\"00\"/></AdditionalInfo><HotelRateCode>RAC</HotelRateCode></RoomRate><SpecialOffers Ind=\"false\"/></BasicPropertyInfo></AvailabilityOption><AvailabilityOption RPH=\"009\"><BasicPropertyInfo AreaID=\"004NE\" ChainCode=\"CP\" Distance=\"M\" GEOConfidenceLevel=\"1\" HotelCityCode=\"DEN\" HotelCode=\"0002485\" HotelName=\"CROWNE PLAZA DENVER INTL APT\" Latitude=\"39.773100\" Longitude=\"-104.807911\"><Address><AddressLine>15500 E 40TH AVE</AddressLine><AddressLine>DENVER CO 80239</AddressLine></Address><ContactNumbers><ContactNumber Fax=\"1-303-371-9528\" Phone=\"1-303-371-9494\"/></ContactNumbers><DirectConnect><AltAvail Ind=\"false\"/><DCAvailParticipant Ind=\"true\"/><DCSellParticipant Ind=\"true\"/><RatesExceedMax Ind=\"false\"/><UnAvail Ind=\"false\"/></DirectConnect><LocationDescription Code=\"G\"><Text>I-70 AND CHAMBERS</Text></LocationDescription><Property Rating=\"NTM\"><Text>3 CROWN</Text></Property><PropertyOptionInfo><ADA_Accessible Ind=\"false\"/><AdultsOnly Ind=\"false\"/><BeachFront Ind=\"false\"/><Breakfast Ind=\"false\"/><BusinessCenter Ind=\"true\"/><BusinessReady Ind=\"false\"/><Conventions Ind=\"true\"/><Dataport Ind=\"true\"/><Dining Ind=\"true\"/><DryClean Ind=\"false\"/><ExecutiveFloors Ind=\"true\"/><FitnessCenter Ind=\"true\"/><FreeLocalCalls Ind=\"false\"/><FreeParking Ind=\"true\"/><FreeShuttle Ind=\"true\"/><FreeWifiInMeetingRooms Ind=\"false\"/><FreeWifiInPublicSpaces Ind=\"false\"/><FreeWifiInRooms Ind=\"false\"/><FullServiceSpa Ind=\"false\"/><GameFacilities Ind=\"false\"/><Golf Ind=\"true\"/><HiSpeedInternet Ind=\"true\"/><HypoallergenicRooms Ind=\"false\"/><IndoorPool Ind=\"true\"/><InteriorDoorways Ind=\"false\"/><InRoomCoffeeTea Ind=\"false\"/><InRoomMiniBar Ind=\"false\"/><InRoomRefrigerator Ind=\"false\"/><InRoomSafe Ind=\"false\"/><Jacuzzi Ind=\"false\"/><KidsFacilities Ind=\"false\"/><KitchenFacilities Ind=\"false\"/><MealService Ind=\"false\"/><MeetingFacilities Ind=\"true\"/><NoAdultTv Ind=\"false\"/><NonSmoking Ind=\"true\"/><OutdoorPool Ind=\"false\"/><Pets Ind=\"true\"/><Pool Ind=\"true\"/><PublicTransportationAdjacent Ind=\"false\"/><RateAssured Ind=\"true\"/><RestrictedRoomAccess Ind=\"false\"/><Recreation Ind=\"false\"/><RoomService Ind=\"true\"/><RoomService24Hours Ind=\"false\"/><RoomsWithBalcony Ind=\"false\"/><SkiInOutProperty Ind=\"false\"/><SmokeFree Ind=\"false\"/><SmokingRoomsAvail Ind=\"false\"/><Tennis Ind=\"false\"/><WaterPurificationSystem Ind=\"false\"/><Wheelchair Ind=\"true\"/></PropertyOptionInfo><RateRange CurrencyCode=\"USD\" Max=\"157.00\" Min=\"90.00\"/><SpecialOffers Ind=\"false\"/></BasicPropertyInfo></AvailabilityOption><AvailabilityOption RPH=\"010\"><BasicPropertyInfo AreaID=\"004NE\" ChainCode=\"SZ\" Distance=\"M\" GEOConfidenceLevel=\"1\" HotelCityCode=\"DEN\" HotelCode=\"0028070\" HotelName=\"SLEEP INN DENVER INTL AIRPORT\" Latitude=\"39.772770\" Longitude=\"-104.802377\"><Address><AddressLine>15900 E 40TH AVE</AddressLine><AddressLine>AURORA CO 80011</AddressLine></Address><ContactNumbers><ContactNumber Fax=\"303-373-5906\" Phone=\"303-373-1616\"/></ContactNumbers><DirectConnect><AltAvail Ind=\"false\"/><DCAvailParticipant Ind=\"true\"/><DCSellParticipant Ind=\"true\"/><RatesExceedMax Ind=\"false\"/><UnAvail Ind=\"false\"/></DirectConnect><LocationDescription Code=\"G\"><Text>AURORA COLORADO</Text></LocationDescription><Property Rating=\"NTM\"><Text>1 CROWN</Text></Property><PropertyOptionInfo><ADA_Accessible Ind=\"false\"/><AdultsOnly Ind=\"false\"/><BeachFront Ind=\"false\"/><Breakfast Ind=\"true\"/><BusinessCenter Ind=\"false\"/><BusinessReady Ind=\"false\"/><Conventions Ind=\"false\"/><Dataport Ind=\"false\"/><Dining Ind=\"false\"/><DryClean Ind=\"false\"/><ExecutiveFloors Ind=\"false\"/><FitnessCenter Ind=\"false\"/><FreeLocalCalls Ind=\"true\"/><FreeParking Ind=\"true\"/><FreeShuttle Ind=\"true\"/><FreeWifiInMeetingRooms Ind=\"false\"/><FreeWifiInPublicSpaces Ind=\"false\"/><FreeWifiInRooms Ind=\"false\"/><FullServiceSpa Ind=\"false\"/><GameFacilities Ind=\"false\"/><Golf Ind=\"false\"/><HiSpeedInternet Ind=\"true\"/><HypoallergenicRooms Ind=\"false\"/><IndoorPool Ind=\"true\"/><InteriorDoorways Ind=\"false\"/><InRoomCoffeeTea Ind=\"false\"/><InRoomMiniBar Ind=\"false\"/><InRoomRefrigerator Ind=\"false\"/><InRoomSafe Ind=\"false\"/><Jacuzzi Ind=\"false\"/><KidsFacilities Ind=\"false\"/><KitchenFacilities Ind=\"false\"/><MealService Ind=\"false\"/><MeetingFacilities Ind=\"false\"/><NoAdultTv Ind=\"false\"/><NonSmoking Ind=\"true\"/><OutdoorPool Ind=\"false\"/><Pets Ind=\"true\"/><Pool Ind=\"true\"/><PublicTransportationAdjacent Ind=\"false\"/><RateAssured Ind=\"true\"/><RestrictedRoomAccess Ind=\"false\"/><Recreation Ind=\"false\"/><RoomService Ind=\"false\"/><RoomService24Hours Ind=\"false\"/><RoomsWithBalcony Ind=\"false\"/><SkiInOutProperty Ind=\"false\"/><SmokeFree Ind=\"false\"/><SmokingRoomsAvail Ind=\"false\"/><Tennis Ind=\"false\"/><WaterPurificationSystem Ind=\"false\"/><Wheelchair Ind=\"true\"/></PropertyOptionInfo><RoomRate RateLevelCode=\"RAC\"><AdditionalInfo><CancelPolicy Numeric=\"00\"/></AdditionalInfo><HotelRateCode>RAC</HotelRateCode></RoomRate><SpecialOffers Ind=\"false\"/></BasicPropertyInfo></AvailabilityOption></AvailabilityOptions><TPA_Extensions><HostCommand>\xC3\x82\xC2\x86\xC3\x82\xC2\x86\xC3\x82\xC2\x86A\xC3\x82\xC2\x86\xC3\x82\xC2\x86RS01S093^HT20\xC3\x82\xC2\x86HOTGEOC\xC3\x82\xC2\xA539.75,-104.87/30MAR-02APR1/C-USD/R\xC3\x82\xC2\xA520.00/R-1000.00/RP-20/*SD/R/G</HostCommand></TPA_Extensions></OTA_HotelAvailRS></soap-env:Body></soap-env:Envelope>"
+    http_version: 
+  recorded_at: Wed, 28 Mar 2012 04:52:59 GMT
+- request: 
+    method: get
+    uri: http://wsdl-crt.cert.sabre.com/sabreXML1.0.00/usg/SessionCreateRQ.wsdl
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: {}
+
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Server: 
+      - Apache-Coyote/1.1
+      Accept-Ranges: 
+      - bytes
+      Etag: 
+      - W/"2437-1332860800000"
+      Last-Modified: 
+      - Tue, 27 Mar 2012 15:06:40 GMT
+      Content-Type: 
+      - application/xml
+      Content-Length: 
+      - "2437"
+      Date: 
+      - Wed, 28 Mar 2012 04:49:49 GMT
+    body: 
+      encoding: US-ASCII
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd1="http://www.opentravel.org/OTA/2002/11" xmlns:tns="https://webservices.sabre.com/websvc" xmlns:eb="http://www.ebxml.org/namespaces/messageHeader" xmlns:wsse="http://schemas.xmlsoap.org/ws/2002/12/secext" targetNamespace="https://webservices.sabre.com/websvc">
+        	<types>
+        		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        			<xsd:import namespace="http://www.opentravel.org/OTA/2002/11" schemaLocation="SessionCreateRQRS.xsd"/>
+        			<xsd:import namespace="http://www.ebxml.org/namespaces/messageHeader" schemaLocation="msg-header-2_0.xsd"/>
+        			<xsd:import namespace="http://schemas.xmlsoap.org/ws/2002/12/secext" schemaLocation="wsse.xsd"/>
+        		</xsd:schema>
+        	</types>
+        	<message name="GetSessionCreateInput">
+        		<part name="header" element="eb:MessageHeader"/>
+        		<part name="header2" element="wsse:Security"/>
+        		<part name="body" element="xsd1:SessionCreateRQ"/>
+        	</message>
+        	<message name="GetSessionCreateOutput">
+        		<part name="header" element="eb:MessageHeader"/>
+        		<part name="header2" element="wsse:Security"/>
+        		<part name="body" element="xsd1:SessionCreateRS"/>
+        	</message>
+        	<portType name="SessionCreatePortType">
+        		<operation name="SessionCreateRQ">
+        			<input message="tns:GetSessionCreateInput"/>
+        			<output message="tns:GetSessionCreateOutput"/>
+        		</operation>
+        	</portType>
+        	<binding name="SessionCreateSoapBinding" type="tns:SessionCreatePortType">
+        		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        		<operation name="SessionCreateRQ">
+        			<soap:operation soapAction="OTA"/>
+        			<input>
+        				<soap:header message="tns:GetSessionCreateInput" part="header" use="literal"/>
+        				<soap:header message="tns:GetSessionCreateInput" part="header2" use="literal"/>
+        				<soap:body parts="body" use="literal"/>
+        			</input>
+        			<output>
+        				<soap:header message="tns:GetSessionCreateOutput" part="header" use="literal"/>
+        				<soap:header message="tns:GetSessionCreateOutput" part="header2" use="literal"/>
+        				<soap:body parts="body" use="literal"/>
+        			</output>
+        		</operation>
+        	</binding>
+        	<service name="SessionCreateRQService">
+        		<port name="SessionCreatePortType" binding="tns:SessionCreateSoapBinding">
+        			<soap:address location="https://sws-crt.cert.sabre.com/"/>
+        		</port>
+        	</service>
+        </definitions>
+
+    http_version: 
+  recorded_at: Wed, 28 Mar 2012 04:52:59 GMT
+- request: 
+    method: post
+    uri: https://sws-crt.cert.sabre.com/
+    body: 
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:wsdl="https://webservices.sabre.com/websvc" xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:eb="http://www.ebxml.org/namespaces/messageHeader" xmlns:xlinx="http://www.w3.org/1999/xlink"><env:Header><eb:MessageHeader SOAP-ENV:mustUnderstand="1" eb:version="2.0"><eb:ConversationId>joe@example.com</eb:ConversationId><eb:From><eb:PartyId type="urn:x12.org:IO5:01">example.com</eb:PartyId></eb:From><eb:To><eb:PartyId type="urn:x12.org:IO5:01">webservices.sabre.com</eb:PartyId></eb:To><eb:CPAId><IPCC></eb:CPAId><eb:Service eb:type="sabreXML">Session</eb:Service><eb:Action>SessionCloseRQ</eb:Action><eb:MessageData><eb:MessageId>mid:20120328-005259@example.com</eb:MessageId><eb:RefToMessageId>mid:20120328-005245@example.com</eb:RefToMessageId><eb:Timestamp>2012-03-28T00:52:59Z</eb:Timestamp></eb:MessageData></eb:MessageHeader><wsse:Security xmlns:wsse="http://schemas.xmlsoap.org/ws/2002/12/secext"><wsse:BinarySecurityToken xmlns:wsu="http://schemas.xmlsoap.org/ws/2002/12/utility" wsu:Id="SabreSecurityToken" valueType="String" EncodingType="wsse:Base64Binary">Shared/IDL:IceSess\/SessMgr:1\.0.IDL/Common/!ICESMS\/ACPCRTC!ICESMSLB\/CRT.LB!-3939125904507854976!1444378!0</wsse:BinarySecurityToken></wsse:Security></env:Header><env:Body><sessionCloseRq><POS><Source PseudoCityCode="<IPCC>"></Source></POS></sessionCloseRq></env:Body></env:Envelope>
+    headers: 
+      Soapaction: 
+      - "\"sessionCloseRq\""
+      Content-Type: 
+      - text/xml;charset=UTF-8
+      Content-Length: 
+      - "1575"
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Soapaction: 
+      - "\"\""
+      Content-Type: 
+      - text/xml;charset=utf-8
+      Date: 
+      - Wed, 28 Mar 2012 04:49:52 GMT
+      Server: 
+      - SWS
+      Connection: 
+      - close
+    body: 
+      encoding: US-ASCII
+      string: |-
+        <?xml version="1.0" encoding="UTF-8"?>
+        <soap-env:Envelope xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/"><soap-env:Header><eb:MessageHeader xmlns:eb="http://www.ebxml.org/namespaces/messageHeader" eb:version="1.0" soap-env:mustUnderstand="1"><eb:From><eb:PartyId eb:type="URI">webservices.sabre.com</eb:PartyId></eb:From><eb:To><eb:PartyId eb:type="URI">example.com</eb:PartyId></eb:To><eb:CPAId><IPCC></eb:CPAId><eb:ConversationId>joe@example.com</eb:ConversationId><eb:Service eb:type="sabreXML">Session</eb:Service><eb:Action>SessionCloseRS</eb:Action><eb:MessageData><eb:MessageId>5fdd1b04-b0b8-4ed2-88ec-a8447a763f2c@176</eb:MessageId><eb:Timestamp>2012-03-28T04:49:53</eb:Timestamp><eb:RefToMessageId>mid:20120328-005259@example.com</eb:RefToMessageId></eb:MessageData></eb:MessageHeader><wsse:Security xmlns:wsse="http://schemas.xmlsoap.org/ws/2002/12/secext"><wsse:BinarySecurityToken valueType="String" EncodingType="wsse:Base64Binary">Shared/IDL:IceSess\/SessMgr:1\.0.IDL/Common/!ICESMS\/ACPCRTC!ICESMSLB\/CRT.LB!-3939125904507854976!1444378!0</wsse:BinarySecurityToken></wsse:Security></soap-env:Header><soap-env:Body><SessionCloseRS xmlns="http://www.opentravel.org/OTA/2002/11" version="1" status="Approved"/></soap-env:Body></soap-env:Envelope>
+    http_version: 
+  recorded_at: Wed, 28 Mar 2012 04:52:59 GMT
+recorded_with: VCR 2.0.0
