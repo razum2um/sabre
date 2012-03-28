@@ -17,9 +17,7 @@ module Sabre
     def open
       client = Savon::Client.new(Sabre.cert_wsdl_url)
       response = client.request(:session_create_rq) do
-        soap.namespaces["xmlns:SOAP-ENV"] = "http://schemas.xmlsoap.org/soap/envelope/"
-        soap.namespaces["xmlns:eb"] = "http://www.ebxml.org/namespaces/messageHeader"
-        soap.namespaces["xmlns:xlinx"] = "http://www.w3.org/1999/xlink"
+        Sabre.namespaces(soap)
         soap.header = header('Session','sabreXML','SessionCreateRQ')      
         soap.body = { 'POS' => { 'Source' => "", :attributes! => { 'Source' => { 'PseudoCityCode' => self.ipcc } } } }
       end
@@ -32,9 +30,7 @@ module Sabre
     def close
       client = Savon::Client.new(Sabre.cert_wsdl_url)
       client.request(:session_close_rq) do
-        soap.namespaces["xmlns:SOAP-ENV"] = "http://schemas.xmlsoap.org/soap/envelope/"
-        soap.namespaces["xmlns:eb"] = "http://www.ebxml.org/namespaces/messageHeader"
-        soap.namespaces["xmlns:xlinx"] = "http://www.w3.org/1999/xlink"
+        Sabre.namespaces(soap)
         soap.header = header('Session','sabreXML','SessionCloseRQ')      
         soap.body = { 'POS' => { 'Source' => "", :attributes! => { 'Source' => { 'PseudoCityCode' => self.ipcc } } } }
       end
