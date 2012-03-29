@@ -32,5 +32,9 @@ module Sabre
     soap.version = 1
     return soap
   end
+
+  def self.error_message(msg)
+    "#{msg[:errors][:error][:@error_code]}: #{msg[:errors][:error][:@error_message]}: #{msg[:errors][:error][:error_info][:message]}" 
+  end
 	
 end

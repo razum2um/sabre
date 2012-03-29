@@ -35,7 +35,7 @@ module Sabre
       }
       end
       result = response.to_hash[:ota_hotel_res_rs]
-      raise SabreException::ConnectionError, error_message(result) if result[:errors]
+      raise SabreException::ConnectionError, Sabre.error_message(result) if result[:errors]
       return response
     end
 
@@ -52,9 +52,9 @@ module Sabre
       end
     end
 
-    def self.cancel(session,reservation_id = '1')
-      client = Sabre.client('OTA_CancelLLS1.0.1RQ.wsdl')
-      response = client.request(:hotel_property_description_rq, { 'xmlns' => 'http://webservices.sabre.com/sabreXML/2003/07', 'xmlns:xs' => 'http://www.w3.org/2001/XMLSchema', 'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance', 'TimeStamp' => Time.now.strftime('%Y-%m-%dT%H:%M:%S'), 'Version' => '2003A.TsabreXML1.11.1'}) do
+    def self.cancel_stay(session,reservation_id = '1')
+      client = Sabre.client('OTA_CancelLLSRQ.wsdl')
+      response = client.request(:ota_cancel_rq, { 'xmlns' => 'http://webservices.sabre.com/sabreXML/2003/07', 'xmlns:xs' => 'http://www.w3.org/2001/XMLSchema', 'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance', 'TimeStamp' => Time.now.strftime('%Y-%m-%dT%H:%M:%S'), 'Version' => '1.0.1'}) do
       Sabre.namespaces(soap)
       soap.header = session.header('Cancel Reservation','sabreXML','OTA_CancelLLSRQ')
       soap.body = {
@@ -62,7 +62,7 @@ module Sabre
           'TPA_Extensions' => { 
             'SegmentCancel' => { 
               'Segment' => '', :attributes! => { 'Segment' => { 'Number' => reservation_id } } 
-            } 
+            }, :attributes! => {'SegmentCancel' => {'Type' => 'Hotel'}} 
           }
 	    }
       end

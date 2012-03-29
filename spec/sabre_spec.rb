@@ -54,8 +54,8 @@ describe Sabre do
       Sabre::Reservation.book(@session,'ES','0040713','1','1','1','179.00','USD','TEST','AX','378282246310005',(Time.now + 6000000),Time.now+172800, Time.now+432000).to_hash.should include(:ota_hotel_res_rs)
     end
  
-    it "should cancel a hotel reservation" do
-      #@sabre.cancel
+    it "should cancel a hotel reservation", :vcr, record: :new_episodes do
+      Sabre::Reservation.cancel_stay(@session)
     end
 
     after(:each) do
