@@ -34,7 +34,13 @@ module Sabre
   end
 
   def self.error_message(msg)
-    "#{msg[:errors][:error][:@error_code]}: #{msg[:errors][:error][:@error_message]}: #{msg[:errors][:error][:error_info][:message]}" 
+    msg = "#{msg[:errors][:error][:@error_code]}: #{msg[:errors][:error][:@error_message]}: #{msg[:errors][:error][:error_info][:message]}" 
+    return clean_error_message(msg)
+  end
+
+  def self.clean_error_message(msg)
+    msg = 'Invalid Card Number' if msg.include?('INVALID CARD NUMBER')
+    return msg
   end
 	
 end

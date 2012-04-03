@@ -20,16 +20,16 @@ module Sabre
                 'Profiles' => {
                   'Customer' => { 
                      'PaymentForm' => { 
-                      'PaymentCard' => { 
-                        'Guarantee' => {
-                          'PersonName' => {
-                            'Surname' => name
-                          }
-                        }, :attributes! => { 'Guarantee' => { 'Code' => 'G' } } 
-                      }, :attributes! => { 'PaymentCard' => { 'CardCode' => card_code, 'CardNumber' => card_number, 'ExpireDate' => expire_date.strftime('%Y-%m') } } 
-                           } 
-                      }   
-                  }
+                        'PaymentCard' => { 
+                          'Guarantee' => {
+                            'PersonName' => {
+                              'Surname' => name
+                            }
+                          }, :attributes! => { 'Guarantee' => { 'Code' => 'G' } } 
+                        }, :attributes! => { 'PaymentCard' => { 'CardCode' => card_code, 'CardNumber' => card_number, 'ExpireDate' => expire_date.strftime('%Y-%m') } } 
+                     } 
+                  }   
+                }
               }
           }
       }
