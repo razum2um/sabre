@@ -11,6 +11,17 @@ require 'sabre/sabre_exception'
 module Sabre
   mattr_accessor :cert_wsdl_url, :wsdl_url, :endpoint_url, :username, :password, :ipcc, :account_email, :domain, :binary_security_token, :ref_message_id
 
+  def self.connect(&block)
+    begin
+      session = Session.new
+      session.open
+      block.call(session)
+    rescue Exception => e
+    ensure
+      session.close
+    end
+  end
+
   def self.client(service)
     client = Savon::Client.new(self.wsdl_url+service)
     client.http.headers["Content-Type"] = "text/xml;charset=UTF-8"
@@ -40,6 +51,7 @@ module Sabre
 
   def self.clean_error_message(msg)
     msg = 'Invalid Card Number' if msg.include?('INVALID CARD NUMBER')
+    msg = 'Invalid Expiration Date' if msg.include?('INVALID EXP DATE')
     return msg
   end
 	
