@@ -12,13 +12,20 @@ module Sabre
   mattr_accessor :cert_wsdl_url, :wsdl_url, :endpoint_url, :username, :password, :ipcc, :account_email, :domain, :binary_security_token, :ref_message_id
 
   def self.connect(&block)
+    errors = []
     begin
       session = Session.new
       session.open
       block.call(session)
-    rescue Exception => e
+    rescue SabreException::ConnectionError => e
+      errors << {:type => e.class.name, :message => Sabre.clean_error_message(e.message)}
+    rescue SabreException::ReservationError => e
+      errors << {:type => e.class.name, :message => Sabre.clean_error_message(e.message)}
+    rescue Timeout::Error => e
+      errors << {:type => e.class.name, :message => "Sabre Travel Network service request failed due to timeout"} 
     ensure
       session.close
+
     end
   end
 
