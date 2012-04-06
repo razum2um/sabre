@@ -35,7 +35,10 @@ describe Sabre do
     end
 
     it "should return a list of hotels given a valid availability request", :vcr, record: :new_episodes do
-      Sabre::Hotel.find_by_geo(@session, (Time.now+172800), (Time.now+432000),'39.75','-104.87','1').to_hash.should include(:ota_hotel_avail_rs)
+      #Sabre::Hotel.find_by_geo(@session, (Time.now+172800), (Time.now+432000),'39.75','-104.87','1').to_hash.should include(:ota_hotel_avail_rs)
+      hotels = Sabre::Hotel.find_by_geo(@session, (Time.now+172800), (Time.now+432000),'39.75','-104.87','1') 
+      hotels.first.latitude.should_not be_nil
+      hotels.size.should > 0
     end
 
     it "should return a list of hotels given a valid availability request", :vcr, record: :new_episodes do
@@ -44,7 +47,8 @@ describe Sabre do
 
     # Works with 0040713 
     it "should return a hotels description response", :vcr, record: :new_episodes do
-      Sabre::Hotel.profile(@session,'0031653',Time.now+172800, Time.now+432000, '1').to_hash.should include(:hotel_property_description_rs)
+      hotel = Sabre::Hotel.profile(@session,'0031653',Time.now+172800, Time.now+432000, '1')
+      hotel.latitude.should_not be_nil
     end
 
     # This needs to be a Long booking

@@ -1,27 +1,6 @@
 module Sabre
   class Hotel
-    attr_accessor :area_id, :name, :address, :phone, :fax, :location_description, :chain_code, :hotel_code, :latitude, :longitude, :rates, :rating, :amenities, :property_types, :description, :cancellation, :rooms_available, :services, :policies, :attractions
-
-    def initialize(basic_info)
-      @area_id = basic_info[:@area_id] 
-      @name = basic_info[:@hotel_name].titleize
-      if basic_info[:address][:tpa_extensions]
-        @address = basic_info[:address][:tpa_extensions][:address_line].compact
-      else
-        @address = basic_info[:address][:address_line].compact
-      end
-      @phone = basic_info[:contact_numbers][:contact_number][:@phone]
-      @fax = basic_info[:contact_numbers][:contact_number][:@fax]
-      @chain_code = basic_info[:@chain_code]
-      @hotel_code = basic_info[:@hotel_code]
-      if basic_info[:position]
-        @latitude = basic_info[:position][:@latitude]
-        @longitude = basic_info[:position][:@longitude]
-      else
-        @latitude = basic_info[:@latitude]
-        @longitude = basic_info[:@longitude]
-      end
-    end
+    attr_accessor :area_id, :name, :address, :phone, :fax, :location_description, :chain_code, :property_code, :latitude, :longitude, :rates, :rating, :amenities
 
     def self.find_by_geo(session, start_time, end_time, latitude, longitude, guest_count, amenities = [])
       client = Sabre.client('OTA_HotelAvailLLS1.11.1RQ.wsdl')
@@ -71,17 +50,16 @@ module Sabre
                 }, 'HotelSearchCriteria' => {
                   'Criterion' => { 
                     'HotelAmenity' => amenities, 'HotelRef' => '', :attributes! => {
-                      'HotelRef' => { 'HotelCityCode' => iata_city_code } 
-                    } }
-                }, :attributes! => { 
-                  'HotelSearchCriteria' => { 'NumProperties' => 20 }, 
-                    'StayDateRange' => { 'Start' => start_time.strftime('%m-%dT%H:%M:%S'), 'End' => end_time.strftime('%m-%dT%H:%M:%S') }  
-                }
+    'HotelRef' => { 'HotelCityCode' => iata_city_code } 
+  } }
+   }, :attributes! => { 
+    'HotelSearchCriteria' => { 'NumProperties' => 20 }, 
+			'StayDateRange' => { 'Start' => start_time.strftime('%m-%dT%H:%M:%S'), 'End' => end_time.strftime('%m-%dT%H:%M:%S') }  
+		}
              }
            }
        }
       end
-      construct_response_hash(response)
     end
 
     def self.rate_details(session, hotel_id, visit_start, visit_end, guest_count, line_number)
@@ -128,11 +106,11 @@ module Sabre
 	    end
 	    result = response.to_hash[:hotel_property_description_rs]
 	    raise SabreException::ConnectionError, Sabre.error_message(result) if result[:errors] 
-	    return construct_full_response_hash(response)
+	    return response
     end
 
     def self.construct_response_hash(results)
-      hotels = []
+      properties = []
       if results.to_hash[:ota_hotel_avail_rs][:errors].nil?
 
         results.to_hash[:ota_hotel_avail_rs][:availability_options][:availability_option].each do |p|
@@ -143,8 +121,8 @@ module Sabre
           #  prop_info[:address][:address_line].last.split(' ')
           #)
 
-          hotel = Hotel.new(prop_info)
-          hotel.location_description = prop_info[:location_description][:text]
+          hotel = Hotel.new(:name => prop_info[:@hotel_name].titleize)
+          hotel.address = prop_info[:address][:address_line]
 
           rates = []
           if rate_range = prop_info[:rate_range]
@@ -157,138 +135,39 @@ module Sabre
 
           hotel.rates = rates
 
-          hotel.amenities = prop_info[:property_option_info].map do |key, val|
-             key.to_s if val[:@ind] == 'true'
+          options = {}
+
+          options = prop_info[:property_option_info].map do |key, val|
+          #  APP[:amenities][key.to_s] if val[:@ind] == 'true'
+             puts "Key is #{key.to_s}" if val[:@ind] == 'true'
           end.compact.uniq
-          
+
           rating = ''
           if prop_info[:property]
-            hotel.rating = prop_info[:property][:text]
+            rating = prop_info[:property][:text]
           end
 
-          hotels << hotel 
+          properties << Property.new({
+            area_id: prop_info[:@area_id],
+            #street: street,
+            #postal_code: postal_code,
+            #state: state,
+            #city: city,
+            name: prop_info[:@hotel_name].titleize,
+            phone: prop_info[:contact_numbers][:contact_number][:@phone],
+            fax: prop_info[:contact_numbers][:contact_number][:@fax],
+            location_description: prop_info[:location_description][:text],
+            chain_code: prop_info[:@chain_code],
+            property_code: prop_info[:@hotel_code],
+            latitude: prop_info[:@latitude],
+            longitude: prop_info[:@longitude],
+            rates: rates,
+            rating: rating,
+            amenities: options
+          })
         end
       end
-      return hotels
+      return properties
     end
-
-    def self.construct_full_response_hash(result)
-      hotel = nil
-      p = result.to_hash[:hotel_property_description_rs]
-      if p[:errors].nil?
-        room_stay = p[:room_stays][:room_stay]
-        prop_info = room_stay[:basic_property_info]
-
-        hotel = Hotel.new(prop_info)
-        cards = []
-        room_stay = p[:room_stays][:room_stay]
-        if room_stay[:rate_plans]
-          room_stay[:rate_plans][:rate_plan][:guarantee][:guarantees_accepted][:guarantee_accepted][:payment_card].each do |cc|
-            cards << cc[:@card_type]
-          end
-        end
-
-        rates = []
-        line_number = nil
-        if room_stay[:room_rates]
-          if room_stay[:room_rates][:room_rate]
-            room_stay[:room_rates][:room_rate].each do |rr|
-              code = rr[:@rate_plan_code]
-              line_number = rr[:@rph]
-              if rr[:rates]
-                tax = nil
-                total = nil
-                if rr[:rates][:rate][:tpa_extensions]
-                  total = rr[:rates][:rate][:tpa_extensions][:hotel_total_pricing][:@amount]
-                  taxes = rr[:rates][:rate][:tpa_extensions][:hotel_total_pricing][:total_taxes]
-                  tax = taxes ? taxes[:@amount] : nil
-                end
-
-                description = rr[:tpa_extensions][:text]
-                description = description.join(' ') if description.kind_of? Array
-                description.gsub! /\s?[,|\/],?\s?/, ", "
-                description = description.titleize
-
-                rates << {
-                  description: description,
-                  code: code,
-                  line_number: line_number,
-                  amount: rr[:rates][:rate][:@amount],
-                  currency: rr[:rates][:rate][:@currency_code],
-                  taxes: tax,
-                  total_pricing: total
-                }
-              end
-            end
-          elsif room_stay[:room_plans]
-            room_stay[:room_plans][:room_plan].each do |rr|
-              if rr[:rates]
-                tax = nil
-                total = nil
-                if rr[:rates][:rate][:tpa_extensions]
-                  total = rr[:rates][:rate][:tpa_extensions][:hotel_total_pricing][:@amount]
-                  taxes = rr[:rates][:rate][:tpa_extensions][:hotel_total_pricing][:total_taxes]
-                  tax = taxes ? taxes[:@amount] : nil
-                end
-
-                description = rr[:tpa_extensions][:text]
-                description = description.join(' ') if description.kind_of? Array
-                description.gsub! /\s?[,|\/],?\s?/, ", "
-                description = description.titleize
-
-                rates << {
-                  description: description,
-                  amount: rr[:rates][:rate][:@amount],
-                  currency: rr[:rates][:rate][:@currency_code],
-                  taxes: tax,
-                  total_pricing: total
-                }
-              end
-            end
-          end
-          hotel.rates = rates
-        end # End building rates
-
-        points_of_interest = []
-        begin
-          prop_info[:tpa_extensions][:index_data][:index].each do |poi|
-            pt = poi[:@point]
-            distance = poi[:@distance_direction].strip
-          end
-          points_of_interest << {:point => pt, :distance_direction => distance}
-        rescue
-        end
-        #hotel.points_of_interest
-
-        details = {}
-        begin
-          prop_info[:vendor_messages][:vendor_message].first.last.each do |msg|
-            text = msg[:paragraph][:text]
-            detail = {msg[:@sub_title].underscore.to_sym => text}
-            details = details.merge!(detail)
-          end
-          hotel.description = details[:description].join(' ').split('. ').map{|sentence| sentence.capitalize}.join('. ')
-          hotel.location_description = details[:location]
-          hotel.rooms_available = details[:rooms]
-          hotel.cancellation = details[:cancellation]
-          hotel.services = details[:services]
-          hotel.policies = details[:policies]
-          hotel.attractions = details[:attractions]
-
-        rescue
-        end
-
-        hotel.amenities = prop_info[:tpa_extensions][:property_option_info].map do |key, val|
-          key.to_s.gsub('_', ' ').titleize if val[:@ind] == 'true'
-        end.compact
-
-        hotel.property_types = prop_info[:tpa_extensions][:property_type_info].map do |key, val|
-          key.to_s.gsub('_', ' ').titleize if val[:@ind] == 'true'
-        end.compact 
-
-      end
-      return hotel
-    end
-
   end
 end
