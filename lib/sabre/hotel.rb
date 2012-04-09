@@ -24,6 +24,7 @@ module Sabre
     end
 
     def self.find_by_geo(session, start_time, end_time, latitude, longitude, guest_count, amenities = [])
+      raise SabreException::SearchError, 'No results found when missing latitude and longitude' if latitude.to_f == 0.0 || longitude.to_f == 0.0
       client = Sabre.client('OTA_HotelAvailLLS1.11.1RQ.wsdl')
       response = client.request(:ota_hotel_avail_rq, { 'xmlns' => 'http://webservices.sabre.com/sabreXML/2003/07', 'xmlns:xs' => 'http://www.w3.org/2001/XMLSchema', 'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance', 'TimeStamp' => Time.now.strftime('%Y-%m-%dT%H:%M:%S'), 'Version' => '2003A.TsabreXML1.11.1'}) do
         Sabre.namespaces(soap)
@@ -39,7 +40,7 @@ module Sabre
                  'RoomStayCandidate' => { 'GuestCounts' => { 'GuestCount' => '', :attributes! => { 'GuestCount' => { 'Count' => guest_count } } } } 
               }, 'HotelSearchCriteria' => {
                  'Criterion' => { 
-                   'HotelAmenity' => amenities, 'HotelRef' => '', 'RefPoint' => 'G', :attributes! => {
+                   'HotelAmenity' => amenities.join(","), 'HotelRef' => '', 'RefPoint' => 'G', :attributes! => {
                      'HotelRef' => { 'Latitude' => latitude, 'Longitude' => longitude }, 
                      'RefPoint' => { 'GEOCodeOnly' => 'true', 'LocationCode' => 'R' },
                    } 
@@ -57,6 +58,7 @@ module Sabre
     end
 
     def self.find_by_iata(session, start_time, end_time, iata_city_code, guest_count, amenities = [])
+      raise SabreException::SearchError, 'Missing IATA City Code - No search results found' if iata_city_code.nil?
       client = Sabre.client('OTA_HotelAvailLLS1.11.1RQ.wsdl')
       response = client.request(:ota_hotel_avail_rq, { 'xmlns' => 'http://webservices.sabre.com/sabreXML/2003/07', 'xmlns:xs' => 'http://www.w3.org/2001/XMLSchema', 'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance', 'TimeStamp' => Time.now.strftime('%Y-%m-%dT%H:%M:%S'), 'Version' => '2003A.TsabreXML1.11.1'}) do
         Sabre.namespaces(soap)
@@ -70,12 +72,12 @@ module Sabre
                   'RoomStayCandidate' => { 'GuestCounts' => { 'GuestCount' => '', :attributes! => { 'GuestCount' => { 'Count' => guest_count } } } } 
                 }, 'HotelSearchCriteria' => {
                   'Criterion' => { 
-                    'HotelAmenity' => amenities, 'HotelRef' => '', :attributes! => {
+                    'HotelAmenity' => amenities.join(","), 'HotelRef' => '', :attributes! => {
                       'HotelRef' => { 'HotelCityCode' => iata_city_code } 
                     } }
                 }, :attributes! => { 
                   'HotelSearchCriteria' => { 'NumProperties' => 20 }, 
-                    'StayDateRange' => { 'Start' => start_time.strftime('%m-%dT%H:%M:%S'), 'End' => end_time.strftime('%m-%dT%H:%M:%S') }  
+                  'StayDateRange' => { 'Start' => start_time.strftime('%m-%dT%H:%M:%S'), 'End' => end_time.strftime('%m-%dT%H:%M:%S') }  
                 }
              }
            }
@@ -148,11 +150,8 @@ module Sabre
 
           rates = []
           if rate_range = prop_info[:rate_range]
-            rate_min = rate_range[:@min]
-            rate_max = rate_range[:@max]
-            rate_currency = rate_range[:@currency_code]
-            rates << {:description => 'Minimum', :amount => rate_min, :currency => rate_currency}
-            rates << {:description => 'Maximum', :amount => rate_max, :currency => rate_currency}
+            rates << {:description => 'Minimum', :amount => rate_range[:@min], :currency => rate_range[:@currency_code]}
+            rates << {:description => 'Maximum', :amount => rate_range[:@max], :currency => rate_range[:@currency_code]}
           end
 
           hotel.rates = rates
@@ -168,6 +167,9 @@ module Sabre
 
           hotels << hotel 
         end
+      else
+        result = results.to_hash[:ota_hotel_avail_rs]
+        raise SabreException::SearchError, Sabre.error_message(result) if result[:errors]
       end
       return hotels
     end
@@ -196,21 +198,10 @@ module Sabre
               code = rr[:@rate_plan_code]
               line_number = rr[:@rph]
               if rr[:rates]
-                tax = nil
-                total = nil
-                if rr[:rates][:rate][:tpa_extensions]
-                  total = rr[:rates][:rate][:tpa_extensions][:hotel_total_pricing][:@amount]
-                  taxes = rr[:rates][:rate][:tpa_extensions][:hotel_total_pricing][:total_taxes]
-                  tax = taxes ? taxes[:@amount] : nil
-                end
-
-                description = rr[:tpa_extensions][:text]
-                description = description.join(' ') if description.kind_of? Array
-                description.gsub! /\s?[,|\/],?\s?/, ", "
-                description = description.titleize
+                tax, total = tax_rate(rr)
 
                 rates << {
-                  description: description,
+                  description: rate_description(rr),
                   code: code,
                   line_number: line_number,
                   amount: rr[:rates][:rate][:@amount],
@@ -223,21 +214,10 @@ module Sabre
           elsif room_stay[:room_plans]
             room_stay[:room_plans][:room_plan].each do |rr|
               if rr[:rates]
-                tax = nil
-                total = nil
-                if rr[:rates][:rate][:tpa_extensions]
-                  total = rr[:rates][:rate][:tpa_extensions][:hotel_total_pricing][:@amount]
-                  taxes = rr[:rates][:rate][:tpa_extensions][:hotel_total_pricing][:total_taxes]
-                  tax = taxes ? taxes[:@amount] : nil
-                end
-
-                description = rr[:tpa_extensions][:text]
-                description = description.join(' ') if description.kind_of? Array
-                description.gsub! /\s?[,|\/],?\s?/, ", "
-                description = description.titleize
+                tax, total = tax_rate(rr)
 
                 rates << {
-                  description: description,
+                  description: rate_description(rr),
                   amount: rr[:rates][:rate][:@amount],
                   currency: rr[:rates][:rate][:@currency_code],
                   taxes: tax,
@@ -285,10 +265,28 @@ module Sabre
         hotel.property_types = prop_info[:tpa_extensions][:property_type_info].map do |key, val|
           key.to_s.gsub('_', ' ').titleize if val[:@ind] == 'true'
         end.compact 
-
+      else
+        raise SabreException::SearchError, Sabre.error_message(p) if p[:errors]
       end
       return hotel
     end
 
+    def self.rate_description(rate_result)
+      description = rate_result[:tpa_extensions][:text]
+      description = description.join(' ') if description.kind_of? Array
+      description.gsub! /\s?[,|\/],?\s?/, ", "
+      description = description.titleize
+    end
+
+    def self.tax_rate(room_rate)
+      tax = nil
+      total = nil
+      if room_rate[:rates][:rate][:tpa_extensions]
+        total = room_rate[:rates][:rate][:tpa_extensions][:hotel_total_pricing][:@amount]
+        taxes = room_rate[:rates][:rate][:tpa_extensions][:hotel_total_pricing][:total_taxes]
+        tax = taxes ? taxes[:@amount] : nil
+      end
+      return tax, total
+    end
   end
 end

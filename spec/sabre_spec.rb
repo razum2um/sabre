@@ -35,14 +35,19 @@ describe Sabre do
     end
 
     it "should return a list of hotels given a valid availability request", :vcr, record: :new_episodes do
-      #Sabre::Hotel.find_by_geo(@session, (Time.now+172800), (Time.now+432000),'39.75','-104.87','1').to_hash.should include(:ota_hotel_avail_rs)
       hotels = Sabre::Hotel.find_by_geo(@session, (Time.now+172800), (Time.now+432000),'39.75','-104.87','1') 
       hotels.first.latitude.should_not be_nil
       hotels.size.should > 0
     end
 
     it "should return a list of hotels given a valid availability request", :vcr, record: :new_episodes do
-      Sabre::Hotel.find_by_iata(@session,Time.now+172800, Time.now+432000,'DFW','1').to_hash.should include(:ota_hotel_avail_rs)
+      hotels = Sabre::Hotel.find_by_iata(@session,Time.now+172800, Time.now+432000,'DFW','1')
+      hotels.first.latitude.should_not be_nil
+      hotels.size.should > 0
+    end
+
+    it "should return a list of errors when an invalid lat/lng request is sent", :vcr, record: :new_episodes do
+      expect { Sabre::Hotel.find_by_geo(@session, (Time.now+172800), (Time.now+432000),nil,nil,'1')}.should raise_error 
     end
 
     # Works with 0040713 

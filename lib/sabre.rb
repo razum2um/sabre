@@ -12,21 +12,23 @@ module Sabre
   mattr_accessor :cert_wsdl_url, :wsdl_url, :endpoint_url, :username, :password, :ipcc, :account_email, :domain, :binary_security_token, :ref_message_id
 
   def self.connect(&block)
-    errors = []
+    @errors = []
     begin
       session = Session.new
       session.open
       block.call(session)
     rescue SabreException::ConnectionError => e
-      errors << {:type => e.class.name, :message => Sabre.clean_error_message(e.message)}
-    rescue SabreException::ReservationError => e
-      errors << {:type => e.class.name, :message => Sabre.clean_error_message(e.message)}
+      @errors << {:type => e.class.name, :message => Sabre.clean_error_message(e.message)}
+    #rescue SabreException::ReservationError => e
+    #  @errors << {:type => e.class.name, :message => Sabre.clean_error_message(e.message)}
+    #rescue SabreException::SearchError => e
+    #  @errors << {:type => e.class.name, :message => Sabre.clean_error_message(e.message)}
     rescue Timeout::Error => e
-      errors << {:type => e.class.name, :message => "Sabre Travel Network service request failed due to timeout"} 
+      @errors << {:type => e.class.name, :message => "Sabre Travel Network service request failed due to timeout"} 
     ensure
       session.close
-
     end
+    return @errors if @errors.any?
   end
 
   def self.client(service)
@@ -59,6 +61,7 @@ module Sabre
   def self.clean_error_message(msg)
     msg = 'Invalid Card Number' if msg.include?('INVALID CARD NUMBER')
     msg = 'Invalid Expiration Date' if msg.include?('INVALID EXP DATE')
+    msg = 'Invalid Format' if msg.include?('INVALID FORMAT')
     return msg
   end
 	
