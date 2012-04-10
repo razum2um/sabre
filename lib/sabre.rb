@@ -37,8 +37,8 @@ module Sabre
     return client
   end
 
-  def self.setup
-    yield self
+  def self.setup(&block)
+    yield if block_given?
   end
 
   def self.pos

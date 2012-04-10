@@ -288,5 +288,7 @@ module Sabre
       end
       return tax, total
     end
+
+
   end
 end
