@@ -130,6 +130,7 @@ module Sabre
 	    return construct_full_response_hash(response)
     end
 
+    private
     def self.construct_response_hash(results)
       hotels = []
       if results.to_hash[:ota_hotel_avail_rs][:errors].nil?
