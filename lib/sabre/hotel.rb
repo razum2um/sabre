@@ -26,7 +26,7 @@ module Sabre
     def self.find_by_geo(session, start_time, end_time, latitude, longitude, guest_count, amenities = [])
       raise SabreException::SearchError, 'No results found when missing latitude and longitude' if latitude.to_f == 0.0 || longitude.to_f == 0.0
       client = Sabre.client('OTA_HotelAvailLLS1.11.1RQ.wsdl')
-      response = client.request(:ota_hotel_avail_rq, { 'xmlns' => 'http://webservices.sabre.com/sabreXML/2003/07', 'xmlns:xs' => 'http://www.w3.org/2001/XMLSchema', 'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance', 'TimeStamp' => Time.now.strftime('%Y-%m-%dT%H:%M:%S'), 'Version' => '2003A.TsabreXML1.11.1'}) do
+      response = client.request(:ota_hotel_avail_rq, Sabre.request_header('2003A.TsabreXML1.11.1')) do
         Sabre.namespaces(soap)
         soap.header = session.header('Hotel Availability','sabreXML','OTA_HotelAvailLLSRQ')
         soap.body = {
@@ -60,7 +60,7 @@ module Sabre
     def self.find_by_iata(session, start_time, end_time, iata_city_code, guest_count, amenities = [])
       raise SabreException::SearchError, 'Missing IATA City Code - No search results found' if iata_city_code.nil?
       client = Sabre.client('OTA_HotelAvailLLS1.11.1RQ.wsdl')
-      response = client.request(:ota_hotel_avail_rq, { 'xmlns' => 'http://webservices.sabre.com/sabreXML/2003/07', 'xmlns:xs' => 'http://www.w3.org/2001/XMLSchema', 'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance', 'TimeStamp' => Time.now.strftime('%Y-%m-%dT%H:%M:%S'), 'Version' => '2003A.TsabreXML1.11.1'}) do
+      response = client.request(:ota_hotel_avail_rq, Sabre.request_header('2003A.TsabreXML1.11.1')) do
         Sabre.namespaces(soap)
         soap.header = session.header('Hotel Availability','sabreXML','OTA_HotelAvailLLSRQ')
         soap.body = {
@@ -88,7 +88,7 @@ module Sabre
 
     def self.rate_details(session, hotel_id, visit_start, visit_end, guest_count, line_number)
     	client = Sabre.client('HotelRateDescriptionLLS1.9.1RQ.wsdl')
-	    response = client.request(:hotel_rate_description_rq, { 'xmlns' => 'http://webservices.sabre.com/sabreXML/2003/07', 'xmlns:xs' => 'http://www.w3.org/2001/XMLSchema', 'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance', 'TimeStamp' => Time.now.strftime('%Y-%m-%dT%H:%M:%S'), 'Version' => '1.9.1'}) do
+	    response = client.request(:hotel_rate_description_rq, Sabre.request_header('1.9.1')) do
         Sabre.namespaces(soap)
 		    soap.header = session.header('Hotel Rates','sabreXML','HotelRateDescriptionLLSRQ')
 		    soap.body = {
@@ -108,7 +108,7 @@ module Sabre
 
     def self.profile(session,hotel_id, start_time, end_time, guest_count)
     	client = Sabre.client('HotelPropertyDescriptionLLS1.12.1RQ.wsdl')
-	    response = client.request(:hotel_property_description_rq, { 'xmlns' => 'http://webservices.sabre.com/sabreXML/2003/07', 'xmlns:xs' => 'http://www.w3.org/2001/XMLSchema', 'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance', 'TimeStamp' => Time.now.strftime('%Y-%m-%dT%H:%M:%S'), 'Version' => '2003A.TsabreXML1.11.1'}) do
+	    response = client.request(:hotel_property_description_rq, Sabre.request_header('2003A.TsabreXML1.11.1')) do
         Sabre.namespaces(soap)
 		    soap.header = session.header('Hotel Description','sabreXML','HotelPropertyDescriptionLLSRQ')
 		    soap.body = {
