@@ -36,9 +36,8 @@ module Sabre
               'StayDateRange' => '', 
               'RatePlanCandidates' => {
                 'RateRange' => '', :attributes! => { 'RateRange' => { 'CurrencyCode' => 'USD', 'Max' => '1000.00', 'Min' => '20.00' }}
-              }, 'RoomStayCandidates' => {
-                 'RoomStayCandidate' => { 'GuestCounts' => { 'GuestCount' => '', :attributes! => { 'GuestCount' => { 'Count' => guest_count } } } } 
-              }, 'HotelSearchCriteria' => {
+              }, 'RoomStayCandidates' => room_stay_candidates(guest_count),
+              'HotelSearchCriteria' => {
                  'Criterion' => { 
                    'HotelAmenity' => amenities.join(","), 'HotelRef' => '', 'RefPoint' => 'G', :attributes! => {
                      'HotelRef' => { 'Latitude' => latitude, 'Longitude' => longitude }, 
@@ -68,9 +67,8 @@ module Sabre
           'AvailRequestSegments' => {
   'AvailRequestSegment' => {
                 'StayDateRange' => '', 
-                'RoomStayCandidates' => {
-                  'RoomStayCandidate' => { 'GuestCounts' => { 'GuestCount' => '', :attributes! => { 'GuestCount' => { 'Count' => guest_count } } } } 
-                }, 'HotelSearchCriteria' => {
+                'RoomStayCandidates' => room_stay_candidates(guest_count),
+                'HotelSearchCriteria' => {
                   'Criterion' => { 
                     'HotelAmenity' => amenities.join(","), 'HotelRef' => '', :attributes! => {
                       'HotelRef' => { 'HotelCityCode' => iata_city_code } 
@@ -117,9 +115,8 @@ module Sabre
               'AvailRequestSegment' => {
                   'StayDateRange' => '', :attributes! => { 'StayDateRange' => {
                       'Start' => start_time.strftime('%Y-%m-%d'), 'End' => end_time.strftime('%Y-%m-%d')
-                  } }, 'RoomStayCandidates' => {
-                   'RoomStayCandidate' => { 'GuestCounts' => { 'GuestCount' => '', :attributes! => { 'GuestCount' => { 'Count' => guest_count } } } } 
-          }, 'HotelSearchCriteria' => {
+                  } }, 'RoomStayCandidates' => room_stay_candidates(guest_count),
+                  'HotelSearchCriteria' => {
                         'Criterion' => { 'HotelRef' => '', :attributes! => {
                           'HotelRef' => { 'HotelCode' => hotel_id }
                         } }
@@ -289,6 +286,16 @@ module Sabre
       return tax, total
     end
 
-
+    def self.room_stay_candidates(number_of_guests)
+      {
+        'RoomStayCandidate' => { 
+          'GuestCounts' => { 
+            'GuestCount' => '', :attributes! => { 
+              'GuestCount' => { 'Count' => number_of_guests } 
+            } 
+          } 
+        } 
+      }
+    end    
   end
 end
