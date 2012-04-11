@@ -41,6 +41,7 @@ module Sabre
                  'Criterion' => { 
                    'HotelAmenity' => amenities.join(","), 'HotelRef' => '', 'RefPoint' => 'G', :attributes! => {
                      'HotelRef' => { 'Latitude' => latitude, 'Longitude' => longitude }, 
+                   'HotelAmenity' => amenities.map(&:upcase), 'HotelRef' => '', 'RefPoint' => 'G', :attributes! => {
                      'RefPoint' => { 'GEOCodeOnly' => 'true', 'LocationCode' => 'R' },
                    } 
                  }
