@@ -46,8 +46,9 @@ module Sabre
     }
   end
 
-  def self.setup(&block)
-    yield if block_given?
+  def self.setup
+    yield self
+    #yield if block_given?
   end
 
   def self.pos

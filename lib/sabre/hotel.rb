@@ -39,9 +39,8 @@ module Sabre
               }, 'RoomStayCandidates' => room_stay_candidates(guest_count),
               'HotelSearchCriteria' => {
                  'Criterion' => { 
-                   'HotelAmenity' => amenities.join(","), 'HotelRef' => '', 'RefPoint' => 'G', :attributes! => {
+                   'HotelAmenity' => amenities.map(&:upcase).join(","), 'HotelRef' => '', 'RefPoint' => 'G', :attributes! => {
                      'HotelRef' => { 'Latitude' => latitude, 'Longitude' => longitude }, 
-                   'HotelAmenity' => amenities.map(&:upcase), 'HotelRef' => '', 'RefPoint' => 'G', :attributes! => {
                      'RefPoint' => { 'GEOCodeOnly' => 'true', 'LocationCode' => 'R' },
                    } 
                  }
@@ -71,7 +70,7 @@ module Sabre
                 'RoomStayCandidates' => room_stay_candidates(guest_count),
                 'HotelSearchCriteria' => {
                   'Criterion' => { 
-                    'HotelAmenity' => amenities.join(","), 'HotelRef' => '', :attributes! => {
+                    'HotelAmenity' => amenities.map(&:upcase).join(","), 'HotelRef' => '', :attributes! => {
                       'HotelRef' => { 'HotelCityCode' => iata_city_code } 
                     } }
                 }, :attributes! => { 
@@ -198,7 +197,6 @@ module Sabre
               line_number = rr[:@rph]
               if rr[:rates]
                 tax, total = tax_rate(rr)
-
                 rates << {
                   description: rate_description(rr),
                   code: code,
