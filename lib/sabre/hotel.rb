@@ -39,7 +39,7 @@ module Sabre
               }, 'RoomStayCandidates' => room_stay_candidates(guest_count),
               'HotelSearchCriteria' => {
                  'Criterion' => { 
-                   'HotelAmenity' => amenities.map(&:upcase).join(","), 'HotelRef' => '', 'RefPoint' => 'G', :attributes! => {
+                   'HotelAmenity' => amenities.map(&:upcase), 'HotelRef' => '', 'RefPoint' => 'G', :attributes! => {
                      'HotelRef' => { 'Latitude' => latitude, 'Longitude' => longitude }, 
                      'RefPoint' => { 'GEOCodeOnly' => 'true', 'LocationCode' => 'R' },
                    } 
@@ -70,7 +70,7 @@ module Sabre
                 'RoomStayCandidates' => room_stay_candidates(guest_count),
                 'HotelSearchCriteria' => {
                   'Criterion' => { 
-                    'HotelAmenity' => amenities.map(&:upcase).join(","), 'HotelRef' => '', :attributes! => {
+                    'HotelAmenity' => amenities.map(&:upcase), 'HotelRef' => '', :attributes! => {
                       'HotelRef' => { 'HotelCityCode' => iata_city_code } 
                     } }
                 }, :attributes! => { 
