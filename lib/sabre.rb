@@ -17,8 +17,8 @@ module Sabre
       session = Session.new
       session.open
       block.call(session)
-    rescue SabreException::ConnectionError => e
-      @errors << {:type => e.class.name, :message => Sabre.clean_error_message(e.message)}
+    #rescue SabreException::ConnectionError => e
+    #  @errors << {:type => e.class.name, :message => Sabre.clean_error_message(e.message)}
     #rescue SabreException::ReservationError => e
     #  @errors << {:type => e.class.name, :message => Sabre.clean_error_message(e.message)}
     #rescue SabreException::SearchError => e
@@ -48,7 +48,6 @@ module Sabre
 
   def self.setup
     yield self
-    #yield if block_given?
   end
 
   def self.pos
