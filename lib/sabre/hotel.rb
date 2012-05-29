@@ -130,6 +130,29 @@ module Sabre
 	    return construct_full_response_hash(response)
     end
 
+    def self.profile(session,hotel_id)
+    	client = Sabre.client('HotelPropertyDescriptionLLS1.12.1RQ.wsdl')
+	    response = client.request(:hotel_property_description_rq, Sabre.request_header('2003A.TsabreXML1.11.1')) do
+        Sabre.namespaces(soap)
+		    soap.header = session.header('Hotel Description','sabreXML','HotelPropertyDescriptionLLSRQ')
+		    soap.body = {
+          'POS' => Sabre.pos,
+          'AvailRequestSegments' => {
+              'AvailRequestSegment' => {
+                  'HotelSearchCriteria' => {
+                        'Criterion' => { 'HotelRef' => '', :attributes! => {
+                          'HotelRef' => { 'HotelCode' => hotel_id }
+                        } }
+                   }
+              }
+			    }
+	    	}
+	    end
+	    result = response.to_hash[:hotel_property_description_rs]
+	    raise SabreException::ConnectionError, Sabre.error_message(result) if result[:errors] 
+	    return construct_full_response_hash(response)
+    end
+
     private
     def self.construct_response_hash(results)
       hotels = []
