@@ -130,7 +130,7 @@ module Sabre
 	    return construct_full_response_hash(response)
     end
 
-    def self.profile(session,hotel_id)
+    def self.find_by_code(session,hotel_id)
     	client = Sabre.client('HotelPropertyDescriptionLLS1.12.1RQ.wsdl')
 	    response = client.request(:hotel_property_description_rq, Sabre.request_header('2003A.TsabreXML1.11.1')) do
         Sabre.namespaces(soap)
